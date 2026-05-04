@@ -29,6 +29,7 @@ dist-ssr
 CLAUDE.md
 **/CLAUDE.md
 **/.claude/
+CLAUDE.reference.md
 chatbot/audit/
 
 # Private negotiation/audit files
@@ -55,3 +56,12 @@ chatbot/.playwright-mcp/
 # RAG
 .rag-hashes.json
 scripts/chunks/
+
+# Claude Code local
+.claude/settings.local.json
+.claude/memory/
+
+# Media
+bun.lock
+*.mov
+*.mp4
