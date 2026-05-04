@@ -1,7 +1,7 @@
-export type CareerOpsLang = 'es' | 'en'
+export type CareerOpsLang = 'zh' | 'en'
 
 export const careerOpsContent = {
-  es: {
+  zh: {
     slug: 'career-ops',
     altSlug: 'career-ops-system',
     readingTime: '18 min de lectura',

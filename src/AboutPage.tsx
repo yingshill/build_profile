@@ -16,7 +16,7 @@ const SOCIAL_LINKS = [
   { name: 'Wikidata', url: 'https://www.wikidata.org/wiki/Q138710224' },
 ]
 
-export default function AboutPage({ lang = 'es' }: { lang?: AboutLang }) {
+export default function AboutPage({ lang = 'zh' }: { lang?: AboutLang }) {
   const t = aboutContent[lang]
   const altSlug = t.altSlug
 
@@ -33,7 +33,7 @@ export default function AboutPage({ lang = 'es' }: { lang?: AboutLang }) {
     canonical.href = `https://santifer.io/${t.slug}`
 
     const hreflangs = [
-      { lang: 'es', href: 'https://santifer.io/sobre-mi' },
+      { lang: 'zh', href: 'https://santifer.io/sobre-mi' },
       { lang: 'en', href: 'https://santifer.io/about' },
       { lang: 'x-default', href: 'https://santifer.io/sobre-mi' },
     ]
@@ -66,7 +66,7 @@ export default function AboutPage({ lang = 'es' }: { lang?: AboutLang }) {
             src="/foto-avatar-sm.webp"
             srcSet="/foto-avatar-sm.webp 192w, /foto-avatar.webp 384w"
             sizes="96px"
-            alt="Santiago Fernández de Valderrama"
+            alt="Elena Liu"
             className="w-24 h-24 rounded-full border-2 border-border shadow-lg"
             width={96}
             height={96}
@@ -192,13 +192,14 @@ export default function AboutPage({ lang = 'es' }: { lang?: AboutLang }) {
           </ul>
         </section>
 
-        {/* Press */}
+        {/* Press — section hidden until press items are added */}
+        {(t.press as unknown as Array<{ href: string; title: string; publisher: string; date: string }>).length > 0 && (
         <section className="mb-10">
           <h2 className="font-display text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
             <Newspaper className="w-4 h-4 text-primary" />
             {t.pressHeading}
           </h2>
-          {t.press.map((item) => (
+          {(t.press as unknown as Array<{ href: string; title: string; publisher: string; date: string }>).map((item) => (
             <a
               key={item.href}
               href={item.href}
@@ -214,6 +215,7 @@ export default function AboutPage({ lang = 'es' }: { lang?: AboutLang }) {
             </a>
           ))}
         </section>
+        )}
 
         {/* Community */}
         <section className="mb-10">
@@ -293,14 +295,14 @@ export default function AboutPage({ lang = 'es' }: { lang?: AboutLang }) {
             to={`/${altSlug}`}
             className="text-sm text-muted-foreground hover:text-primary transition-colors"
           >
-            {lang === 'es' ? 'Read in English →' : 'Leer en Español →'}
+            {lang === 'zh' ? 'Read in English →' : 'Leer en Español →'}
           </Link>
         </div>
 
         {/* Footer */}
         <footer className="mt-8 text-center">
           <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} Santiago Fernández de Valderrama. {lang === 'es' ? 'Todos los derechos reservados.' : 'All rights reserved.'}
+            &copy; {new Date().getFullYear()} Elena Liu. {lang === 'zh' ? '版权所有。' : 'All rights reserved.'}
           </p>
         </footer>
       </main>

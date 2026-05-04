@@ -1,5 +1,5 @@
 export const businessOsContent = {
-  es: {
+  zh: {
     slug: 'business-os-para-airtable',
     altSlug: 'business-os-for-airtable',
     readingTime: '15 min de lectura',

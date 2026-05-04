@@ -1,5 +1,5 @@
 export const pseoContent = {
-  es: {
+  zh: {
     slug: 'seo-programatico',
     altSlug: 'programmatic-seo',
     readingTime: '37 min de lectura',

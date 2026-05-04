@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { getEsSlugs } from './articles/registry';
+import { getZhSlugs } from './articles/registry';
 
 const STORAGE_KEY = 'ambient-music';
 const VOL_DEFAULT = 0.3;
@@ -201,12 +201,12 @@ function N7Badge() {
 }
 
 /** Tooltip styled as a comm transmission */
-function CommTooltip({ playing, lang, dismissed }: { playing: boolean; lang: 'es' | 'en'; dismissed?: boolean }) {
+function CommTooltip({ playing, lang, dismissed }: { playing: boolean; lang: 'zh' | 'en'; dismissed?: boolean }) {
   const text = playing
     ? 'Uncharted Worlds'
     : dismissed
-      ? (lang === 'es' ? 'Sin respuesta. Normandy fuera.' : 'Logging off. Normandy out.')
-      : (lang === 'es' ? 'Comandante, tenemos una señal' : 'Commander, we have a signal');
+      ? (lang === 'zh' ? 'Sin respuesta. Normandy fuera.' : 'Logging off. Normandy out.')
+      : (lang === 'zh' ? 'Comandante, tenemos una señal' : 'Commander, we have a signal');
 
   return (
     <motion.div
@@ -248,8 +248,8 @@ export default function MusicToggle() {
 
   // Detect lang reactively from route
   const { pathname } = useLocation();
-  const esSlugs = getEsSlugs();
-  const lang = esSlugs.has(pathname) ? 'es' : 'en';
+  const zhSlugs = getZhSlugs();
+  const lang = zhSlugs.has(pathname) ? 'zh' : 'en';
 
   useEffect(() => {
     const audio = new Audio('/audio/ambient-loop.mp3');

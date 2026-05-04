@@ -1,4 +1,4 @@
-export type IRepairLang = 'es' | 'en'
+export type IRepairLang = 'zh' | 'en'
 
 interface IRepairMetric {
   value: string
@@ -52,7 +52,7 @@ interface IRepairContent {
 }
 
 export const irepairContent: Record<IRepairLang, IRepairContent> = {
-  es: {
+  zh: {
     slug: 'santifer-irepair',
     altSlug: 'santifer-irepair-founder',
     seo: {

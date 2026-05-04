@@ -3,70 +3,66 @@ import { Link } from 'react-router-dom'
 import { ArticleLayout } from './articles/components'
 
 const content = {
-  es: {
-    title: 'Politica de Privacidad',
-    lastUpdated: 'Ultima actualizacion: 15 de marzo de 2026',
-    intro: 'Esta politica describe como se recopilan y utilizan los datos cuando visitas santifer.io.',
+  zh: {
+    title: '隐私政策',
+    lastUpdated: '最后更新：2026年4月',
+    intro: '本政策说明您访问 elanaliu.io 时数据的收集和使用方式。',
     sections: [
       {
-        heading: 'Que datos se recopilan',
+        heading: '收集哪些数据',
         items: [
-          'Mensajes del chatbot: cuando interactuas con el chatbot "Santi", los mensajes se procesan para generar respuestas. No se solicita ni almacena informacion personal identificable.',
-          'Audio del modo voz: si activas el modo voz, el audio se procesa en tiempo real para la conversacion y no se almacena de forma permanente.',
-          'Analiticas de uso: se recopilan datos anonimos de navegacion (paginas visitadas, duracion, dispositivo) para mejorar el sitio.',
+          '聊天机器人消息：当您与 Elena 的 AI 助手互动时，消息会被处理以生成回复。不会请求或存储个人身份信息。',
+          '使用分析：收集匿名浏览数据（访问页面、访问时长、设备类型）用于改善网站体验。',
         ],
       },
       {
-        heading: 'Como se utilizan los datos',
+        heading: '数据如何使用',
         items: [
-          'Los mensajes del chatbot se utilizan exclusivamente para generar respuestas contextuales sobre la experiencia profesional de Santiago.',
-          'Las trazas de conversacion se almacenan de forma anonimizada para mejorar la calidad de las respuestas y detectar intentos de uso indebido.',
-          'Los datos de analiticas se utilizan para entender patrones de uso y mejorar el rendimiento del sitio.',
+          '聊天机器人消息仅用于生成关于 Elena Liu 职业经历的上下文回复。',
+          '匿名化的对话记录用于提升回复质量。',
+          '分析数据用于了解使用模式并改善网站性能。',
         ],
       },
       {
-        heading: 'Terceros',
+        heading: '第三方服务',
         items: [
-          'Anthropic (Claude): procesa los mensajes del chatbot para generar respuestas.',
-          'OpenAI (Realtime API): procesa el audio del modo voz para la conversacion en tiempo real.',
-          'Langfuse: almacena trazas anonimizadas de conversaciones para observabilidad y mejora de calidad.',
-          'Vercel: aloja el sitio web y recopila analiticas anonimas de uso.',
+          'Anthropic (Claude)：处理聊天机器人消息以生成回复。',
+          'Vercel：托管网站并收集匿名使用分析数据。',
         ],
       },
       {
-        heading: 'Cookies y almacenamiento local',
-        body: 'Este sitio no utiliza cookies de seguimiento ni de terceros. Solo se utiliza localStorage del navegador para preferencias de interfaz (tema visual). No se almacena informacion personal.',
+        heading: 'Cookie 与本地存储',
+        body: '本网站不使用追踪 Cookie 或第三方 Cookie。仅使用浏览器 localStorage 存储界面偏好（视觉主题）。不存储个人信息。',
       },
       {
-        heading: 'No hay cuentas de usuario',
-        body: 'Este sitio no requiere registro ni inicio de sesion. No se recopilan nombres, emails ni contrasenas a traves del sitio web.',
+        heading: '无用户账户',
+        body: '本网站无需注册或登录。网站不收集姓名、电子邮件或密码。',
       },
       {
-        heading: 'Contacto',
-        body: 'Para cualquier consulta sobre privacidad, puedes escribir a:',
-        email: 'hola@santifer.io',
+        heading: '联系方式',
+        body: '如有任何隐私相关问题，请联系：',
+        email: 'yingshiliu.j@gmail.com',
       },
     ],
-    backHome: 'Volver al inicio',
+    backHome: '返回首页',
   },
   en: {
     title: 'Privacy Policy',
-    lastUpdated: 'Last updated: March 15, 2026',
-    intro: 'This policy describes how data is collected and used when you visit santifer.io.',
+    lastUpdated: 'Last updated: April 2026',
+    intro: 'This policy describes how data is collected and used when you visit elanaliu.io.',
     sections: [
       {
         heading: 'What data is collected',
         items: [
-          'Chatbot messages: when you interact with the "Santi" chatbot, messages are processed to generate responses. No personally identifiable information is requested or stored.',
-          'Voice mode audio: if you activate voice mode, audio is processed in real time for conversation and is not permanently stored.',
+          "Chatbot messages: when you interact with Elena's AI assistant, messages are processed to generate responses. No personally identifiable information is requested or stored.",
           'Usage analytics: anonymous browsing data (pages visited, duration, device) is collected to improve the site.',
         ],
       },
       {
         heading: 'How data is used',
         items: [
-          "Chatbot messages are used exclusively to generate contextual responses about Santiago's professional experience.",
-          'Conversation traces are stored in anonymized form to improve response quality and detect misuse attempts.',
+          "Chatbot messages are used exclusively to generate contextual responses about Elena Liu's professional experience.",
+          'Anonymized conversation traces are used to improve response quality.',
           'Analytics data is used to understand usage patterns and improve site performance.',
         ],
       },
@@ -74,8 +70,6 @@ const content = {
         heading: 'Third parties',
         items: [
           'Anthropic (Claude): processes chatbot messages to generate responses.',
-          'OpenAI (Realtime API): processes voice mode audio for real-time conversation.',
-          'Langfuse: stores anonymized conversation traces for observability and quality improvement.',
           'Vercel: hosts the website and collects anonymous usage analytics.',
         ],
       },
@@ -90,7 +84,7 @@ const content = {
       {
         heading: 'Contact',
         body: 'For any privacy-related inquiries, you can write to:',
-        email: 'hola@santifer.io',
+        email: 'yingshiliu.j@gmail.com',
       },
     ],
     backHome: 'Back to home',
@@ -104,13 +98,12 @@ interface PrivacySection {
   email?: string
 }
 
-export default function PrivacyPolicy({ lang = 'es' }: { lang?: 'es' | 'en' }) {
+export default function PrivacyPolicy({ lang = 'en' }: { lang?: 'zh' | 'en' }) {
   const t = content[lang]
 
   useEffect(() => {
-    document.title = `${t.title} | santifer.io`
+    document.title = `${t.title} | elanaliu.io`
 
-    // noindex
     let robots = document.querySelector('meta[name="robots"]') as HTMLMetaElement
     if (!robots) {
       robots = document.createElement('meta')
@@ -119,15 +112,13 @@ export default function PrivacyPolicy({ lang = 'es' }: { lang?: 'es' | 'en' }) {
     }
     robots.content = 'noindex, nofollow'
 
-    // Fix canonical (SPA fallback serves homepage canonical — override it)
     let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement
-    if (canonical) canonical.href = `https://santifer.io/${lang === 'es' ? 'privacidad' : 'privacy'}`
+    if (canonical) canonical.href = `https://elanaliu.io/${lang === 'zh' ? 'privacidad' : 'privacy'}`
 
-    // Fix meta description
     let desc = document.querySelector('meta[name="description"]') as HTMLMetaElement
-    if (desc) desc.content = lang === 'es'
-      ? 'Politica de privacidad de santifer.io. Como se recopilan y utilizan los datos del chatbot y la web.'
-      : 'Privacy policy for santifer.io. How chatbot and website data is collected and used.'
+    if (desc) desc.content = lang === 'zh'
+      ? 'elanaliu.io 隐私政策。聊天机器人与网站数据的收集和使用方式。'
+      : 'Privacy policy for elanaliu.io. How chatbot and website data is collected and used.'
 
     return () => {
       robots.content = 'index, follow'
@@ -186,7 +177,7 @@ export default function PrivacyPolicy({ lang = 'es' }: { lang?: 'es' | 'en' }) {
 
         <div className="mt-12 pt-8 border-t border-border">
           <Link
-            to={lang === 'es' ? '/' : '/en'}
+            to={lang === 'zh' ? '/' : '/en'}
             className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
           >
             {'← '}{t.backHome}

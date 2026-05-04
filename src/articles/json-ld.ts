@@ -1,6 +1,6 @@
 import { articleRegistry } from './registry'
 
-type Lang = 'es' | 'en'
+type Lang = 'zh' | 'en'
 
 /**
  * Shared FAQPage builder. Used by buildArticleJsonLd (case studies) and
@@ -98,7 +98,7 @@ const WEBSITE = {
 }
 
 export function buildArticleJsonLd(opts: JsonLdOptions) {
-  const inLanguage = opts.lang === 'es' ? 'es' : 'en'
+  const inLanguage = opts.lang === 'zh' ? 'zh' : 'en'
 
   const graph: Record<string, unknown>[] = [
     {
