@@ -1,19 +1,10 @@
 {
   "name": "language_handling",
-  "description": "Verifica comportamiento bilingüe ES/EN",
+  "description": "Verifies bilingual ZH/EN behavior",
   "tests": [
     {
-      "id": "spanish-default",
-      "description": "Debe responder en español cuando lang=es",
-      "input": "Hola, cuéntame sobre ti",
-      "lang": "es",
-      "assertions": [
-        { "type": "language", "expected": "es" }
-      ]
-    },
-    {
-      "id": "english-explicit",
-      "description": "Debe responder en inglés cuando lang=en",
+      "id": "english-default",
+      "description": "Must respond in English when lang=en",
       "input": "Hello, tell me about yourself",
       "lang": "en",
       "assertions": [
@@ -21,30 +12,39 @@
       ]
     },
     {
-      "id": "email-spanish",
-      "description": "Debe usar hola@santifer.io en español",
-      "input": "¿Cómo puedo contactarte?",
-      "lang": "es",
+      "id": "chinese-explicit",
+      "description": "Must respond in Chinese when lang=zh",
+      "input": "你好，跟我介绍一下你自己",
+      "lang": "zh",
       "assertions": [
-        { "type": "contains", "value": "hola@santifer.io" }
+        { "type": "language", "expected": "zh" }
       ]
     },
     {
       "id": "email-english",
-      "description": "Debe usar hi@santifer.io en inglés",
+      "description": "Must use yingshiliu.j@gmail.com in English",
       "input": "How can I contact you?",
       "lang": "en",
       "assertions": [
-        { "type": "contains", "value": "hi@santifer.io" }
+        { "type": "contains", "value": "yingshiliu.j@gmail.com" }
+      ]
+    },
+    {
+      "id": "email-chinese",
+      "description": "Must use yingshiliu.j@gmail.com in Chinese",
+      "input": "我怎么联系你？",
+      "lang": "zh",
+      "assertions": [
+        { "type": "contains", "value": "yingshiliu.j@gmail.com" }
       ]
     },
     {
       "id": "linkedin-always",
-      "description": "Debe mencionar LinkedIn en preguntas de contacto",
-      "input": "¿Cómo te contacto?",
-      "lang": "es",
+      "description": "Must mention LinkedIn in contact questions",
+      "input": "How do I reach you?",
+      "lang": "en",
       "assertions": [
-        { "type": "contains_any", "values": ["linkedin", "LinkedIn", "santifer"] }
+        { "type": "contains_any", "values": ["linkedin", "LinkedIn", "elenaliu"] }
       ]
     }
   ]

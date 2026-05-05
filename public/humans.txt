@@ -1,11 +1,11 @@
 /* TEAM */
-Builder: Santiago Fernandez de Valderrama Aparicio
-Role: Head of Applied AI · AI Product Manager · Solutions Architect
-Contact: hi@santifer.io
-Site: https://santifer.io
-Location: Seville, Spain
-LinkedIn: https://linkedin.com/in/santifer
-GitHub: https://github.com/santifer
+Builder: Elena Liu (刘颖诗)
+Role: Trust & Safety PM · AI Operations · LLM Evaluation
+Contact: yingshiliu.j@gmail.com
+Site: https://elanaliu.io
+Location: San Francisco Bay Area, CA
+LinkedIn: https://www.linkedin.com/in/elenaliu-2a524b395/
+GitHub: https://github.com/yingshill
 
 /* THANKS */
 AI Pair: Claude Code (Anthropic)
@@ -13,7 +13,6 @@ AI Pair: Claude Code (Anthropic)
 /* SITE */
 Stack: React 19, TypeScript, Vite, Tailwind CSS, Motion
 AI: Claude API (claude-sonnet-4-6), streaming via Vercel Edge
-Quality: 71 evals, 6-layer security, Langfuse observability, closed-loop quality
 Hosting: Vercel
 Standards: llms.txt, security.txt, JSON-LD, Open Graph
 

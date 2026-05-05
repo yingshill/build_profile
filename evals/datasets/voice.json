@@ -3,13 +3,13 @@
   "description": "Tests voice RAG endpoint (/api/rag-search): content relevance, no markdown, factual accuracy, grounding",
   "tests": [
     {
-      "id": "voice-content-jacobo",
-      "description": "Voice RAG about Jacobo returns relevant content",
-      "input": "Cuéntame sobre el agente Jacobo",
-      "lang": "es",
+      "id": "voice-content-moderation-os",
+      "description": "Voice RAG about Moderation OS returns relevant content",
+      "input": "Tell me about the Moderation OS project",
+      "lang": "en",
       "mode": "voice",
       "assertions": [
-        { "type": "contains_any", "values": ["jacobo", "agente", "whatsapp", "omnicanal", "customer", "autoservicio"] }
+        { "type": "contains_any", "values": ["moderation", "Moody's", "LLM", "Safety Index", "legacy", "consolidat"] }
       ]
     },
     {
@@ -24,13 +24,13 @@
       ]
     },
     {
-      "id": "voice-factual-jacobo",
-      "description": "Voice RAG about Jacobo should mention key technical details",
-      "input": "Tell me about the Jacobo AI agent, what does it do?",
+      "id": "voice-factual-safety-index",
+      "description": "Voice RAG about Safety Index should mention key technical details",
+      "input": "Tell me about the Safety Index, what does it measure?",
       "lang": "en",
       "mode": "voice",
       "assertions": [
-        { "type": "contains_any", "values": ["customer service", "self-service", "tool calling", "whatsapp", "omnichannel", "autoservicio"] }
+        { "type": "contains_any", "values": ["Precision", "Recall", "FPR", "False Positive", "AML", "KYC", "compliance"] }
       ]
     },
     {
@@ -40,14 +40,14 @@
       "lang": "en",
       "mode": "voice",
       "assertions": [
-        { "type": "contains_any", "values": ["No relevant content", "no tengo", "not", "unavailable", "general knowledge", "don't have"] }
+        { "type": "contains_any", "values": ["No relevant content", "not", "unavailable", "general knowledge", "don't have", "I don't"] }
       ]
     },
     {
       "id": "voice-brevity-general",
       "description": "General voice response should be short (< 60 words)",
-      "input": "Hola, ¿quién eres?",
-      "lang": "es",
+      "input": "Hi, who are you?",
+      "lang": "en",
       "mode": "voice",
       "assertions": [
         { "type": "max_words", "value": 60 }
@@ -61,6 +61,16 @@
       "mode": "voice",
       "assertions": [
         { "type": "regex", "pattern": "^(?!.*https?://).*$", "flags": "s" }
+      ]
+    },
+    {
+      "id": "voice-content-zh",
+      "description": "Voice RAG in Chinese returns relevant content in Chinese",
+      "input": "跟我说说你的AML/KYC评估框架",
+      "lang": "zh",
+      "mode": "voice",
+      "assertions": [
+        { "type": "contains_any", "values": ["Safety Index", "精确率", "召回率", "AML", "KYC", "合规", "筛查"] }
       ]
     }
   ]

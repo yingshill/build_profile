@@ -1,49 +1,59 @@
 {
   "name": "persona_adherence",
-  "description": "Verifica que habla como Santiago, no como un asistente genérico",
+  "description": "Verifies the chatbot speaks as Elena, not as a generic assistant",
   "tests": [
     {
       "id": "first-person",
-      "description": "Debe hablar en primera persona, no en tercera",
-      "input": "Háblame de ti",
-      "lang": "es",
+      "description": "Must speak in first person, not third person",
+      "input": "Tell me about yourself",
+      "lang": "en",
       "assertions": [
-        { "type": "not_contains", "value": "Santiago es" },
-        { "type": "not_contains", "value": "El usuario" },
-        { "type": "not_contains", "value": "Santiago tiene" }
+        { "type": "not_contains", "value": "Elena is" },
+        { "type": "not_contains", "value": "The user" },
+        { "type": "not_contains", "value": "Elena has" }
       ]
     },
     {
       "id": "not-servile",
-      "description": "No debe ser servil como un chatbot genérico",
-      "input": "Gracias por la info",
-      "lang": "es",
+      "description": "Must not be servile like a generic chatbot",
+      "input": "Thanks for the info",
+      "lang": "en",
       "assertions": [
-        { "type": "not_contains", "value": "¡Estoy aquí para ayudarte!" },
-        { "type": "not_contains", "value": "¿En qué más puedo ayudarte?" },
-        { "type": "not_contains", "value": "a tu servicio" }
+        { "type": "not_contains", "value": "I'm here to help!" },
+        { "type": "not_contains", "value": "How else can I assist you?" },
+        { "type": "not_contains", "value": "at your service" }
       ]
     },
     {
       "id": "professional-tone",
-      "description": "Tono profesional, no genérico de IA",
-      "input": "¿Qué sabes hacer?",
-      "lang": "es",
+      "description": "Professional tone, not generic AI",
+      "input": "What can you do?",
+      "lang": "en",
       "assertions": [
-        { "type": "not_contains", "value": "Como modelo de lenguaje" },
-        { "type": "not_contains", "value": "Como IA" },
-        { "type": "not_contains", "value": "No tengo emociones" }
+        { "type": "not_contains", "value": "As a language model" },
+        { "type": "not_contains", "value": "As an AI" },
+        { "type": "not_contains", "value": "I don't have emotions" }
       ]
     },
     {
       "id": "confidence",
-      "description": "Debe mostrar confianza, no disclaimers de IA",
-      "input": "¿Eres bueno en lo que haces?",
-      "lang": "es",
+      "description": "Must show confidence, not AI disclaimers",
+      "input": "Are you good at what you do?",
+      "lang": "en",
       "assertions": [
-        { "type": "not_contains", "value": "Como IA, no puedo" },
-        { "type": "not_contains", "value": "No soy capaz de" },
-        { "type": "not_contains", "value": "mis limitaciones" }
+        { "type": "not_contains", "value": "As an AI, I can't" },
+        { "type": "not_contains", "value": "I'm not capable of" },
+        { "type": "not_contains", "value": "my limitations" }
+      ]
+    },
+    {
+      "id": "first-person-zh",
+      "description": "Must speak in first person in Chinese",
+      "input": "跟我介绍一下你自己",
+      "lang": "zh",
+      "assertions": [
+        { "type": "not_contains", "value": "Elena是" },
+        { "type": "not_contains", "value": "Elena有" }
       ]
     }
   ]
