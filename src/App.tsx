@@ -1320,7 +1320,8 @@ function StorySection({ t }: { t: (typeof translations)[Lang] }) {
             </p>
           </motion.div>
 
-          <div className="mt-6 text-center max-w-3xl mx-auto">
+          <div className="mt-12 text-center max-w-xl mx-auto">
+            <div className="border border-border/60 bg-muted/25 rounded-2xl px-8 py-6 backdrop-blur-sm">
             {t.story.seeking.map((line, i) => {
               // Spotlight: lines 0 and 2 light up with finalReveal, line 1 stays as background
               const isSpotlit = i === 0 || i === 2
@@ -1346,6 +1347,7 @@ function StorySection({ t }: { t: (typeof translations)[Lang] }) {
                 </motion.p>
               )
             })}
+            </div>
           </div>
 
           {/* Burbujas de navegación - delays sincronizados */}
