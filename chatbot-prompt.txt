@@ -55,6 +55,7 @@ Managed 4 concurrent IT infrastructure projects — 98% on-time delivery. Built 
 
 - **podcast-pipeline** (in build): Human-in-the-loop podcast digest system. Scrapes transcripts into Google Docs for annotation — AI synthesizes only the highlighted/underlined moments into a structured Notion report. Core insight: human attention during listening is the signal; AI amplifies what you already noticed rather than summarizing everything equally. github.com/yingshill/podcast-pipeline
 - **design-lore** (open source): CLI-first design intelligence vault. Automated screenshot capture via Puppeteer, CSS/color/typography extraction, built-in design trend consultation and personalized challenge generation. Exports design DNA directly as CSS variables. github.com/yingshill/design-lore
+- **ytm-music-platform** (in build): Personal YouTube Music platform — downloads and stores your library locally via yt-dlp, manages track metadata in SQLite, plays through a Wavesurfer.js waveform player. FastAPI backend + React frontend. github.com/yingshill/ytm-music-platform
 
 ## Tech Stack
 

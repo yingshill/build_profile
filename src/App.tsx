@@ -1945,14 +1945,19 @@ function App() {
           </AnimatedSection>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {(t.personalProjects.items as readonly { title: string; badge: string; desc: string; tech: readonly string[]; link: string }[]).map((proj, i) => (
+            {(t.personalProjects.items as readonly { title: string; badge: string; desc: string; domains: readonly string[]; tech: readonly string[]; link: string }[]).map((proj, i) => (
               <AnimatedSection key={proj.title} delay={0.05 + i * 0.05}>
                 <div className="h-full p-6 rounded-2xl bg-card border border-border hover:border-primary/30 transition-colors group flex flex-col">
                   <div className="flex items-start justify-between mb-3 gap-2">
                     <h3 className="font-display text-sm font-bold text-foreground group-hover:text-primary transition-colors leading-tight">{proj.title}</h3>
                     <span className="badge px-2 py-0.5 bg-primary/10 text-primary shrink-0 text-xs">{proj.badge}</span>
                   </div>
-                  <p className="text-sm text-muted-foreground mb-4 flex-1">{proj.desc}</p>
+                  <p className="text-sm text-muted-foreground mb-3 flex-1">{proj.desc}</p>
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    {(proj.domains as readonly string[]).map((d) => (
+                      <span key={d} className="px-2 py-0.5 rounded-full text-xs bg-accent/10 text-accent">{d}</span>
+                    ))}
+                  </div>
                   <div className="flex flex-wrap gap-1.5 mb-4">
                     {(proj.tech as readonly string[]).map((tech) => (
                       <span key={tech} className="px-2 py-0.5 rounded-md text-xs bg-muted text-muted-foreground">{tech}</span>
