@@ -27,4 +27,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://elanaliu.io/sitemap.xml
+Sitemap: https://elenaliu.io/sitemap.xml

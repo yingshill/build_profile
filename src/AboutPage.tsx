@@ -22,12 +22,12 @@ export default function AboutPage({ lang = 'zh' }: { lang?: AboutLang }) {
 
     let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement
     if (!canonical) { canonical = document.createElement('link'); canonical.rel = 'canonical'; document.head.appendChild(canonical) }
-    canonical.href = `https://elanaliu.io/${t.slug}`
+    canonical.href = `https://elenaliu.io/${t.slug}`
 
     const hreflangs = [
-      { lang: 'zh', href: 'https://elanaliu.io/zh' },
-      { lang: 'en', href: 'https://elanaliu.io/about' },
-      { lang: 'x-default', href: 'https://elanaliu.io/about' },
+      { lang: 'zh', href: 'https://elenaliu.io/zh' },
+      { lang: 'en', href: 'https://elenaliu.io/about' },
+      { lang: 'x-default', href: 'https://elenaliu.io/about' },
     ]
     document.querySelectorAll('link[hreflang]').forEach(el => el.remove())
     for (const hl of hreflangs) {

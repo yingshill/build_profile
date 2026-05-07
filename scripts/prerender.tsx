@@ -128,13 +128,13 @@ let enPage = indexHtml
   .replace(/<title>[^<]*<\/title>/, `<title>${esc(enSeo.title)}</title>`)
   .replace(/<meta name="title" content="[^"]*" \/>/, `<meta name="title" content="${esc(enSeo.title)}" />`)
   .replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${esc(enSeo.description)}" />`)
-  .replace(/<link rel="canonical" href="[^"]*" \/>/, '<link rel="canonical" href="https://elanaliu.io/en" />')
-  .replace(/<meta property="og:url" content="[^"]*" \/>/, '<meta property="og:url" content="https://elanaliu.io/en" />')
+  .replace(/<link rel="canonical" href="[^"]*" \/>/, '<link rel="canonical" href="https://elenaliu.io/en" />')
+  .replace(/<meta property="og:url" content="[^"]*" \/>/, '<meta property="og:url" content="https://elenaliu.io/en" />')
   .replace(/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${esc(enSeo.title)}" />`)
   .replace(/<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${esc(enSeo.description)}" />`)
   .replace(/<meta property="og:locale" content="es_ES" \/>/, '<meta property="og:locale" content="en_US" />')
   .replace(/<meta property="og:locale:alternate" content="en_US" \/>/, '<meta property="og:locale:alternate" content="zh_CN" />')
-  .replace(/<meta name="twitter:url" content="[^"]*" \/>/, '<meta name="twitter:url" content="https://elanaliu.io/en" />')
+  .replace(/<meta name="twitter:url" content="[^"]*" \/>/, '<meta name="twitter:url" content="https://elenaliu.io/en" />')
   .replace(/<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${esc(enSeo.title)}" />`)
   .replace(/<meta name="twitter:description" content="[^"]*" \/>/, `<meta name="twitter:description" content="${esc(enSeo.description)}" />`);
 
@@ -147,11 +147,11 @@ const aboutPersonProfile = {
   dateModified: '2026-04-28',
   mainEntity: {
     '@type': 'Person',
-    '@id': 'https://elanaliu.io/#person',
+    '@id': 'https://elenaliu.io/#person',
     name: 'Yingshi Liu',
     alternateName: ['Elena Liu', 'Elena Yingshi Liu', '刘颖诗'],
-    url: 'https://elanaliu.io',
-    image: 'https://elanaliu.io/foto-avatar.webp',
+    url: 'https://elenaliu.io',
+    image: 'https://elenaliu.io/foto-avatar.webp',
     email: 'yingshiliu.j@gmail.com',
     jobTitle: ['Trust & Safety Program Manager', 'AI Operations Manager', 'Product Operation Specialist', 'AI Governance Specialist'],
     knowsAbout: [
@@ -211,8 +211,8 @@ for (const lang of ['zh', 'en'] as const) {
   const t = aboutContent[lang];
   const slug = t.slug;
   const altSlug = t.altSlug;
-  const url = `https://elanaliu.io/${slug}`;
-  const altUrl = `https://elanaliu.io/${altSlug}`;
+  const url = `https://elenaliu.io/${slug}`;
+  const altUrl = `https://elenaliu.io/${altSlug}`;
   const altLang = lang === 'zh' ? 'en' : 'zh';
   const ogLocale = lang === 'zh' ? 'zh_CN' : 'en_US';
   const ogLocaleAlt = lang === 'zh' ? 'en_US' : 'zh_CN';
@@ -236,7 +236,7 @@ for (const lang of ['zh', 'en'] as const) {
     renderedHtml = '';
   }
 
-  const hreflangLinks = `<link rel="alternate" hreflang="${lang}" href="${url}" /><link rel="alternate" hreflang="${altLang}" href="${altUrl}" /><link rel="alternate" hreflang="x-default" href="https://elanaliu.io/about" />`;
+  const hreflangLinks = `<link rel="alternate" hreflang="${lang}" href="${url}" /><link rel="alternate" hreflang="${altLang}" href="${altUrl}" /><link rel="alternate" hreflang="x-default" href="https://elenaliu.io/about" />`;
 
   let result = indexHtml
     .replace('<div id="root"></div>', `<div id="root">${renderedHtml}</div>`)
@@ -284,14 +284,14 @@ function buildArticlePage(
 ): string {
   const slug = config.slugs[lang];
   const altSlug = config.slugs[lang === 'zh' ? 'en' : 'zh'];
-  const url = `https://elanaliu.io/${slug}`;
-  const altUrl = `https://elanaliu.io/${altSlug}`;
+  const url = `https://elenaliu.io/${slug}`;
+  const altUrl = `https://elenaliu.io/${altSlug}`;
   const altLang = lang === 'zh' ? 'en' : 'zh';
   const htmlLang = lang === 'zh' ? 'zh' : 'en';
   const ogLocale = lang === 'zh' ? 'zh_CN' : 'en_US';
   const ogLocaleAlt = lang === 'zh' ? 'en_US' : 'zh_CN';
   const articleSeo = config.seo[lang === 'zh' ? 'es' : 'en'];
-  const xDefaultHref = `https://elanaliu.io/${config.xDefaultSlug || config.slugs.en}`;
+  const xDefaultHref = `https://elenaliu.io/${config.xDefaultSlug || config.slugs.en}`;
 
   let renderedHtml: string;
   try {
@@ -322,7 +322,7 @@ function buildArticlePage(
     .replace(/<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${esc(articleSeo.title)}" />`)
     .replace(/<meta name="twitter:description" content="[^"]*" \/>/, `<meta name="twitter:description" content="${esc(articleSeo.description)}" />`)
     // OG image — replace with article-specific image if configured
-    .replace(/<meta property="og:image" content="[^"]*" \/>/, `<meta property="og:image" content="${esc(config.ogImage || 'https://elanaliu.io/og-image.png')}" />`)
+    .replace(/<meta property="og:image" content="[^"]*" \/>/, `<meta property="og:image" content="${esc(config.ogImage || 'https://elenaliu.io/og-image.png')}" />`)
     .replace(/<meta property="og:image:alt" content="[^"]*" \/>/, `<meta property="og:image:alt" content="${esc(articleSeo.title)}" />`)
     .replace(/<meta name="twitter:image" content="[^"]*" \/>/, config.ogImage ? `<meta name="twitter:image" content="${esc(config.ogImage)}" />` : '');
 
@@ -347,8 +347,8 @@ function buildArticlePage(
     const faq = t?.faq?.items ?? [];
     const jsonLd = buildArticleJsonLd({
       lang,
-      url: `https://elanaliu.io/${slug}`,
-      altUrl: `https://elanaliu.io/${altSlug}`,
+      url: `https://elenaliu.io/${slug}`,
+      altUrl: `https://elenaliu.io/${altSlug}`,
       headline,
       alternativeHeadline: articleSeo.title,
       description: articleSeo.description,
@@ -474,13 +474,13 @@ async function writePage(html: string, outputPath: string, label: string) {
 const privacyPages: { slug: string; html: string }[] = [];
 
 for (const [lang, slug, altSlug] of [['zh', 'privacidad', 'privacy'], ['en', 'privacy', 'privacidad']] as const) {
-  const url = `https://elanaliu.io/${slug}`;
-  const altUrl = `https://elanaliu.io/${altSlug}`;
+  const url = `https://elenaliu.io/${slug}`;
+  const altUrl = `https://elenaliu.io/${altSlug}`;
   const altLang = lang === 'zh' ? 'en' : 'zh';
-  const title = lang === 'zh' ? '隐私政策 | elanaliu.io' : 'Privacy Policy | elanaliu.io';
+  const title = lang === 'zh' ? '隐私政策 | elenaliu.io' : 'Privacy Policy | elenaliu.io';
   const description = lang === 'zh'
-    ? 'elanaliu.io 隐私政策。关于聊天机器人和网站数据的收集与使用方式。'
-    : 'Privacy policy for elanaliu.io. How chatbot and website data is collected and used.';
+    ? 'elenaliu.io 隐私政策。关于聊天机器人和网站数据的收集与使用方式。'
+    : 'Privacy policy for elenaliu.io. How chatbot and website data is collected and used.';
 
   let renderedHtml: string;
   try {
@@ -501,7 +501,7 @@ for (const [lang, slug, altSlug] of [['zh', 'privacidad', 'privacy'], ['en', 'pr
     renderedHtml = '';
   }
 
-  const hreflangLinks = `<link rel="alternate" hreflang="${lang}" href="${url}" /><link rel="alternate" hreflang="${altLang}" href="${altUrl}" /><link rel="alternate" hreflang="x-default" href="https://elanaliu.io/privacy" />`;
+  const hreflangLinks = `<link rel="alternate" hreflang="${lang}" href="${url}" /><link rel="alternate" hreflang="${altLang}" href="${altUrl}" /><link rel="alternate" hreflang="x-default" href="https://elenaliu.io/privacy" />`;
 
   let result = indexHtml
     .replace('<div id="root"></div>', `<div id="root">${renderedHtml}</div>`)
@@ -556,7 +556,7 @@ await inlineCriticalCSS();
 const notFoundHtml = indexHtml
   .replace('<div id="root"></div>', `<div id="root"><div style="min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 1.5rem"><p style="font-size:6rem;font-weight:bold;color:var(--primary);margin-bottom:1rem;font-family:var(--font-display)">404</p><h1 style="font-size:1.5rem;font-weight:600;color:var(--foreground);margin-bottom:0.5rem">Page not found</h1><p style="color:var(--muted-foreground);margin-bottom:2rem;max-width:28rem">The page you're looking for doesn't exist or has been moved.</p><a href="/" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.5rem;border-radius:0.75rem;background:var(--primary);color:var(--primary-foreground);font-weight:500;text-decoration:none">← Back to home</a></div></div>`)
   .replace(/<meta name="robots" content="[^"]*" \/>/, '<meta name="robots" content="noindex, nofollow" />')
-  .replace(/<title>[^<]*<\/title>/, '<title>404 — Page not found | elanaliu.io</title>');
+  .replace(/<title>[^<]*<\/title>/, '<title>404 — Page not found | elenaliu.io</title>');
 
 // Add noindex if no robots meta exists
 if (!notFoundHtml.includes('name="robots"')) {

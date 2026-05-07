@@ -68,7 +68,7 @@ function urlBlock(u: SitemapUrl): string {
 // Build URLs
 // ---------------------------------------------------------------------------
 
-const base = 'https://elanaliu.io'
+const base = 'https://elenaliu.io'
 const urls: SitemapUrl[] = []
 
 // Home ES + EN

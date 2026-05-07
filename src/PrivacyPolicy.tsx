@@ -6,7 +6,7 @@ const content = {
   zh: {
     title: '隐私政策',
     lastUpdated: '最后更新：2026年4月',
-    intro: '本政策说明您访问 elanaliu.io 时数据的收集和使用方式。',
+    intro: '本政策说明您访问 elenaliu.io 时数据的收集和使用方式。',
     sections: [
       {
         heading: '收集哪些数据',
@@ -49,7 +49,7 @@ const content = {
   en: {
     title: 'Privacy Policy',
     lastUpdated: 'Last updated: April 2026',
-    intro: 'This policy describes how data is collected and used when you visit elanaliu.io.',
+    intro: 'This policy describes how data is collected and used when you visit elenaliu.io.',
     sections: [
       {
         heading: 'What data is collected',
@@ -102,7 +102,7 @@ export default function PrivacyPolicy({ lang = 'en' }: { lang?: 'zh' | 'en' }) {
   const t = content[lang]
 
   useEffect(() => {
-    document.title = `${t.title} | elanaliu.io`
+    document.title = `${t.title} | elenaliu.io`
 
     let robots = document.querySelector('meta[name="robots"]') as HTMLMetaElement
     if (!robots) {
@@ -113,12 +113,12 @@ export default function PrivacyPolicy({ lang = 'en' }: { lang?: 'zh' | 'en' }) {
     robots.content = 'noindex, nofollow'
 
     let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement
-    if (canonical) canonical.href = `https://elanaliu.io/${lang === 'zh' ? 'privacidad' : 'privacy'}`
+    if (canonical) canonical.href = `https://elenaliu.io/${lang === 'zh' ? 'privacidad' : 'privacy'}`
 
     let desc = document.querySelector('meta[name="description"]') as HTMLMetaElement
     if (desc) desc.content = lang === 'zh'
-      ? 'elanaliu.io 隐私政策。聊天机器人与网站数据的收集和使用方式。'
-      : 'Privacy policy for elanaliu.io. How chatbot and website data is collected and used.'
+      ? 'elenaliu.io 隐私政策。聊天机器人与网站数据的收集和使用方式。'
+      : 'Privacy policy for elenaliu.io. How chatbot and website data is collected and used.'
 
     return () => {
       robots.content = 'index, follow'

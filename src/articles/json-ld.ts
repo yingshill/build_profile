@@ -66,10 +66,10 @@ interface JsonLdOptions {
 
 const PERSON = {
   '@type': 'Person',
-  '@id': 'https://elanaliu.io/#person',
+  '@id': 'https://elenaliu.io/#person',
   name: 'Elena Liu',
   alternateName: '刘颖诗',
-  url: 'https://elanaliu.io',
+  url: 'https://elenaliu.io',
   jobTitle: 'Trust & Safety Program Manager',
   sameAs: [
     'https://www.linkedin.com/in/yingshi-liu',
@@ -79,9 +79,9 @@ const PERSON = {
 
 const WEBSITE = {
   '@type': 'WebSite',
-  '@id': 'https://elanaliu.io/#website',
-  name: 'elanaliu.io',
-  url: 'https://elanaliu.io',
+  '@id': 'https://elenaliu.io/#website',
+  name: 'elenaliu.io',
+  url: 'https://elenaliu.io',
 }
 
 export function buildArticleJsonLd(opts: JsonLdOptions) {
@@ -94,7 +94,7 @@ export function buildArticleJsonLd(opts: JsonLdOptions) {
       headline: opts.headline,
       alternativeHeadline: opts.alternativeHeadline,
       description: opts.description,
-      author: { '@id': 'https://elanaliu.io/#person' },
+      author: { '@id': 'https://elenaliu.io/#person' },
       ...(opts.publisher ? {
         publisher: {
           '@type': 'Organization',
@@ -109,7 +109,7 @@ export function buildArticleJsonLd(opts: JsonLdOptions) {
       mainEntityOfPage: opts.url,
       image: opts.images,
       inLanguage,
-      isPartOf: { '@id': 'https://elanaliu.io/#website' },
+      isPartOf: { '@id': 'https://elenaliu.io/#website' },
       ...(opts.about ? { about: opts.about } : {}),
       ...(opts.extra || {}),
       ...(opts.citation ? { citation: opts.citation } : {}),
@@ -126,7 +126,7 @@ export function buildArticleJsonLd(opts: JsonLdOptions) {
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: opts.breadcrumbHome, item: 'https://elanaliu.io' },
+        { '@type': 'ListItem', position: 1, name: opts.breadcrumbHome, item: 'https://elenaliu.io' },
         { '@type': 'ListItem', position: 2, name: opts.breadcrumbCurrent, item: opts.url },
       ],
     },
@@ -168,8 +168,8 @@ export function buildJsonLdFromRegistry(
   const meta = config.seoMeta
   return buildArticleJsonLd({
     lang,
-    url: `https://elanaliu.io/${i18n.slug}`,
-    altUrl: `https://elanaliu.io/${i18n.altSlug}`,
+    url: `https://elenaliu.io/${i18n.slug}`,
+    altUrl: `https://elenaliu.io/${i18n.altSlug}`,
     headline: i18n.header.h1,
     alternativeHeadline: i18n.seo.title,
     description: i18n.seo.description,

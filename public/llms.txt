@@ -7,9 +7,9 @@
 - **Location:** San Francisco Bay Area, CA
 - **Open to:** Trust & Safety PM, AI Operations Manager, AI Governance roles
 - **Email:** yingshiliu.j@gmail.com
-- **Website:** https://elanaliu.io
-- **About (EN):** https://elanaliu.io/about
-- **About (ZH):** https://elanaliu.io/zh
+- **Website:** https://elenaliu.io
+- **About (EN):** https://elenaliu.io/about
+- **About (ZH):** https://elenaliu.io/zh
 - **LinkedIn:** https://www.linkedin.com/in/yingshi-liu
 - **GitHub:** https://github.com/yingshill
 - **No sponsorship needed**
@@ -36,7 +36,7 @@ Turned an LLM moderation assistant from "it exists" to "it works":
 - **Led multi-agent Trust & Safety workflow** requirements and prioritization
 - **Extended policy enforcement** across advertiser integrity and seller trust domains
 
-Full case study: https://elanaliu.io/moderation-os
+Full case study: https://elenaliu.io/moderation-os
 
 ## Key Achievement: ML Content Triage Pipeline (Flip + LeanData)
 
@@ -52,7 +52,7 @@ Full case study: https://elanaliu.io/moderation-os
 - Reduced **manual reconciliation errors 30%**
 - Established continuous data quality monitoring framework
 
-Full case study: https://elanaliu.io/ml-pipeline
+Full case study: https://elenaliu.io/ml-pipeline
 
 ## Core Competencies
 
@@ -116,8 +116,8 @@ Managed 4 concurrent IT infrastructure projects with 98% on-time delivery. Built
 
 ## Case Studies
 
-- [Moderation OS (Moody's Analytics)](https://elanaliu.io/moderation-os): Operationalizing an LLM moderation platform — 3 legacy tools → unified Safety OS, Safety Index evaluation system, 22% accuracy improvement, 15% AHT reduction, 40% faster onboarding.
-- [ML Content Triage Pipeline (Flip + LeanData)](https://elanaliu.io/ml-pipeline): ML classifiers automating 65% of Tier-1 content reports at Flip; JSON taxonomy + Python auto-classification expanding coverage 35% at LeanData.
+- [Moderation OS (Moody's Analytics)](https://elenaliu.io/moderation-os): Operationalizing an LLM moderation platform — 3 legacy tools → unified Safety OS, Safety Index evaluation system, 22% accuracy improvement, 15% AHT reduction, 40% faster onboarding.
+- [ML Content Triage Pipeline (Flip + LeanData)](https://elenaliu.io/ml-pipeline): ML classifiers automating 65% of Tier-1 content reports at Flip; JSON taxonomy + Python auto-classification expanding coverage 35% at LeanData.
 
 ## Languages
 
@@ -133,4 +133,4 @@ Managed 4 concurrent IT infrastructure projects with 98% on-time delivery. Built
 For Trust & Safety PM, AI Operations Manager, or AI Governance roles:
 - Email: yingshiliu.j@gmail.com
 - LinkedIn: https://www.linkedin.com/in/yingshi-liu
-- Website: https://elanaliu.io
+- Website: https://elenaliu.io

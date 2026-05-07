@@ -71,7 +71,7 @@ const PROOF_POINTS: ProofPoint[] = [
   },
   {
     source: 'llms.txt → contact',
-    terms: ['yingshiliu.j@gmail.com', 'elanaliu.io'],
+    terms: ['yingshiliu.j@gmail.com', 'elenaliu.io'],
   },
 ]
 
