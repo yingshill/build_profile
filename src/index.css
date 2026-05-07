@@ -86,137 +86,137 @@ button, a, [role="button"], summary { cursor: pointer; }
    COLOR PROFILES - Change theme class on :root
    ============================================
 
-   Profile 1: "theme-cyber" (default) - Cyan/Purple
-   Profile 2: "theme-warm" - Orange monochrome
+   Profile 1: "theme-stationery" (default) - Sage/Salmon
+   Profile 2: "theme-warm" - Orange/Teal
+   Profile 3: "theme-blueprint" - Structural dark
 
    To switch: add class to <html> element
    Example: <html class="theme-warm dark">
    ============================================ */
 
 @layer base {
-  /* ========== PROFILE: CYBER (Default) - Cyan/Purple ========== */
+  /* ========== PROFILE: STATIONERY (Default) - Sage/Salmon ========== */
   :root {
-    --background: 220 6% 96%;
-    --foreground: 240 10% 4%;
-    --muted: 220 6% 86%;
-    --muted-foreground: 240 5% 28%;
-    --primary: 187 74% 28%;
-    --primary-foreground: 0 0% 100%;
-    --accent: 270 70% 38%;
-    --accent-foreground: 0 0% 100%;
-    --border: 240 6% 85%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 4%;
+    --background: 38 35% 94%;          /* warm cream */
+    --foreground: 25 25% 14%;          /* warm near-black */
+    --muted: 38 22% 87%;               /* warm beige */
+    --muted-foreground: 30 14% 42%;    /* warm gray-brown */
+    --primary: 145 55% 38%;            /* deep sage */
+    --primary-foreground: 0 0% 100%;   /* white on sage */
+    --accent: 12 68% 58%;              /* dusty salmon */
+    --accent-foreground: 0 0% 100%;    /* white on salmon */
+    --border: 38 20% 80%;              /* warm beige border */
+    --card: 38 38% 97%;                /* warm near-white */
+    --card-foreground: 25 25% 14%;
     /* Gradient colors for chat/buttons */
-    --gradient-from: 187 86% 53%; /* cyan-400 */
-    --gradient-to: 270 91% 65%;   /* purple-500 */
+    --gradient-from: 145 55% 38%;      /* sage */
+    --gradient-to: 12 68% 58%;         /* salmon */
     /* Semantic accent colors */
-    --gold: 43 76% 38%;
-    --success: 142 72% 29%;
-    --tool: 187 72% 30%;
-    --linkedin: 210 91% 40%;       /* #0A66C2 */
-    --codeblock: 210 17% 95%;      /* #F1F5F9 - slate-100 */
-    --codeblock-text: 215 25% 17%; /* #1E293B - slate-800 */
-    --code-keyword: 210 60% 40%;   /* blue */
-    --code-string: 25 70% 45%;     /* orange */
-    --code-comment: 210 10% 55%;   /* gray */
-    --code-number: 30 70% 45%;     /* amber */
-    --code-heading: 190 60% 35%;   /* teal */
-    --code-var: 270 50% 45%;       /* purple */
-    --hero-orb-primary: 187 74% 28% / 0.15;
-    --hero-orb-accent: 270 70% 38% / 0.12;
-    --dot-grid: 240 5% 35% / 0.25;
+    --gold: 38 62% 44%;                /* warm amber */
+    --success: 145 30% 36%;            /* darker sage */
+    --tool: 145 55% 38%;               /* sage */
+    --linkedin: 210 91% 40%;           /* #0A66C2 */
+    --codeblock: 38 28% 96%;           /* warm cream code bg */
+    --codeblock-text: 25 22% 18%;      /* warm dark code text */
+    --code-keyword: 145 35% 35%;       /* dark sage */
+    --code-string: 18 55% 45%;         /* terracotta */
+    --code-comment: 30 10% 55%;        /* warm gray */
+    --code-number: 38 55% 42%;         /* amber */
+    --code-heading: 145 35% 35%;       /* dark sage */
+    --code-var: 12 45% 55%;            /* salmon */
+    --hero-orb-primary: 145 55% 38% / 0.12;
+    --hero-orb-accent: 12 68% 58% / 0.10;
+    --dot-grid: 30 15% 30% / 0.18;
   }
 
   /* Dark mode via system preference — CSS-first, no JS needed = 0ms flash */
   @media (prefers-color-scheme: dark) {
     :root:not(.light) {
-      --background: 240 6% 10%;
-      --foreground: 0 0% 93%;
-      --muted: 240 4% 14%;
-      --muted-foreground: 240 5% 65%;
-      --primary: 187 86% 53%;
-      --primary-foreground: 240 10% 4%;
-      --accent: 270 91% 78%;
+      --background: 30 12% 10%;          /* warm charcoal */
+      --foreground: 38 25% 90%;          /* warm off-white */
+      --muted: 30 10% 16%;               /* warm dark muted */
+      --muted-foreground: 35 12% 62%;    /* warm medium gray */
+      --primary: 145 58% 62%;            /* lighter sage */
+      --primary-foreground: 0 0% 100%;
+      --accent: 12 72% 65%;              /* lighter salmon */
       --accent-foreground: 0 0% 100%;
-      --border: 240 4% 20%;
-      --card: 240 5% 13%;
-      --card-foreground: 0 0% 93%;
-      --gradient-from: 187 86% 53%;
-      --gradient-to: 270 91% 78%;
-      --gold: 45 97% 49%;
-      --success: 142 71% 45%;
-      --tool: 187 92% 50%;
+      --border: 30 10% 22%;              /* warm dark border */
+      --card: 30 12% 14%;                /* warm card surface */
+      --card-foreground: 38 25% 90%;
+      --gradient-from: 145 58% 62%;
+      --gradient-to: 12 72% 65%;
+      --gold: 40 80% 58%;
+      --success: 145 42% 54%;
+      --tool: 145 58% 62%;
       --linkedin: 210 88% 71%;
-      --codeblock: 215 19% 5%;       /* #0D1117 - GitHub Dark */
-      --codeblock-text: 213 14% 90%; /* #E6EDF3 */
-      --code-keyword: 210 100% 75%;  /* #79C0FF */
-      --code-string: 24 80% 65%;     /* #FFA657 */
-      --code-comment: 213 10% 55%;   /* #8B949E */
-      --code-number: 30 85% 65%;     /* #E3B341 */
-      --code-heading: 210 100% 75%;  /* #79C0FF */
-      --code-var: 270 70% 75%;       /* #D2A8FF */
-      --hero-orb-primary: 187 86% 53% / 0.08;
-      --hero-orb-accent: 270 91% 70% / 0.10;
-      --dot-grid: 240 5% 65% / 0.15;
+      --codeblock: 30 10% 8%;
+      --codeblock-text: 38 20% 88%;
+      --code-keyword: 145 50% 65%;
+      --code-string: 18 65% 62%;
+      --code-comment: 30 10% 52%;
+      --code-number: 38 70% 60%;
+      --code-heading: 145 50% 65%;
+      --code-var: 12 72% 65%;
+      --hero-orb-primary: 145 58% 62% / 0.08;
+      --hero-orb-accent: 12 72% 65% / 0.08;
+      --dot-grid: 38 15% 70% / 0.12;
     }
   }
 
   /* Manual dark override (user toggled) */
   .dark {
-    --background: 240 6% 10%;       /* #18181b - soft dark like VS Code */
-    --foreground: 0 0% 93%;         /* off-white, easier on eyes */
-    --muted: 240 4% 14%;            /* slightly lighter for hierarchy */
-    --muted-foreground: 240 5% 65%;
-    --primary: 187 86% 53%;
-    --primary-foreground: 240 10% 4%;
-    --accent: 270 91% 70%;
+    --background: 30 12% 10%;
+    --foreground: 38 25% 90%;
+    --muted: 30 10% 16%;
+    --muted-foreground: 35 12% 62%;
+    --primary: 145 58% 62%;
+    --primary-foreground: 0 0% 100%;
+    --accent: 12 72% 65%;
     --accent-foreground: 0 0% 100%;
-    --border: 240 4% 20%;           /* more visible borders */
-    --card: 240 5% 13%;             /* elevated above background */
-    --card-foreground: 0 0% 93%;
-    --gradient-from: 187 86% 53%;
-    --gradient-to: 270 91% 78%;
-    /* Semantic accent colors */
-    --gold: 45 97% 49%;
-    --success: 142 71% 45%;
-    --tool: 187 92% 50%;
-    --linkedin: 210 88% 71%;       /* #70B5F9 - lighter for dark bg */
-    --hero-orb-primary: 187 86% 53% / 0.08;
-    --hero-orb-accent: 270 91% 70% / 0.10;
-    --dot-grid: 240 5% 65% / 0.15;
-    --codeblock: 215 19% 5%;       /* #0D1117 - GitHub Dark */
-    --codeblock-text: 213 14% 90%; /* #E6EDF3 */
-    --code-keyword: 210 100% 75%;  /* #79C0FF */
-    --code-string: 24 80% 65%;     /* #FFA657 */
-    --code-comment: 213 10% 55%;   /* #8B949E */
-    --code-number: 30 85% 65%;     /* #E3B341 */
-    --code-heading: 210 100% 75%;  /* #79C0FF */
-    --code-var: 270 70% 75%;       /* #D2A8FF */
+    --border: 30 10% 22%;
+    --card: 30 12% 14%;
+    --card-foreground: 38 25% 90%;
+    --gradient-from: 145 58% 62%;
+    --gradient-to: 12 72% 65%;
+    --gold: 40 80% 58%;
+    --success: 145 42% 54%;
+    --tool: 145 58% 62%;
+    --linkedin: 210 88% 71%;
+    --hero-orb-primary: 145 58% 62% / 0.08;
+    --hero-orb-accent: 12 72% 65% / 0.08;
+    --dot-grid: 38 15% 70% / 0.12;
+    --codeblock: 30 10% 8%;
+    --codeblock-text: 38 20% 88%;
+    --code-keyword: 145 50% 65%;
+    --code-string: 18 65% 62%;
+    --code-comment: 30 10% 52%;
+    --code-number: 38 70% 60%;
+    --code-heading: 145 50% 65%;
+    --code-var: 12 72% 65%;
   }
 
   /* Manual light override (user toggled when system is dark) */
   .light {
-    --background: 220 6% 96%;
-    --foreground: 240 10% 4%;
-    --muted: 220 6% 86%;
-    --muted-foreground: 240 5% 28%;
-    --primary: 187 74% 28%;
+    --background: 38 35% 94%;
+    --foreground: 25 25% 14%;
+    --muted: 38 22% 87%;
+    --muted-foreground: 30 14% 42%;
+    --primary: 145 55% 38%;
     --primary-foreground: 0 0% 100%;
-    --accent: 270 70% 38%;
+    --accent: 12 68% 58%;
     --accent-foreground: 0 0% 100%;
-    --border: 240 6% 85%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 4%;
-    --gradient-from: 187 86% 53%;
-    --gradient-to: 270 91% 65%;
-    --gold: 43 76% 38%;
-    --success: 142 72% 29%;
-    --tool: 187 72% 30%;
+    --border: 38 20% 80%;
+    --card: 38 38% 97%;
+    --card-foreground: 25 25% 14%;
+    --gradient-from: 145 55% 38%;
+    --gradient-to: 12 68% 58%;
+    --gold: 38 62% 44%;
+    --success: 145 30% 36%;
+    --tool: 145 55% 38%;
     --linkedin: 210 91% 40%;
-    --hero-orb-primary: 187 74% 28% / 0.15;
-    --hero-orb-accent: 270 70% 38% / 0.12;
-    --dot-grid: 240 5% 35% / 0.25;
+    --hero-orb-primary: 145 55% 38% / 0.12;
+    --hero-orb-accent: 12 68% 58% / 0.10;
+    --dot-grid: 30 15% 30% / 0.18;
   }
 
   /* ========== PROFILE: WARM - Orange/Teal ========== */
