@@ -1901,7 +1901,7 @@ function App() {
                       {cat.items.map((item) => {
                         const icon = getTechIcon(item)
                         return (
-                          <span key={item} className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs bg-muted text-foreground">
+                          <span key={item} className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs bg-muted text-muted-foreground">
                             {icon && (
                               <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 shrink-0" fill={icon.color} aria-hidden="true">
                                 <path d={icon.path} />
