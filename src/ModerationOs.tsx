@@ -15,6 +15,7 @@ import {
   StepList,
 } from './articles/content-types'
 import { moderationOsContent } from './moderation-os-i18n'
+import ModerationOsDiagram from './articles/ModerationOsDiagram'
 
 const JSON_LD_EN = {
   '@context': 'https://schema.org',
@@ -94,6 +95,8 @@ export default function ModerationOs({ lang = 'en' }: { lang?: Lang }) {
             detail: step.body,
           }))}
         />
+
+        <ModerationOsDiagram className="w-full max-w-2xl mx-auto my-10 block" />
 
         {/* ================================================================ */}
         {/*  RESULTS                                                         */}

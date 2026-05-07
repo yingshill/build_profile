@@ -176,6 +176,13 @@ export const translations = {
           tech: ['Python', 'AI Governance', 'Red Team', '政策执行'],
           link: 'github.com/yingshill/ai-governance-red-team-control-pipeline',
         },
+        {
+          title: 'incident-drill-kit',
+          badge: '开源',
+          desc: '针对T&S运营团队的结构化事故演练工具包——可定制化的桌面演练场景、角色分配模板和事后复盘框架。',
+          tech: ['Trust & Safety', '事故管理', '运营工具'],
+          link: 'github.com/yingshill/incident-drill-kit',
+        },
       ],
     },
     experience: {
@@ -546,6 +553,13 @@ export const translations = {
           desc: 'Red-team control pipeline for AI governance and policy enforcement — attack pattern classification, prompt injection defense, output consistency test suites.',
           tech: ['Python', 'AI Governance', 'Red Team', 'Policy Enforcement'],
           link: 'github.com/yingshill/ai-governance-red-team-control-pipeline',
+        },
+        {
+          title: 'incident-drill-kit',
+          badge: 'Open Source',
+          desc: 'Structured incident drill toolkit for T&S ops teams — customizable tabletop exercise scenarios, role assignment templates, and post-incident review frameworks.',
+          tech: ['Trust & Safety', 'Incident Management', 'Ops Tooling'],
+          link: 'github.com/yingshill/incident-drill-kit',
         },
       ],
     },
