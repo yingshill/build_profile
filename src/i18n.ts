@@ -186,6 +186,25 @@ export const translations = {
         },
       ],
     },
+    personalProjects: {
+      title: '个人项目',
+      items: [
+        {
+          title: 'podcast-pipeline',
+          badge: '构建中',
+          desc: '以人为核心的播客摘要系统——抓取字幕并存入Google Docs供人工标注，AI仅对高亮内容进行合成，生成结构化Notion报告。以人类注意力作为主要信号驱动AI，而非统一摘要全集。',
+          tech: ['Python', 'Google Docs API', 'Notion API', 'LLM', '人机协同'],
+          link: 'github.com/yingshill/podcast-pipeline',
+        },
+        {
+          title: 'design-lore',
+          badge: '开源',
+          desc: 'CLI优先的设计情报系统——通过Puppeteer自动截图、提取配色/字体/CSS变量，内置设计趋势咨询与个性化挑战生成，可将设计DNA直接导出为CSS变量。',
+          tech: ['TypeScript', 'Node.js', 'Puppeteer', 'CLI'],
+          link: 'github.com/yingshill/design-lore',
+        },
+      ],
+    },
     experience: {
       title: '工作经历',
       moodys: {
@@ -376,23 +395,18 @@ export const translations = {
       prompts: [
         {
           icon: 'briefcase',
-          label: 'Trust & Safety经验',
-          query: 'Elena在Trust & Safety和AI审核领域有哪些经验？',
+          label: '最大成果',
+          query: "Elena在Moody's交付了哪些成果？具体的业务影响和数据是什么？",
         },
         {
           icon: 'rocket',
-          label: '重点项目',
-          query: 'Elena最值得关注的项目案例有哪些？',
+          label: '个人项目',
+          query: 'Elena在工作之外构建了什么？这反映了她哪些特质？',
         },
         {
           icon: 'help',
-          label: '为什么选择Elena？',
-          query: '为什么应该聘用Elena Liu？',
-        },
-        {
-          icon: 'mail',
-          label: '联系方式',
-          query: '如何联系Elena Liu？',
+          label: '为什么选她',
+          query: '请从招聘角度说明，为什么Elena是T&S PM岗位的理想候选人？',
         },
       ],
       contactCtaTitle: '希望直接沟通？',
@@ -586,6 +600,25 @@ export const translations = {
         },
       ],
     },
+    personalProjects: {
+      title: 'Personal Projects',
+      items: [
+        {
+          title: 'podcast-pipeline',
+          badge: 'In Build',
+          desc: 'Human-in-the-loop podcast digest system — scrapes transcripts into Google Docs for annotation, then AI synthesizes only the highlighted moments into a structured Notion report. Uses human attention as the primary signal rather than summarizing everything equally.',
+          tech: ['Python', 'Google Docs API', 'Notion API', 'LLM', 'Human-in-the-loop'],
+          link: 'github.com/yingshill/podcast-pipeline',
+        },
+        {
+          title: 'design-lore',
+          badge: 'Open Source',
+          desc: 'CLI-first design intelligence vault — automated screenshot capture via Puppeteer, CSS/color/typography extraction, built-in trend consultation and personalized challenge generation. Exports design DNA directly to CSS variables.',
+          tech: ['TypeScript', 'Node.js', 'Puppeteer', 'CLI'],
+          link: 'github.com/yingshill/design-lore',
+        },
+      ],
+    },
     experience: {
       title: 'Work Experience',
       moodys: {
@@ -776,23 +809,18 @@ export const translations = {
       prompts: [
         {
           icon: 'briefcase',
-          label: 'Trust & Safety Experience',
-          query: "What is Elena's experience in Trust & Safety and AI moderation?",
+          label: 'Key win',
+          query: "What did Elena ship at Moody's and what was the measurable business impact?",
         },
         {
           icon: 'rocket',
-          label: 'Top Projects',
-          query: "What are Elena's most notable projects?",
+          label: 'Side projects',
+          query: "What does Elena build outside of work, and what does that say about her?",
         },
         {
           icon: 'help',
-          label: 'Why hire Elena?',
-          query: 'Why should I hire Elena Liu?',
-        },
-        {
-          icon: 'mail',
-          label: 'Contact',
-          query: 'How can I contact Elena Liu?',
+          label: 'Why Elena',
+          query: "Make the case for hiring Elena as a T&S PM — what's her unique value?",
         },
       ],
       contactCtaTitle: 'Want to talk directly?',

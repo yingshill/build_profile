@@ -51,6 +51,11 @@ Managed 4 concurrent IT infrastructure projects — 98% on-time delivery. Built 
 - **ai-governance-red-team-control-pipeline**: Red-team control pipeline for AI governance and policy enforcement — attack pattern classification, prompt injection defense, output consistency test suites. github.com/yingshill/ai-governance-red-team-control-pipeline
 - **incident-drill-kit**: Structured incident drill toolkit for T&S ops teams — customizable tabletop exercise scenarios, role assignment templates, post-incident review frameworks. github.com/yingshill/incident-drill-kit
 
+## Personal Projects
+
+- **podcast-pipeline** (in build): Human-in-the-loop podcast digest system. Scrapes transcripts into Google Docs for annotation — AI synthesizes only the highlighted/underlined moments into a structured Notion report. Core insight: human attention during listening is the signal; AI amplifies what you already noticed rather than summarizing everything equally. github.com/yingshill/podcast-pipeline
+- **design-lore** (open source): CLI-first design intelligence vault. Automated screenshot capture via Puppeteer, CSS/color/typography extraction, built-in design trend consultation and personalized challenge generation. Exports design DNA directly as CSS variables. github.com/yingshill/design-lore
+
 ## Tech Stack
 
 - AI/LLM: Claude (Anthropic), OpenAI, Meta AI (LLaMA), Databricks MLflow, Guardrail AI

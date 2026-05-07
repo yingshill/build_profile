@@ -277,6 +277,7 @@ const HOME_TOC_SECTIONS = [
   { id: 'projects', zh: '项目', en: 'Projects' },
   { id: 'education', zh: '教育', en: 'Education' },
   { id: 'tech', zh: 'Skills & Stack', en: 'Skills & Stack' },
+  { id: 'personal-projects', zh: '个人项目', en: 'Personal Projects' },
   { id: 'contact', zh: '联系', en: 'Contact' },
 ] as const
 
@@ -1916,6 +1917,54 @@ function App() {
                 ))}
               </div>
             </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Personal Projects */}
+      <section id="personal-projects" className="py-16 md:py-24 bg-muted/30" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 700px' }}>
+        <div className="max-w-5xl mx-auto px-6">
+          <AnimatedSection>
+            <div className="flex items-center justify-between mb-12">
+              <h2 className="font-display text-2xl font-semibold flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Code className="w-5 h-5 text-primary" />
+                </div>
+                {t.personalProjects.title}
+              </h2>
+              <a
+                href="https://github.com/yingshill"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Github className="w-4 h-4" />
+                yingshill
+              </a>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {(t.personalProjects.items as readonly { title: string; badge: string; desc: string; tech: readonly string[]; link: string }[]).map((proj, i) => (
+              <AnimatedSection key={proj.title} delay={0.05 + i * 0.05}>
+                <div className="h-full p-6 rounded-2xl bg-card border border-border hover:border-primary/30 transition-colors group flex flex-col">
+                  <div className="flex items-start justify-between mb-3 gap-2">
+                    <h3 className="font-display text-sm font-bold text-foreground group-hover:text-primary transition-colors leading-tight">{proj.title}</h3>
+                    <span className="badge px-2 py-0.5 bg-primary/10 text-primary shrink-0 text-xs">{proj.badge}</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-4 flex-1">{proj.desc}</p>
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {(proj.tech as readonly string[]).map((tech) => (
+                      <span key={tech} className="px-2 py-0.5 rounded-md text-xs bg-muted text-muted-foreground">{tech}</span>
+                    ))}
+                  </div>
+                  <a href={`https://${proj.link}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs text-primary hover:underline">
+                    <Github className="w-4 h-4" />
+                    {t.projects.viewCode}
+                  </a>
+                </div>
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>

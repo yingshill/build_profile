@@ -100,29 +100,9 @@ function linkifyUrls(text: string): string {
   return fixed;
 }
 
-const STORAGE_KEY = 'santi-chat';
-
 function loadSession(fallbackGreeting: string): { messages: Message[]; sessionId: string; showPrompts: boolean } {
-  try {
-    const raw = sessionStorage.getItem(STORAGE_KEY);
-    if (raw) {
-      const data = JSON.parse(raw);
-      if (Array.isArray(data.messages) && data.messages.length > 0 && typeof data.sessionId === 'string') {
-        const hasUserMessages = data.messages.some((m: Message) => m.role === 'user');
-        return { messages: data.messages, sessionId: data.sessionId, showPrompts: !hasUserMessages };
-      }
-    }
-  } catch { /* ignore corrupt storage */ }
   const sessionId = `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
   return { messages: [{ role: 'assistant', content: fallbackGreeting }], sessionId, showPrompts: true };
-}
-
-function saveSession(messages: Message[], sessionId: string) {
-  try {
-    // Don't persist empty assistant messages (loading placeholders)
-    const clean = messages.filter((m) => m.content !== '');
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ messages: clean, sessionId }));
-  } catch { /* storage full or unavailable */ }
 }
 
 export default function FloatingChat({ lang }: FloatingChatProps) {
@@ -252,12 +232,6 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
     }
   }, [isMobile, isOpen]);
 
-  // Persist messages to sessionStorage
-  useEffect(() => {
-    if (!isLoading) {
-      saveSession(messages, sessionId);
-    }
-  }, [messages, isLoading, sessionId]);
 
   // Update greeting when lang changes — only if no conversation has started
   useEffect(() => {
