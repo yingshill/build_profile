@@ -117,19 +117,31 @@ export const translations = {
       categories: [
         {
           name: 'AI / LLM',
-          items: ['Claude (Anthropic)', 'OpenAI', 'Databricks MLflow'],
+          items: ['Claude (Anthropic)', 'OpenAI', 'Meta AI (LLaMA)', 'Databricks MLflow', 'Guardrail AI'],
+        },
+        {
+          name: '安全与合规',
+          items: ['GDPR / CCPA', 'PII安全', 'Apache Ranger', 'Unity Catalog'],
         },
         {
           name: '数据分析',
-          items: ['SQL', 'Python (Pandas / Scikit-learn)', 'Tableau / PowerBI', 'dbt'],
+          items: ['SQL', 'Python (Pandas / Scikit-learn)', 'Scala', 'Tableau', 'Power BI'],
+        },
+        {
+          name: '数据工程',
+          items: ['dbt', 'Airflow', 'Snowflake', 'Databricks', 'AWS Glue', 'S3'],
+        },
+        {
+          name: '数据库',
+          items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Cassandra'],
         },
         {
           name: 'LLMOps',
-          items: ['评测流水线', '可观测性', 'Langfuse'],
+          items: ['评测流水线', '可观测性', 'Langfuse', 'Streamlit'],
         },
         {
           name: '平台与工具',
-          items: ['Jira', 'Confluence', 'GCP', 'Databricks', 'Git', 'Vercel'],
+          items: ['Jira', 'Confluence', 'GCP', 'Terraform', 'Shell脚本', 'Git', 'Vercel'],
         },
       ],
     },
@@ -278,6 +290,27 @@ export const translations = {
     certifications: {
       title: '认证资质',
       items: [
+        {
+          year: '2026',
+          title: 'AI Fluency: Framework & Foundations',
+          org: 'Anthropic',
+          logo: 'anthropic',
+          url: 'https://www.anthropic.com',
+        },
+        {
+          year: '2026',
+          title: 'Introduction to Claude',
+          org: 'Anthropic',
+          logo: 'anthropic',
+          url: 'https://www.anthropic.com',
+        },
+        {
+          year: '2026',
+          title: 'AI Capabilities and Limitations',
+          org: 'Anthropic',
+          logo: 'anthropic',
+          url: 'https://www.anthropic.com',
+        },
         {
           year: '2025',
           title: 'Databricks Certified Data Engineer Associate',
@@ -485,19 +518,31 @@ export const translations = {
       categories: [
         {
           name: 'AI / LLM',
-          items: ['Claude (Anthropic)', 'OpenAI', 'Databricks MLflow'],
+          items: ['Claude (Anthropic)', 'OpenAI', 'Meta AI (LLaMA)', 'Databricks MLflow', 'Guardrail AI'],
         },
         {
-          name: 'Data',
-          items: ['SQL', 'Python (Pandas / Scikit-learn)', 'Tableau / PowerBI', 'dbt'],
+          name: 'Safety & Compliance',
+          items: ['GDPR / CCPA', 'PII Security', 'Apache Ranger', 'Unity Catalog'],
+        },
+        {
+          name: 'Data & Analytics',
+          items: ['SQL', 'Python (Pandas / Scikit-learn)', 'Scala', 'Tableau', 'Power BI'],
+        },
+        {
+          name: 'Data Engineering',
+          items: ['dbt', 'Airflow', 'Snowflake', 'Databricks', 'AWS Glue', 'S3'],
+        },
+        {
+          name: 'Databases',
+          items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Cassandra'],
         },
         {
           name: 'LLMOps',
-          items: ['Eval Pipelines', 'Observability', 'Langfuse'],
+          items: ['Eval Pipelines', 'Observability', 'Langfuse', 'Streamlit'],
         },
         {
           name: 'Platform & Tools',
-          items: ['Jira', 'Confluence', 'GCP', 'Databricks', 'Git', 'Vercel'],
+          items: ['Jira', 'Confluence', 'GCP', 'Terraform', 'Shell Scripting', 'Git', 'Vercel'],
         },
       ],
     },
@@ -646,6 +691,27 @@ export const translations = {
     certifications: {
       title: 'Certifications',
       items: [
+        {
+          year: '2026',
+          title: 'AI Fluency: Framework & Foundations',
+          org: 'Anthropic',
+          logo: 'anthropic',
+          url: 'https://www.anthropic.com',
+        },
+        {
+          year: '2026',
+          title: 'Introduction to Claude',
+          org: 'Anthropic',
+          logo: 'anthropic',
+          url: 'https://www.anthropic.com',
+        },
+        {
+          year: '2026',
+          title: 'AI Capabilities and Limitations',
+          org: 'Anthropic',
+          logo: 'anthropic',
+          url: 'https://www.anthropic.com',
+        },
         {
           year: '2025',
           title: 'Databricks Certified Data Engineer Associate',
