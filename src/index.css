@@ -112,6 +112,10 @@ button, a, [role="button"], summary { cursor: pointer; }
     --gradient-from: 145 55% 38%;      /* sage */
     --gradient-to: 12 68% 58%;         /* salmon */
     /* Semantic accent colors */
+    --terracotta: 21 65% 47%;          /* burnt orange */
+    --terracotta-foreground: 0 0% 100%;
+    --sky: 204 30% 68%;                /* powder blue */
+    --sky-foreground: 204 30% 18%;
     --gold: 38 62% 44%;                /* warm amber */
     --success: 145 30% 36%;            /* darker sage */
     --tool: 145 55% 38%;               /* sage */
@@ -145,6 +149,10 @@ button, a, [role="button"], summary { cursor: pointer; }
       --card-foreground: 38 25% 90%;
       --gradient-from: 145 58% 62%;
       --gradient-to: 12 72% 65%;
+      --terracotta: 21 70% 62%;
+      --terracotta-foreground: 0 0% 100%;
+      --sky: 204 35% 75%;
+      --sky-foreground: 0 0% 100%;
       --gold: 40 80% 58%;
       --success: 145 42% 54%;
       --tool: 145 58% 62%;
@@ -178,6 +186,10 @@ button, a, [role="button"], summary { cursor: pointer; }
     --card-foreground: 38 25% 90%;
     --gradient-from: 145 58% 62%;
     --gradient-to: 12 72% 65%;
+    --terracotta: 21 70% 62%;
+    --terracotta-foreground: 0 0% 100%;
+    --sky: 204 35% 75%;
+    --sky-foreground: 0 0% 100%;
     --gold: 40 80% 58%;
     --success: 145 42% 54%;
     --tool: 145 58% 62%;
@@ -210,6 +222,10 @@ button, a, [role="button"], summary { cursor: pointer; }
     --card-foreground: 25 25% 14%;
     --gradient-from: 145 55% 38%;
     --gradient-to: 12 68% 58%;
+    --terracotta: 21 65% 47%;
+    --terracotta-foreground: 0 0% 100%;
+    --sky: 204 30% 68%;
+    --sky-foreground: 204 30% 18%;
     --gold: 38 62% 44%;
     --success: 145 30% 36%;
     --tool: 145 55% 38%;
@@ -434,6 +450,29 @@ button, a, [role="button"], summary { cursor: pointer; }
   .from-gold\/15 { --tw-gradient-from: hsl(var(--gold) / 0.15); }
   .via-gold\/5 { --tw-gradient-via: hsl(var(--gold) / 0.05); }
   .to-gold\/5 { --tw-gradient-to: hsl(var(--gold) / 0.05); }
+
+  /* Terracotta semantic color utilities */
+  .bg-terracotta { background-color: hsl(var(--terracotta)); }
+  .bg-terracotta\/10 { background-color: hsl(var(--terracotta) / 0.1); }
+  .bg-terracotta\/15 { background-color: hsl(var(--terracotta) / 0.15); }
+  .bg-terracotta\/20 { background-color: hsl(var(--terracotta) / 0.2); }
+  .text-terracotta { color: hsl(var(--terracotta)); }
+  .text-terracotta-foreground { color: hsl(var(--terracotta-foreground)); }
+  .border-terracotta\/20 { border-color: hsl(var(--terracotta) / 0.2); }
+  .border-terracotta\/30 { border-color: hsl(var(--terracotta) / 0.3); }
+  .border-terracotta\/50 { border-color: hsl(var(--terracotta) / 0.5); }
+  .shadow-terracotta\/20 { --tw-shadow-color: hsl(var(--terracotta) / 0.2); }
+
+  /* Sky semantic color utilities */
+  .bg-sky { background-color: hsl(var(--sky)); }
+  .bg-sky\/10 { background-color: hsl(var(--sky) / 0.1); }
+  .bg-sky\/15 { background-color: hsl(var(--sky) / 0.15); }
+  .bg-sky\/20 { background-color: hsl(var(--sky) / 0.2); }
+  .text-sky { color: hsl(var(--sky)); }
+  .text-sky-foreground { color: hsl(var(--sky-foreground)); }
+  .border-sky\/20 { border-color: hsl(var(--sky) / 0.2); }
+  .border-sky\/30 { border-color: hsl(var(--sky) / 0.3); }
+  .border-sky\/50 { border-color: hsl(var(--sky) / 0.5); }
 
   /* Success semantic color utilities */
   .text-success { color: hsl(var(--success)); }

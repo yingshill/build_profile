@@ -1371,6 +1371,7 @@ function StorySection({ t }: { t: (typeof translations)[Lang] }) {
                 window.dispatchEvent(new Event('openChat'))
               }
             }
+            const isCta = item.href === '#contact'
             return (
               <a
                 key={item.href}
@@ -1378,7 +1379,9 @@ function StorySection({ t }: { t: (typeof translations)[Lang] }) {
                 onClick={handleClick}
                 className={isHighlight
                   ? "flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-theme text-white border border-transparent hover:brightness-110 hover:shadow-xl hover:shadow-primary/30 active:brightness-95 transition-all duration-200 text-sm font-medium shadow-lg shadow-primary/25"
-                  : "flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-200 text-sm font-medium"
+                  : isCta
+                    ? "flex items-center gap-2 px-4 py-2 rounded-full bg-terracotta/10 border border-terracotta/30 text-terracotta hover:bg-terracotta/20 hover:border-terracotta/50 transition-all duration-200 text-sm font-medium"
+                    : "flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-200 text-sm font-medium"
                 }
               >
                 {icons[item.icon]}
@@ -1517,8 +1520,8 @@ function App() {
                     key={label}
                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 backdrop-blur-sm ${
                       hydrated && i === roleIndex
-                        ? 'border border-[#20d6ee] bg-[#20d6ee]/15 text-foreground scale-105'
-                        : 'border border-[#20d6ee]/30 bg-background/80 text-muted-foreground'
+                        ? 'border border-sky/50 bg-sky/15 text-foreground scale-105'
+                        : 'border border-sky/20 bg-background/80 text-muted-foreground'
                     }`}
                   >
                     {label}
