@@ -66,27 +66,39 @@ Full case study: https://elenaliu.io/ml-pipeline
 ## Tech Stack
 
 ### AI / LLM
-- Claude (Anthropic)
-- OpenAI
-- Databricks MLflow
+- Claude (Anthropic), OpenAI, Meta AI (LLaMA)
+- Databricks MLflow, Guardrail AI
 - LLM eval pipelines (Langfuse)
 
-### Data Analysis
-- SQL, Python (Pandas / Scikit-learn)
-- Tableau / PowerBI
-- dbt
+### Safety & Compliance
+- GDPR / CCPA, PII Security
+- Apache Ranger, Unity Catalog
 
-### Platform
-- Jira, Confluence
-- GCP, Databricks
-- Vercel
+### Data & Analytics
+- SQL, Python (Pandas / Scikit-learn), Scala
+- Tableau, Power BI
+
+### Data Engineering
+- dbt, Airflow, Snowflake, Databricks
+- AWS Glue, S3
+
+### Databases
+- PostgreSQL, MySQL, MongoDB, Cassandra
+
+### LLMOps
+- Eval Pipelines, Observability
+- Langfuse, Streamlit
+
+### Platform & Tools
+- Jira, Confluence, GCP
+- Terraform, Shell Scripting, Git, Vercel
 
 ## Work Experience
 
 ### Moody's Analytics (2024–Present) — Product Operation Specialist
 Leading Trust & Safety infrastructure modernization. Unified 3 legacy moderation tools into Internal Safety OS. Partnered with AI Research to deploy LLM-assisted moderator agent. Defined full automated evaluation strategy via Safety Index System.
 
-### Flip (2022–2024) — Data Analyst
+### Flip (2022–2024) — Operations Analyst
 Built ML classification pipelines for Tier-1 content report automation. Supported GenAI policy enforcement tool pilot launch. Managed 100+ backlog items using MoSCoW prioritization.
 
 ### LeanData (2020–2021) — Data Governance Analyst
@@ -104,6 +116,9 @@ Managed 4 concurrent IT infrastructure projects with 98% on-time delivery. Built
 
 ## Certifications
 
+- **Anthropic (2026):** AI Fluency: Framework & Foundations
+- **Anthropic (2026):** Introduction to Claude
+- **Anthropic (2026):** AI Capabilities and Limitations
 - **Databricks (2025):** Databricks Certified Data Engineer Associate
 - **AWS (2025):** AWS Certified Data Analytics
 - **dbt Labs (2026):** dbt Analytics Engineer Certification
