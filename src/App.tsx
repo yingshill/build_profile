@@ -1951,19 +1951,9 @@ function App() {
               </a>
             </div>
           </AnimatedSection>
-          <p className="mt-12 text-xs text-muted-foreground flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
-            <span>&copy; {new Date().getFullYear()} Elena Liu</span>
-            <span className="text-border">|</span>
-            <a
-              href="https://github.com/yingshill"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 hover:text-primary transition-colors"
-            >
-              <Github className="w-3 h-3" />
-              GitHub
-            </a>
-            <span className="text-border">|</span>
+          <p className="mt-12 text-xs text-muted-foreground">
+            &copy; {new Date().getFullYear()} Elena Liu
+            <span className="mx-2 text-border">|</span>
             <Link to={lang === 'zh' ? '/privacidad' : '/privacy'} className="hover:text-primary transition-colors">
               {lang === 'zh' ? '隐私政策' : 'Privacy'}
             </Link>
