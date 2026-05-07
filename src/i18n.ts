@@ -37,7 +37,6 @@ export const translations = {
         '准备好迎接下一章。',
       ],
       nav: [
-        { icon: 'briefcase', label: '职业经历', href: '#experience' },
         { icon: 'folder', label: '项目案例', href: '#projects' },
         { icon: 'mail', label: '联系我', href: '#contact' },
         { icon: 'bot', label: '问我问题', href: '#chat', highlight: true },
@@ -438,7 +437,6 @@ export const translations = {
         "Ready for what's next.",
       ],
       nav: [
-        { icon: 'briefcase', label: 'My path', href: '#experience' },
         { icon: 'folder', label: 'What I build', href: '#projects' },
         { icon: 'mail', label: "Let's talk", href: '#contact' },
         { icon: 'bot', label: 'Ask me', href: '#chat', highlight: true },
