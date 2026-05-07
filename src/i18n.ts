@@ -16,7 +16,7 @@ export const seo = {
 export const translations = {
   zh: {
     greeting: '守护人机边界的信任系统专家',
-    greetingRoles: ['信任与安全项目经理', 'AI运营管理者', 'AI治理专家', '数据策略分析师'],
+    greetingRoles: ['信任与安全项目经理', 'AI运营管理者', 'AI治理专家'],
     pillLabels: ['Trust & Safety', 'AI Operations'],
     email: 'yingshiliu.j@gmail.com',
     role: '',
@@ -117,30 +117,20 @@ export const translations = {
       categories: [
         {
           name: 'AI / LLM',
-          items: [
-            'Claude (Anthropic)',
-            'OpenAI',
-            'Databricks MLflow',
-          ],
+          items: ['Claude (Anthropic)', 'OpenAI', 'Databricks MLflow'],
         },
         {
           name: '数据分析',
           items: ['SQL', 'Python (Pandas / Scikit-learn)', 'Tableau / PowerBI', 'dbt'],
         },
         {
-          name: '项目管理',
-          items: ['Jira', 'Confluence', 'GCP', 'Databricks'],
+          name: 'LLMOps',
+          items: ['评测流水线', '可观测性', 'Langfuse'],
         },
         {
-          name: '开发工具',
-          items: [
-            'Python',
-            'SQL',
-            'Git',
-          ],
+          name: '平台与工具',
+          items: ['Jira', 'Confluence', 'GCP', 'Databricks', 'Git', 'Vercel'],
         },
-        { name: '基础设施', items: ['Vercel'] },
-        { name: 'LLMOps', items: ['评测流水线', '可观测性', 'Langfuse'] },
       ],
     },
     projects: {
@@ -212,7 +202,7 @@ export const translations = {
       flip: {
         company: 'Flip',
         location: '洛杉矶，加利福尼亚',
-        role: '数据分析师',
+        role: '运营分析师',
         period: '2022 – 2024',
         desc: '构建ML分类流水线，自动化一线内容报告处理，支持GenAI政策执行工具的试点项目。',
         highlights: [
@@ -394,7 +384,7 @@ export const translations = {
   },
   en: {
     greeting: 'who builds the trust layer between humans and AI',
-    greetingRoles: ['Trust & Safety Program Manager', 'AI Operations Manager', 'AI Governance Specialist', 'Data Strategy Analyst'],
+    greetingRoles: ['Trust & Safety Program Manager', 'AI Operations Manager', 'AI Governance Specialist'],
     pillLabels: ['Trust & Safety', 'AI Operations'],
     email: 'yingshiliu.j@gmail.com',
     role: '',
@@ -433,9 +423,9 @@ export const translations = {
     taglines: [] as readonly string[],
     location: 'San Francisco Bay Area, CA · No Sponsorship Needed',
     roles: [
-      'Program Manager, AI',
-      'Trust & Safety Operations Specialist',
+      'Trust & Safety PM',
       'AI Operations Manager',
+      'AI Governance Specialist',
     ],
     summary: {
       title: 'Professional Summary',
@@ -495,30 +485,20 @@ export const translations = {
       categories: [
         {
           name: 'AI / LLM',
-          items: [
-            'Claude (Anthropic)',
-            'OpenAI',
-            'Databricks MLflow',
-          ],
+          items: ['Claude (Anthropic)', 'OpenAI', 'Databricks MLflow'],
         },
         {
           name: 'Data',
           items: ['SQL', 'Python (Pandas / Scikit-learn)', 'Tableau / PowerBI', 'dbt'],
         },
         {
-          name: 'Platform',
-          items: ['Jira', 'Confluence', 'GCP', 'Databricks'],
+          name: 'LLMOps',
+          items: ['Eval Pipelines', 'Observability', 'Langfuse'],
         },
         {
-          name: 'Dev',
-          items: [
-            'Python',
-            'SQL',
-            'Git',
-          ],
+          name: 'Platform & Tools',
+          items: ['Jira', 'Confluence', 'GCP', 'Databricks', 'Git', 'Vercel'],
         },
-        { name: 'Infra', items: ['Vercel'] },
-        { name: 'LLMOps', items: ['Eval Pipelines', 'Observability', 'Langfuse'] },
       ],
     },
     projects: {
@@ -590,7 +570,7 @@ export const translations = {
       flip: {
         company: 'Flip',
         location: 'Los Angeles, CA',
-        role: 'Data Analyst',
+        role: 'Operations Analyst',
         period: '2022 – 2024',
         desc: 'Built ML classification pipelines to automate Tier-1 content report processing and supported GenAI policy enforcement tooling.',
         highlights: [
