@@ -4,16 +4,8 @@ import { MapPin, Mail, ExternalLink, Award, GraduationCap, Briefcase, ChevronRig
 import { aboutContent, type AboutLang } from './about-i18n'
 
 const SOCIAL_LINKS = [
-  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/santifer' },
-  { name: 'GitHub', url: 'https://github.com/santifer' },
-  { name: 'YouTube', url: 'https://www.youtube.com/@santifer_io' },
-  { name: 'X / Twitter', url: 'https://x.com/santifer' },
-  { name: 'Dev.to', url: 'https://dev.to/santifer' },
-  { name: 'Substack', url: 'https://santifer.substack.com' },
-  { name: 'Stack Overflow', url: 'https://stackoverflow.com/users/32541743' },
-  { name: 'ORCID', url: 'https://orcid.org/0009-0006-2192-7210' },
-  { name: 'Crunchbase', url: 'https://www.crunchbase.com/person/santiago-fernandez-de-valderrama' },
-  { name: 'Wikidata', url: 'https://www.wikidata.org/wiki/Q138710224' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/yingshi-liu' },
+  { name: 'GitHub', url: 'https://github.com/yingshill' },
 ]
 
 export default function AboutPage({ lang = 'zh' }: { lang?: AboutLang }) {
@@ -30,12 +22,12 @@ export default function AboutPage({ lang = 'zh' }: { lang?: AboutLang }) {
 
     let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement
     if (!canonical) { canonical = document.createElement('link'); canonical.rel = 'canonical'; document.head.appendChild(canonical) }
-    canonical.href = `https://santifer.io/${t.slug}`
+    canonical.href = `https://elanaliu.io/${t.slug}`
 
     const hreflangs = [
-      { lang: 'zh', href: 'https://santifer.io/sobre-mi' },
-      { lang: 'en', href: 'https://santifer.io/about' },
-      { lang: 'x-default', href: 'https://santifer.io/sobre-mi' },
+      { lang: 'zh', href: 'https://elanaliu.io/zh' },
+      { lang: 'en', href: 'https://elanaliu.io/about' },
+      { lang: 'x-default', href: 'https://elanaliu.io/about' },
     ]
     document.querySelectorAll('link[hreflang]').forEach(el => el.remove())
     for (const hl of hreflangs) {
@@ -90,7 +82,7 @@ export default function AboutPage({ lang = 'zh' }: { lang?: AboutLang }) {
         </header>
 
         {/* Manifesto */}
-        <blockquote cite="https://santifer.io/career-ops" className="mb-10 border-l-4 border-primary pl-6 pr-4 py-3 text-xl md:text-2xl italic font-display leading-snug text-foreground/90">
+        <blockquote className="mb-10 border-l-4 border-primary pl-6 pr-4 py-3 text-xl md:text-2xl italic font-display leading-snug text-foreground/90">
           {t.manifesto}
         </blockquote>
 
@@ -295,7 +287,7 @@ export default function AboutPage({ lang = 'zh' }: { lang?: AboutLang }) {
             to={`/${altSlug}`}
             className="text-sm text-muted-foreground hover:text-primary transition-colors"
           >
-            {lang === 'zh' ? 'Read in English →' : 'Leer en Español →'}
+            {lang === 'zh' ? 'Read in English →' : '阅读中文版 →'}
           </Link>
         </div>
 

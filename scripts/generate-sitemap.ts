@@ -46,7 +46,7 @@ const aboutLastmod = lastmodFromGit(['src/AboutPage.tsx', 'src/about-i18n.ts'])
 
 interface SitemapUrl {
   loc: string
-  hreflangEs: string
+  hreflangZh: string
   hreflangEn: string
   xDefault: string
   lastmod: string
@@ -57,7 +57,7 @@ interface SitemapUrl {
 function urlBlock(u: SitemapUrl): string {
   return `  <url>
     <loc>${u.loc}</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="${u.hreflangEs}"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="${u.hreflangZh}"/>
     <xhtml:link rel="alternate" hreflang="en" href="${u.hreflangEn}"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="${u.xDefault}"/>
     <lastmod>${u.lastmod}</lastmod>
@@ -68,13 +68,13 @@ function urlBlock(u: SitemapUrl): string {
 // Build URLs
 // ---------------------------------------------------------------------------
 
-const base = 'https://santifer.io'
+const base = 'https://elanaliu.io'
 const urls: SitemapUrl[] = []
 
 // Home ES + EN
 urls.push({
   loc: `${base}/`,
-  hreflangEs: `${base}/`,
+  hreflangZh: `${base}/`,
   hreflangEn: `${base}/en`,
   xDefault: `${base}/`,
   lastmod: homeLastmod,
@@ -82,7 +82,7 @@ urls.push({
 })
 urls.push({
   loc: `${base}/en`,
-  hreflangEs: `${base}/`,
+  hreflangZh: `${base}/`,
   hreflangEn: `${base}/en`,
   xDefault: `${base}/`,
   lastmod: homeLastmod,
@@ -91,34 +91,34 @@ urls.push({
 
 // About / Entity Home — ES + EN
 urls.push({
-  loc: `${base}/sobre-mi`,
-  hreflangEs: `${base}/sobre-mi`,
+  loc: `${base}/zh`,
+  hreflangZh: `${base}/zh`,
   hreflangEn: `${base}/about`,
-  xDefault: `${base}/sobre-mi`,
+  xDefault: `${base}/zh`,
   lastmod: aboutLastmod,
   priority: '0.9',
 })
 urls.push({
   loc: `${base}/about`,
-  hreflangEs: `${base}/sobre-mi`,
+  hreflangZh: `${base}/zh`,
   hreflangEn: `${base}/about`,
-  xDefault: `${base}/sobre-mi`,
+  xDefault: `${base}/zh`,
   lastmod: aboutLastmod,
   priority: '0.9',
 })
 
 // Articles from registry
 for (const article of articleRegistry) {
-  const esUrl = `${base}/${article.slugs.es}`
+  const esUrl = `${base}/${article.slugs.zh}`
   const enUrl = `${base}/${article.slugs.en}`
-  const xDefault = `${base}/${article.xDefaultSlug ?? article.slugs.es}`
+  const xDefault = `${base}/${article.xDefaultSlug ?? article.slugs.zh}`
 
   const articleLastmod = article.seoMeta?.dateModified ?? today
 
   // ES version
   urls.push({
     loc: esUrl,
-    hreflangEs: esUrl,
+    hreflangZh: esUrl,
     hreflangEn: enUrl,
     xDefault,
     lastmod: articleLastmod,
@@ -126,10 +126,10 @@ for (const article of articleRegistry) {
   })
 
   // EN version (skip if same slug — already covered)
-  if (article.slugs.en !== article.slugs.es) {
+  if (article.slugs.en !== article.slugs.zh) {
     urls.push({
       loc: enUrl,
-      hreflangEs: esUrl,
+      hreflangZh: esUrl,
       hreflangEn: enUrl,
       xDefault,
       lastmod: articleLastmod,
