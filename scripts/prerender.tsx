@@ -339,42 +339,43 @@ function buildArticlePage(
   }
 
   // Inject article JSON-LD (replace homepage Person/WebSite schema)
-  const i18n = i18nMap[config.id];
-  if (seoMeta && i18n) {
-    const t = i18n[lang];
-    if (t) {
-      const jsonLd = buildArticleJsonLd({
-        lang,
-        url: `https://elanaliu.io/${slug}`,
-        altUrl: `https://elanaliu.io/${altSlug}`,
-        headline: t.header.h1,
-        alternativeHeadline: articleSeo.title,
-        description: articleSeo.description,
-        datePublished: seoMeta.datePublished,
-        dateModified: seoMeta.dateModified,
-        keywords: seoMeta.keywords,
-        images: config.heroImage ? [config.heroImage] : seoMeta.images,
-        breadcrumbHome: t.nav.breadcrumbHome,
-        breadcrumbCurrent: t.nav.breadcrumbCurrent,
-        faq: t.faq.items,
-        articleType: seoMeta.articleType,
-        about: seoMeta.about,
-        extra: seoMeta.extra,
-        citation: seoMeta.citation,
-        isBasedOn: seoMeta.isBasedOn,
-        mentions: seoMeta.mentions,
-        discussionUrl: seoMeta.discussionUrl,
-        relatedLink: seoMeta.relatedLink,
-        video: seoMeta.video,
-        subjectOf: seoMeta.subjectOf,
-      });
-      const jsonLdScript = `<script type="application/ld+json">\n${JSON.stringify(jsonLd, null, 2)}\n</script>`;
-      // Replace the homepage JSON-LD with article-specific one
-      result = result.replace(
-        /<script type="application\/ld\+json">[\s\S]*?<\/script>/,
-        jsonLdScript,
-      );
-    }
+  if (seoMeta) {
+    const t = i18nMap[config.id]?.[lang];
+    const headline = t?.header?.h1 ?? articleSeo.title;
+    const breadcrumbHome = t?.nav?.breadcrumbHome ?? (lang === 'zh' ? '主页' : 'Home');
+    const breadcrumbCurrent = t?.nav?.breadcrumbCurrent ?? config.titles[lang];
+    const faq = t?.faq?.items ?? [];
+    const jsonLd = buildArticleJsonLd({
+      lang,
+      url: `https://elanaliu.io/${slug}`,
+      altUrl: `https://elanaliu.io/${altSlug}`,
+      headline,
+      alternativeHeadline: articleSeo.title,
+      description: articleSeo.description,
+      datePublished: seoMeta.datePublished,
+      dateModified: seoMeta.dateModified,
+      keywords: seoMeta.keywords,
+      images: config.heroImage ? [config.heroImage] : seoMeta.images,
+      breadcrumbHome,
+      breadcrumbCurrent,
+      faq,
+      articleType: seoMeta.articleType,
+      about: seoMeta.about,
+      extra: seoMeta.extra,
+      citation: seoMeta.citation,
+      isBasedOn: seoMeta.isBasedOn,
+      mentions: seoMeta.mentions,
+      discussionUrl: seoMeta.discussionUrl,
+      relatedLink: seoMeta.relatedLink,
+      video: seoMeta.video,
+      subjectOf: seoMeta.subjectOf,
+    });
+    const jsonLdScript = `<script type="application/ld+json">\n${JSON.stringify(jsonLd, null, 2)}\n</script>`;
+    // Replace the homepage JSON-LD with article-specific one
+    result = result.replace(
+      /<script type="application\/ld\+json">[\s\S]*?<\/script>/,
+      jsonLdScript,
+    );
   }
 
   return result;

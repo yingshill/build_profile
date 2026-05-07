@@ -82,6 +82,19 @@ export const articleRegistry: ArticleConfig[] = [
     i18nFile: 'src/moderation-os-i18n.ts',
     component: () => import('../ModerationOs.tsx'),
     xDefaultSlug: 'moderation-os',
+    seoMeta: {
+      datePublished: '2026-05-06',
+      dateModified: '2026-05-06',
+      keywords: ['LLM moderation', 'content moderation', 'Trust & Safety', 'Safety Index', 'moderator operations', 'AI governance', 'False Positive Rate', 'precision recall', 'Internal Safety OS', 'onboarding'],
+      articleType: 'TechArticle',
+      articleTags: 'LLM Moderation, Trust & Safety, Safety Index, Content Moderation, AI Operations',
+      images: [],
+      about: [
+        { '@type': 'Thing', name: 'LLM Content Moderation' },
+        { '@type': 'Thing', name: 'Trust & Safety Operations' },
+        { '@type': 'Organization', name: "Moody's Analytics" },
+      ],
+    },
   },
   {
     id: 'ml-pipeline',
@@ -116,6 +129,19 @@ export const articleRegistry: ArticleConfig[] = [
     i18nFile: 'src/flip-ml-i18n.ts',
     component: () => import('../FlipMl.tsx'),
     xDefaultSlug: 'ml-pipeline',
+    seoMeta: {
+      datePublished: '2026-05-06',
+      dateModified: '2026-05-06',
+      keywords: ['ML pipeline', 'content triage', 'machine learning', 'Scikit-learn', 'Python', 'Trust & Safety', 'automation', 'JSON taxonomy', 'LeanData', 'Flip'],
+      articleType: 'TechArticle',
+      articleTags: 'ML Pipeline, Content Moderation, Machine Learning, Data Governance, Trust & Safety',
+      images: [],
+      about: [
+        { '@type': 'Thing', name: 'ML Content Triage' },
+        { '@type': 'Organization', name: 'Flip' },
+        { '@type': 'Organization', name: 'LeanData' },
+      ],
+    },
   },
   {
     id: 'safety-index',
@@ -160,6 +186,19 @@ export const articleRegistry: ArticleConfig[] = [
     i18nFile: 'src/safety-index-i18n.ts',
     component: () => import('../SafetyIndex.tsx'),
     xDefaultSlug: 'safety-index',
+    seoMeta: {
+      datePublished: '2026-05-06',
+      dateModified: '2026-05-06',
+      keywords: ['Safety Index', 'eval framework', 'AML', 'KYC', 'LLM evaluation', 'precision', 'recall', 'false positive rate', 'HITL', 'AI governance'],
+      articleType: 'TechArticle',
+      articleTags: 'Safety Index, LLM Evaluation, AML KYC, AI Governance, Trust & Safety',
+      images: [],
+      about: [
+        { '@type': 'Thing', name: 'AML/KYC Screening' },
+        { '@type': 'Thing', name: 'LLM Evaluation Framework' },
+        { '@type': 'Organization', name: "Moody's Analytics" },
+      ],
+    },
   },
 
 ]

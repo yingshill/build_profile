@@ -112,6 +112,7 @@ Managed 4 concurrent IT infrastructure projects with 98% on-time delivery. Built
 
 - **ai-content-moderation-edge-case-eval-framework** — Edge-case evaluation framework for LLM content moderation pipelines. Standardized precision/recall tracking, failure pattern taxonomy, reproducible eval suites. https://github.com/yingshill/ai-content-moderation-edge-case-eval-framework
 - **ai-governance-red-team-control-pipeline** — Red-team control pipeline for AI governance and policy enforcement. Attack pattern classification, prompt injection defense, output consistency test suites. https://github.com/yingshill/ai-governance-red-team-control-pipeline
+- **incident-drill-kit** — Structured runbook and drill framework for Trust & Safety incident response. Escalation templates, severity classification, post-mortem checklists. https://github.com/yingshill/incident-drill-kit
 
 ## Case Studies
 

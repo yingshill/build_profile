@@ -108,8 +108,8 @@ function validatePrerenderHtml(id: string, slug: string, lang: 'es' | 'en'): Iss
   }
 
   // 6. Hreflang
-  if (!html.includes('hreflang="en"') || !html.includes('hreflang="es"')) {
-    issues.push({ severity: 'warn', msg: 'Hreflang incomplete (need en + es)', skill: '/seo hreflang' })
+  if (!html.includes('hreflang="en"') || !html.includes('hreflang="zh"')) {
+    issues.push({ severity: 'warn', msg: 'Hreflang incomplete (need en + zh)', skill: '/seo hreflang' })
   }
 
   // 7. OG image
