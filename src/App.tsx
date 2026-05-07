@@ -1733,9 +1733,9 @@ function App() {
                       <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                     </Link>
                   </div>
-                  <div className="grid grid-cols-2 lg:flex lg:flex-col gap-2 lg:shrink-0">
+                  <div className="grid grid-cols-2 gap-2 lg:shrink-0 lg:w-56">
                     {(t.projects.featured.metrics as readonly { value: string; label: string }[]).map((m) => (
-                      <div key={m.label} className="text-center p-3 lg:p-4 rounded-xl bg-background/50 border border-primary/20 lg:w-28">
+                      <div key={m.label} className="text-center p-3 rounded-xl bg-background/50 border border-primary/20">
                         <div className="font-display text-lg lg:text-2xl font-bold text-primary">{m.value}</div>
                         <div className="text-[10px] lg:text-xs text-muted-foreground leading-tight">{m.label}</div>
                       </div>
