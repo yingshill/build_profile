@@ -1520,8 +1520,8 @@ function App() {
                     key={label}
                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 backdrop-blur-sm ${
                       hydrated && i === roleIndex
-                        ? 'border border-sky/50 bg-sky/15 text-foreground scale-105'
-                        : 'border border-sky/20 bg-background/80 text-muted-foreground'
+                        ? 'border border-powder/50 bg-powder/20 text-foreground scale-105'
+                        : 'border border-powder/30 bg-background/80 text-muted-foreground'
                     }`}
                   >
                     {label}

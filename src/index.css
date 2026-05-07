@@ -114,8 +114,8 @@ button, a, [role="button"], summary { cursor: pointer; }
     /* Semantic accent colors */
     --terracotta: 21 65% 47%;          /* burnt orange */
     --terracotta-foreground: 0 0% 100%;
-    --sky: 204 30% 68%;                /* powder blue */
-    --sky-foreground: 204 30% 18%;
+    --powder: 204 50% 58%;                /* powder blue */
+    --powder-foreground: 204 40% 15%;
     --gold: 38 62% 44%;                /* warm amber */
     --success: 145 30% 36%;            /* darker sage */
     --tool: 145 55% 38%;               /* sage */
@@ -151,8 +151,8 @@ button, a, [role="button"], summary { cursor: pointer; }
       --gradient-to: 12 72% 65%;
       --terracotta: 21 70% 62%;
       --terracotta-foreground: 0 0% 100%;
-      --sky: 204 35% 75%;
-      --sky-foreground: 0 0% 100%;
+      --powder: 204 35% 75%;
+      --powder-foreground: 0 0% 100%;
       --gold: 40 80% 58%;
       --success: 145 42% 54%;
       --tool: 145 58% 62%;
@@ -188,8 +188,8 @@ button, a, [role="button"], summary { cursor: pointer; }
     --gradient-to: 12 72% 65%;
     --terracotta: 21 70% 62%;
     --terracotta-foreground: 0 0% 100%;
-    --sky: 204 35% 75%;
-    --sky-foreground: 0 0% 100%;
+    --powder: 204 35% 75%;
+    --powder-foreground: 0 0% 100%;
     --gold: 40 80% 58%;
     --success: 145 42% 54%;
     --tool: 145 58% 62%;
@@ -224,8 +224,8 @@ button, a, [role="button"], summary { cursor: pointer; }
     --gradient-to: 12 68% 58%;
     --terracotta: 21 65% 47%;
     --terracotta-foreground: 0 0% 100%;
-    --sky: 204 30% 68%;
-    --sky-foreground: 204 30% 18%;
+    --powder: 204 50% 58%;
+    --powder-foreground: 204 40% 15%;
     --gold: 38 62% 44%;
     --success: 145 30% 36%;
     --tool: 145 55% 38%;
@@ -464,15 +464,15 @@ button, a, [role="button"], summary { cursor: pointer; }
   .shadow-terracotta\/20 { --tw-shadow-color: hsl(var(--terracotta) / 0.2); }
 
   /* Sky semantic color utilities */
-  .bg-sky { background-color: hsl(var(--sky)); }
-  .bg-sky\/10 { background-color: hsl(var(--sky) / 0.1); }
-  .bg-sky\/15 { background-color: hsl(var(--sky) / 0.15); }
-  .bg-sky\/20 { background-color: hsl(var(--sky) / 0.2); }
-  .text-sky { color: hsl(var(--sky)); }
-  .text-sky-foreground { color: hsl(var(--sky-foreground)); }
-  .border-sky\/20 { border-color: hsl(var(--sky) / 0.2); }
-  .border-sky\/30 { border-color: hsl(var(--sky) / 0.3); }
-  .border-sky\/50 { border-color: hsl(var(--sky) / 0.5); }
+  .bg-powder { background-color: hsl(var(--powder)); }
+  .bg-powder\/10 { background-color: hsl(var(--powder) / 0.1); }
+  .bg-powder\/15 { background-color: hsl(var(--powder) / 0.15); }
+  .bg-powder\/20 { background-color: hsl(var(--powder) / 0.2); }
+  .text-powder { color: hsl(var(--powder)); }
+  .text-powder-foreground { color: hsl(var(--powder-foreground)); }
+  .border-powder\/20 { border-color: hsl(var(--powder) / 0.2); }
+  .border-powder\/30 { border-color: hsl(var(--powder) / 0.3); }
+  .border-powder\/50 { border-color: hsl(var(--powder) / 0.5); }
 
   /* Success semantic color utilities */
   .text-success { color: hsl(var(--success)); }
