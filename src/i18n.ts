@@ -188,20 +188,26 @@ export const translations = {
     },
     personalProjects: {
       title: '个人项目',
+      artifactsLabel: '成果',
       items: [
         {
           title: 'podcast-pipeline',
-          badge: '构建中',
+          badge: '开源',
           desc: '以人为核心的播客摘要系统——抓取字幕并存入Google Docs供人工标注，AI仅对高亮内容进行合成，生成结构化Notion报告。以人类注意力作为主要信号驱动AI，而非统一摘要全集。',
-          domains: ['工作流自动化', 'AI构建者', '知识运营', '赋能'],
+          domains: ['工作流自动化', '知识运营', '赋能'],
           tech: ['Python', 'Google Docs API', 'Notion API', 'LLM', '人机协同'],
           link: 'github.com/yingshill/podcast-pipeline',
+          links: [
+            { label: '词句库', type: 'external', url: 'https://walnut-cobra-1eb.notion.site/cb170592df9048408a7a2823082812ab?v=4d2e00f3d0794573b75c415ec917ea97&source=copy_link' },
+            { label: '播客摘要库', type: 'external', url: 'https://walnut-cobra-1eb.notion.site/1fb8d50a4fb548389761be7371729bea?v=359141f8582a80399c03000c4e878345&source=copy_link' },
+            { label: '演示动图', type: 'demo', url: '/demos/podcast-pipeline-demo.gif' },
+          ],
         },
         {
           title: 'design-lore',
           badge: '开源',
           desc: 'CLI优先的设计情报系统——通过Puppeteer自动截图、提取配色/字体/CSS变量，内置设计趋势咨询与个性化挑战生成，可将设计DNA直接导出为CSS变量。',
-          domains: ['产品设计', 'AI构建者', '赋能', '开发者工具'],
+          domains: ['产品设计', '赋能', '开发者工具'],
           tech: ['TypeScript', 'Node.js', 'Puppeteer', 'CLI'],
           link: 'github.com/yingshill/design-lore',
         },
@@ -612,20 +618,26 @@ export const translations = {
     },
     personalProjects: {
       title: 'Personal Projects',
+      artifactsLabel: 'Artifacts',
       items: [
         {
           title: 'podcast-pipeline',
-          badge: 'In Build',
+          badge: 'Open Source',
           desc: 'Human-in-the-loop podcast digest system — scrapes transcripts into Google Docs for annotation, then AI synthesizes only the highlighted moments into a structured Notion report. Uses human attention as the primary signal rather than summarizing everything equally.',
-          domains: ['Workflow Automation', 'AI Builder', 'Knowledge Ops', 'Enablement'],
+          domains: ['Workflow Automation', 'Knowledge Ops', 'Enablement'],
           tech: ['Python', 'Google Docs API', 'Notion API', 'LLM', 'Human-in-the-loop'],
           link: 'github.com/yingshill/podcast-pipeline',
+          links: [
+            { label: 'Speaker Phrase Library', type: 'external', url: 'https://walnut-cobra-1eb.notion.site/cb170592df9048408a7a2823082812ab?v=4d2e00f3d0794573b75c415ec917ea97&source=copy_link' },
+            { label: 'Podcast & Video Digest', type: 'external', url: 'https://walnut-cobra-1eb.notion.site/1fb8d50a4fb548389761be7371729bea?v=359141f8582a80399c03000c4e878345&source=copy_link' },
+            { label: 'Live Demo', type: 'demo', url: '/demos/podcast-pipeline-demo.gif' },
+          ],
         },
         {
           title: 'design-lore',
           badge: 'Open Source',
           desc: 'CLI-first design intelligence vault — automated screenshot capture via Puppeteer, CSS/color/typography extraction, built-in trend consultation and personalized challenge generation. Exports design DNA directly to CSS variables.',
-          domains: ['Product Design', 'AI Builder', 'Enablement', 'Developer Tooling'],
+          domains: ['Product Design', 'Enablement', 'Developer Tooling'],
           tech: ['TypeScript', 'Node.js', 'Puppeteer', 'CLI'],
           link: 'github.com/yingshill/design-lore',
         },
