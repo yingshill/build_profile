@@ -194,7 +194,7 @@ export const translations = {
           title: 'podcast-pipeline',
           badge: '开源',
           desc: '以人为核心的播客摘要系统——抓取字幕并存入Google Docs供人工标注，AI仅对高亮内容进行合成，生成结构化Notion报告。以人类注意力作为主要信号驱动AI，而非统一摘要全集。',
-          domains: ['工作流自动化', '知识运营', '赋能'],
+          domains: ['工作流自动化', 'AI构建者', '知识运营'],
           tech: ['Python', 'Google Docs API', 'Notion API', 'LLM', '人机协同'],
           link: 'github.com/yingshill/podcast-pipeline',
           links: [
@@ -624,7 +624,7 @@ export const translations = {
           title: 'podcast-pipeline',
           badge: 'Open Source',
           desc: 'Human-in-the-loop podcast digest system — scrapes transcripts into Google Docs for annotation, then AI synthesizes only the highlighted moments into a structured Notion report. Uses human attention as the primary signal rather than summarizing everything equally.',
-          domains: ['Workflow Automation', 'Knowledge Ops', 'Enablement'],
+          domains: ['Workflow Automation', 'AI Builder', 'Knowledge Ops'],
           tech: ['Python', 'Google Docs API', 'Notion API', 'LLM', 'Human-in-the-loop'],
           link: 'github.com/yingshill/podcast-pipeline',
           links: [
