@@ -198,8 +198,8 @@ export const translations = {
           tech: ['Python', 'Google Docs API', 'Notion API', 'LLM', '人机协同'],
           link: 'github.com/yingshill/podcast-pipeline',
           links: [
-            { label: '词句库', type: 'external', url: 'https://walnut-cobra-1eb.notion.site/cb170592df9048408a7a2823082812ab?v=4d2e00f3d0794573b75c415ec917ea97&source=copy_link'' },
-            { label: '播客摘要库', type: 'external', url: 'https://walnut-cobra-1eb.notion.site/1fb8d50a4fb548389761be7371729bea?v=359141f8582a80399c03000c4e878345&source=copy_link'' },
+            { label: '词句库', type: 'external', url: 'https://walnut-cobra-1eb.notion.site/cb170592df9048408a7a2823082812ab?v=4d2e00f3d0794573b75c415ec917ea97&source=copy_link' },
+            { label: '播客摘要库', type: 'external', url: 'https://walnut-cobra-1eb.notion.site/1fb8d50a4fb548389761be7371729bea?v=359141f8582a80399c03000c4e878345&source=copy_link' },
             { label: '演示动图', type: 'demo', url: '/demos/podcast-pipeline-demo.gif' },
           ],
         },
@@ -636,8 +636,8 @@ export const translations = {
           tech: ['Python', 'Google Docs API', 'Notion API', 'LLM', 'Human-in-the-loop'],
           link: 'github.com/yingshill/podcast-pipeline',
           links: [
-            { label: 'Speaker Phrase Library', type: 'external', url: 'https://walnut-cobra-1eb.notion.site/cb170592df9048408a7a2823082812ab?v=4d2e00f3d0794573b75c415ec917ea97&source=copy_link'' },
-            { label: 'Podcast & Video Digest', type: 'external', url: 'https://walnut-cobra-1eb.notion.site/1fb8d50a4fb548389761be7371729bea?v=359141f8582a80399c03000c4e878345&source=copy_link'' },
+            { label: 'Speaker Phrase Library', type: 'external', url: 'https://walnut-cobra-1eb.notion.site/cb170592df9048408a7a2823082812ab?v=4d2e00f3d0794573b75c415ec917ea97&source=copy_link' },
+            { label: 'Podcast & Video Digest', type: 'external', url: 'https://walnut-cobra-1eb.notion.site/1fb8d50a4fb548389761be7371729bea?v=359141f8582a80399c03000c4e878345&source=copy_link' },
             { label: 'Live Demo', type: 'demo', url: '/demos/podcast-pipeline-demo.gif' },
           ],
         },
