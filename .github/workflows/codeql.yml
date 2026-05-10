@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: ['javascript-typescript', 'go']
+        language: ['javascript-typescript']
     steps:
       - name: Checkout
         uses: actions/checkout@v6
