@@ -199,7 +199,7 @@ export const translations = {
           link: 'github.com/yingshill/signal-to-asset',
           links: [
             { label: '架构图', type: 'image', url: '/personal-project-artifacts/signal-to-asset-architecture.svg', alt: 'signal-to-asset architecture diagram' },
-            { label: '案例页', type: 'image', url: '/personal-project-artifacts/signal-to-asset-case-study.png', alt: 'signal-to-asset case study preview' },
+            { label: '案例页', type: 'image', url: '/personal-project-artifacts/signal-to-asset-case-study.svg', alt: 'signal-to-asset case study preview' },
             { label: '代码讲解轮播', type: 'image', url: '/personal-project-artifacts/signal-to-asset-code-carousel.svg', alt: 'signal-to-asset code walkthrough carousel' },
           ],
         },
@@ -664,7 +664,7 @@ export const translations = {
           link: 'github.com/yingshill/signal-to-asset',
           links: [
             { label: 'Architecture', type: 'image', url: '/personal-project-artifacts/signal-to-asset-architecture.svg', alt: 'signal-to-asset architecture diagram' },
-            { label: 'Case Study', type: 'image', url: '/personal-project-artifacts/signal-to-asset-case-study.png', alt: 'signal-to-asset case study preview' },
+            { label: 'Case Study', type: 'image', url: '/personal-project-artifacts/signal-to-asset-case-study.svg', alt: 'signal-to-asset case study preview' },
             { label: 'Code Carousel', type: 'image', url: '/personal-project-artifacts/signal-to-asset-code-carousel.svg', alt: 'signal-to-asset code walkthrough carousel' },
           ],
         },
