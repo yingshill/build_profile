@@ -6,6 +6,14 @@
 
 ---
 
+## Related Design Contracts
+
+- [Portfolio Artifact Design Baseline](PORTFOLIO_ARTIFACT_DESIGN_BASELINE.md): portable rules for rebuilding project artifacts from each repo's real context.
+
+Keep this file focused on the portfolio site's brand, theme, layout, and taste decisions. Use the artifact baseline for project-specific SVG/video artifact creation. Artifact visuals should respect the confirmed brand direction here, but they should not all copy the same site layout or palette.
+
+---
+
 ## Current Theme (to replace)
 
 | Token | Value | Notes |
