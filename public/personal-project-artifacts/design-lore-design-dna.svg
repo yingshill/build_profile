@@ -1,0 +1,26 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#F6F7FB"/>
+  <rect x="88" y="72" width="1424" height="756" rx="24" fill="#FFFFFF" stroke="#D8DEE9" stroke-width="2"/>
+  <rect x="128" y="112" width="1344" height="168" rx="18" fill="#111827"/>
+  <text x="168" y="164" fill="#9CA3AF" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" letter-spacing="2">DESIGN DNA / DESIGN LORE</text>
+  <text x="168" y="232" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="800">A compact export of visual decisions</text>
+  <rect x="128" y="344" width="356" height="336" rx="18" fill="#F8FAFC" stroke="#D8DEE9" stroke-width="2"/>
+  <text x="168" y="404" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">Palette</text>
+  <rect x="168" y="442" width="70" height="70" rx="10" fill="#111827"/>
+  <rect x="256" y="442" width="70" height="70" rx="10" fill="#2563EB"/>
+  <rect x="344" y="442" width="70" height="70" rx="10" fill="#16A34A"/>
+  <text x="168" y="570" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="24">Extracted colors become</text>
+  <text x="168" y="604" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="24">CSS custom properties.</text>
+  <rect x="622" y="344" width="356" height="336" rx="18" fill="#F8FAFC" stroke="#D8DEE9" stroke-width="2"/>
+  <text x="662" y="404" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">Typography</text>
+  <text x="662" y="482" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="800">Display</text>
+  <text x="662" y="540" fill="#4B5563" font-family="Arial, Helvetica, sans-serif" font-size="30">Body text sample</text>
+  <text x="662" y="604" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="24">Type scale and rhythm are</text>
+  <text x="662" y="638" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="24">captured for reuse.</text>
+  <rect x="1116" y="344" width="356" height="336" rx="18" fill="#ECFDF5" stroke="#BBF7D0" stroke-width="2"/>
+  <text x="1156" y="404" fill="#14532D" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">Challenge</text>
+  <text x="1156" y="482" fill="#166534" font-family="Arial, Helvetica, sans-serif" font-size="28">Generated prompt:</text>
+  <text x="1156" y="532" fill="#166534" font-family="Arial, Helvetica, sans-serif" font-size="24">Build one component using</text>
+  <text x="1156" y="566" fill="#166534" font-family="Arial, Helvetica, sans-serif" font-size="24">the extracted palette, spacing,</text>
+  <text x="1156" y="600" fill="#166534" font-family="Arial, Helvetica, sans-serif" font-size="24">and interaction style.</text>
+</svg>

@@ -1,0 +1,32 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#F6F7FB"/>
+  <rect x="88" y="72" width="1424" height="756" rx="24" fill="#FFFFFF" stroke="#D8DEE9" stroke-width="2"/>
+  <rect x="128" y="112" width="1344" height="202" rx="18" fill="#111827"/>
+  <text x="168" y="164" fill="#9CA3AF" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" letter-spacing="2">CASE STUDY / YTM MUSIC PLATFORM</text>
+  <text x="168" y="232" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="60" font-weight="800">A music library you can actually own</text>
+  <text x="168" y="284" fill="#CBD5E1" font-family="Arial, Helvetica, sans-serif" font-size="27">The build turns streaming links into a local collection with searchable metadata and playback.</text>
+  <rect x="128" y="370" width="380" height="198" rx="18" fill="#FFFFFF" stroke="#D8DEE9" stroke-width="2"/>
+  <text x="168" y="428" fill="#B91C1C" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800">PROBLEM</text>
+  <text x="168" y="480" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="800">Rented access</text>
+  <text x="168" y="526" fill="#4B5563" font-family="Arial, Helvetica, sans-serif" font-size="24">Playlists depend on platform access,</text>
+  <text x="168" y="560" fill="#4B5563" font-family="Arial, Helvetica, sans-serif" font-size="24">network state, and closed metadata.</text>
+  <rect x="610" y="370" width="380" height="198" rx="18" fill="#FFFFFF" stroke="#D8DEE9" stroke-width="2"/>
+  <text x="650" y="428" fill="#2563EB" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800">SYSTEM</text>
+  <text x="650" y="480" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="800">Local ingest</text>
+  <text x="650" y="526" fill="#4B5563" font-family="Arial, Helvetica, sans-serif" font-size="24">FastAPI coordinates downloads,</text>
+  <text x="650" y="560" fill="#4B5563" font-family="Arial, Helvetica, sans-serif" font-size="24">SQLite records, and audio files.</text>
+  <rect x="1092" y="370" width="380" height="198" rx="18" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="2"/>
+  <text x="1132" y="428" fill="#15803D" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800">OUTCOME</text>
+  <text x="1132" y="480" fill="#14532D" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="800">Owned library</text>
+  <text x="1132" y="526" fill="#166534" font-family="Arial, Helvetica, sans-serif" font-size="24">Tracks become browseable, playable,</text>
+  <text x="1132" y="560" fill="#166534" font-family="Arial, Helvetica, sans-serif" font-size="24">and portable outside the platform.</text>
+  <rect x="128" y="636" width="424" height="122" rx="18" fill="#F8FAFC" stroke="#D8DEE9" stroke-width="2"/>
+  <text x="168" y="696" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="800">Ownership first</text>
+  <text x="168" y="734" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="23">Files and metadata live locally.</text>
+  <rect x="588" y="636" width="424" height="122" rx="18" fill="#F8FAFC" stroke="#D8DEE9" stroke-width="2"/>
+  <text x="628" y="696" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="800">API boundary</text>
+  <text x="628" y="734" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="23">Backend isolates download concerns.</text>
+  <rect x="1048" y="636" width="424" height="122" rx="18" fill="#ECFDF5" stroke="#BBF7D0" stroke-width="2"/>
+  <text x="1088" y="696" fill="#14532D" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="800">Player UX</text>
+  <text x="1088" y="734" fill="#166534" font-family="Arial, Helvetica, sans-serif" font-size="23">Waveforms make tracks scannable.</text>
+</svg>

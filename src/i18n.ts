@@ -211,10 +211,9 @@ export const translations = {
           tech: ['Node.js', 'Claude API', 'Notion API', 'CLI', 'Schema Design'],
           link: 'github.com/yingshill/course-digest-workflow',
           links: [
-            { label: '架构文档', type: 'image', url: '/personal-project-artifacts/course-digest-architecture.png', alt: 'course-digest-workflow architecture preview' },
-            { label: '自动化指南', type: 'image', url: '/personal-project-artifacts/course-digest-automation-guide.svg', alt: 'course-digest-workflow automation guide preview' },
-            { label: '数据库 Schema', type: 'image', url: '/personal-project-artifacts/course-digest-schema.png', alt: 'course-digest-workflow schema preview' },
-            { label: '课程模板', type: 'image', url: '/personal-project-artifacts/course-digest-notebook-template.png', alt: 'course-digest-workflow notebook template preview' },
+            { label: '架构图', type: 'image', url: '/personal-project-artifacts/course-digest-architecture.svg', alt: 'course-digest-workflow architecture diagram' },
+            { label: '案例页', type: 'image', url: '/personal-project-artifacts/course-digest-case-study.svg', alt: 'course-digest-workflow case study preview' },
+            { label: '自动化流程', type: 'image', url: '/personal-project-artifacts/course-digest-automation-flow.svg', alt: 'course-digest-workflow automation flow' },
           ],
         },
         {
@@ -225,8 +224,8 @@ export const translations = {
           tech: ['Python', 'Google Docs API', 'Notion API', 'LLM', '人机协同'],
           link: 'github.com/yingshill/podcast-pipeline',
           links: [
-            { label: '词句库', type: 'external', url: 'https://walnut-cobra-1eb.notion.site/cb170592df9048408a7a2823082812ab?v=4d2e00f3d0794573b75c415ec917ea97&source=copy_link' },
-            { label: '播客摘要库', type: 'external', url: 'https://walnut-cobra-1eb.notion.site/1fb8d50a4fb548389761be7371729bea?v=359141f8582a80399c03000c4e878345&source=copy_link' },
+            { label: '架构图', type: 'image', url: '/personal-project-artifacts/podcast-pipeline-architecture.svg', alt: 'podcast-pipeline architecture diagram' },
+            { label: '案例页', type: 'image', url: '/personal-project-artifacts/podcast-pipeline-case-study.svg', alt: 'podcast-pipeline case study preview' },
             { label: '演示动图', type: 'demo', url: '/demos/podcast-pipeline-demo.gif' },
           ],
         },
@@ -237,6 +236,11 @@ export const translations = {
           domains: ['产品设计', '赋能', '开发者工具'],
           tech: ['TypeScript', 'Node.js', 'Puppeteer', 'CLI'],
           link: 'github.com/yingshill/design-lore',
+          links: [
+            { label: '架构图', type: 'image', url: '/personal-project-artifacts/design-lore-architecture.svg', alt: 'design-lore architecture diagram' },
+            { label: '案例页', type: 'image', url: '/personal-project-artifacts/design-lore-case-study.svg', alt: 'design-lore case study preview' },
+            { label: '设计DNA', type: 'image', url: '/personal-project-artifacts/design-lore-design-dna.svg', alt: 'design-lore design DNA preview' },
+          ],
         },
         {
           title: 'ytm-music-platform',
@@ -245,14 +249,11 @@ export const translations = {
           domains: ['产品设计', '工作流自动化', '开发者工具'],
           tech: ['Python', 'FastAPI', 'React', 'yt-dlp', 'Wavesurfer.js', 'SQLite'],
           link: 'github.com/yingshill/ytm-music-platform',
-        },
-        {
-          title: 'signal-to-asset',
-          badge: '开源',
-          desc: '智能内容管道——读取Notion知识库中的任意来源（文章、播客、课程笔记、GitHub项目），提取核心信号，自动生成营销方案 → 5个平台草稿（LinkedIn PM/DE、小红书、X、Notion发布页）→ 关联待办任务，全部自动写入Notion工作区。运行于Claude Code，含人工审批门控。',
-          domains: ['工作流自动化', 'AI构建者', '内容运营'],
-          tech: ['Python', 'Claude Code', 'Notion API', 'Agentic Workflow'],
-          link: 'github.com/yingshill/signal-to-asset',
+          links: [
+            { label: '架构图', type: 'image', url: '/personal-project-artifacts/ytm-music-platform-architecture.svg', alt: 'ytm-music-platform architecture diagram' },
+            { label: '案例页', type: 'image', url: '/personal-project-artifacts/ytm-music-platform-case-study.svg', alt: 'ytm-music-platform case study preview' },
+            { label: '播放器UI', type: 'image', url: '/personal-project-artifacts/ytm-music-platform-player-ui.svg', alt: 'ytm-music-platform player UI preview' },
+          ],
         },
       ],
     },
@@ -676,10 +677,9 @@ export const translations = {
           tech: ['Node.js', 'Claude API', 'Notion API', 'CLI', 'Schema Design'],
           link: 'github.com/yingshill/course-digest-workflow',
           links: [
-            { label: 'Architecture', type: 'image', url: '/personal-project-artifacts/course-digest-architecture.png', alt: 'course-digest-workflow architecture preview' },
-            { label: 'Automation Guide', type: 'image', url: '/personal-project-artifacts/course-digest-automation-guide.svg', alt: 'course-digest-workflow automation guide preview' },
-            { label: 'Schema', type: 'image', url: '/personal-project-artifacts/course-digest-schema.png', alt: 'course-digest-workflow schema preview' },
-            { label: 'Notebook Template', type: 'image', url: '/personal-project-artifacts/course-digest-notebook-template.png', alt: 'course-digest-workflow notebook template preview' },
+            { label: 'Architecture', type: 'image', url: '/personal-project-artifacts/course-digest-architecture.svg', alt: 'course-digest-workflow architecture diagram' },
+            { label: 'Case Study', type: 'image', url: '/personal-project-artifacts/course-digest-case-study.svg', alt: 'course-digest-workflow case study preview' },
+            { label: 'Automation Flow', type: 'image', url: '/personal-project-artifacts/course-digest-automation-flow.svg', alt: 'course-digest-workflow automation flow' },
           ],
         },
         {
@@ -690,8 +690,8 @@ export const translations = {
           tech: ['Python', 'Google Docs API', 'Notion API', 'LLM', 'Human-in-the-loop'],
           link: 'github.com/yingshill/podcast-pipeline',
           links: [
-            { label: 'Speaker Phrase Library', type: 'external', url: 'https://walnut-cobra-1eb.notion.site/cb170592df9048408a7a2823082812ab?v=4d2e00f3d0794573b75c415ec917ea97&source=copy_link' },
-            { label: 'Podcast & Video Digest', type: 'external', url: 'https://walnut-cobra-1eb.notion.site/1fb8d50a4fb548389761be7371729bea?v=359141f8582a80399c03000c4e878345&source=copy_link' },
+            { label: 'Architecture', type: 'image', url: '/personal-project-artifacts/podcast-pipeline-architecture.svg', alt: 'podcast-pipeline architecture diagram' },
+            { label: 'Case Study', type: 'image', url: '/personal-project-artifacts/podcast-pipeline-case-study.svg', alt: 'podcast-pipeline case study preview' },
             { label: 'Live Demo', type: 'demo', url: '/demos/podcast-pipeline-demo.gif' },
           ],
         },
@@ -702,6 +702,11 @@ export const translations = {
           domains: ['Product Design', 'Enablement', 'Developer Tooling'],
           tech: ['TypeScript', 'Node.js', 'Puppeteer', 'CLI'],
           link: 'github.com/yingshill/design-lore',
+          links: [
+            { label: 'Architecture', type: 'image', url: '/personal-project-artifacts/design-lore-architecture.svg', alt: 'design-lore architecture diagram' },
+            { label: 'Case Study', type: 'image', url: '/personal-project-artifacts/design-lore-case-study.svg', alt: 'design-lore case study preview' },
+            { label: 'Design DNA', type: 'image', url: '/personal-project-artifacts/design-lore-design-dna.svg', alt: 'design-lore design DNA preview' },
+          ],
         },
         {
           title: 'ytm-music-platform',
@@ -710,14 +715,11 @@ export const translations = {
           domains: ['Product Design', 'Workflow Automation', 'Developer Tooling'],
           tech: ['Python', 'FastAPI', 'React', 'yt-dlp', 'Wavesurfer.js', 'SQLite'],
           link: 'github.com/yingshill/ytm-music-platform',
-        },
-        {
-          title: 'signal-to-asset',
-          badge: 'Open Source',
-          desc: 'Agentic content pipeline — reads any Notion source entry (article, podcast, course note, GitHub repo), extracts the core signal, and auto-generates a marketing plan → 5 platform-ready drafts (LinkedIn PM/DE, XHS, X, Notion Publish) → linked to-dos, all written directly into your Notion workspace. Runs on Claude Code with a human approval gate before any writes.',
-          domains: ['Workflow Automation', 'AI Builder', 'Content Ops'],
-          tech: ['Python', 'Claude Code', 'Notion API', 'Agentic Workflow'],
-          link: 'github.com/yingshill/signal-to-asset',
+          links: [
+            { label: 'Architecture', type: 'image', url: '/personal-project-artifacts/ytm-music-platform-architecture.svg', alt: 'ytm-music-platform architecture diagram' },
+            { label: 'Case Study', type: 'image', url: '/personal-project-artifacts/ytm-music-platform-case-study.svg', alt: 'ytm-music-platform case study preview' },
+            { label: 'Player UI', type: 'image', url: '/personal-project-artifacts/ytm-music-platform-player-ui.svg', alt: 'ytm-music-platform player UI preview' },
+          ],
         },
       ],
     },

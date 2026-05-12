@@ -1,0 +1,47 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#F6F7FB"/>
+  <rect x="88" y="72" width="1424" height="756" rx="24" fill="#FFFFFF" stroke="#D8DEE9" stroke-width="2"/>
+  <rect x="128" y="112" width="1344" height="168" rx="18" fill="#111827"/>
+  <text x="168" y="164" fill="#9CA3AF" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" letter-spacing="2">PLAYER UI / YTM MUSIC PLATFORM</text>
+  <text x="168" y="232" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="800">A local music console</text>
+  <rect x="128" y="334" width="1344" height="404" rx="22" fill="#0F172A"/>
+  <rect x="160" y="366" width="270" height="340" rx="18" fill="#111827" stroke="#334155" stroke-width="2"/>
+  <text x="194" y="416" fill="#94A3B8" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" letter-spacing="2">LIBRARY</text>
+  <rect x="194" y="452" width="202" height="44" rx="12" fill="#1E293B"/>
+  <text x="218" y="481" fill="#E2E8F0" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700">Recently saved</text>
+  <rect x="194" y="512" width="202" height="44" rx="12" fill="#0F172A" stroke="#334155" stroke-width="2"/>
+  <text x="218" y="541" fill="#CBD5E1" font-family="Arial, Helvetica, sans-serif" font-size="21">Playlists</text>
+  <rect x="194" y="572" width="202" height="44" rx="12" fill="#0F172A" stroke="#334155" stroke-width="2"/>
+  <text x="218" y="601" fill="#CBD5E1" font-family="Arial, Helvetica, sans-serif" font-size="21">Downloaded</text>
+  <rect x="194" y="632" width="202" height="44" rx="12" fill="#0F172A" stroke="#334155" stroke-width="2"/>
+  <text x="218" y="661" fill="#CBD5E1" font-family="Arial, Helvetica, sans-serif" font-size="21">Search</text>
+  <rect x="470" y="366" width="968" height="340" rx="18" fill="#F8FAFC"/>
+  <rect x="510" y="406" width="188" height="188" rx="22" fill="#111827"/>
+  <circle cx="604" cy="500" r="54" fill="#2563EB"/>
+  <circle cx="604" cy="500" r="18" fill="#DBEAFE"/>
+  <text x="738" y="430" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" letter-spacing="2">NOW PLAYING</text>
+  <text x="738" y="490" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="800">Local track title</text>
+  <text x="738" y="532" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="27">Artist metadata from SQLite</text>
+  <rect x="738" y="576" width="630" height="82" rx="16" fill="#E2E8F0"/>
+  <rect x="770" y="624" width="22" height="18" rx="5" fill="#2563EB"/>
+  <rect x="802" y="598" width="22" height="44" rx="5" fill="#2563EB"/>
+  <rect x="834" y="612" width="22" height="30" rx="5" fill="#2563EB"/>
+  <rect x="866" y="586" width="22" height="56" rx="5" fill="#2563EB"/>
+  <rect x="898" y="606" width="22" height="36" rx="5" fill="#2563EB"/>
+  <rect x="930" y="594" width="22" height="48" rx="5" fill="#2563EB"/>
+  <rect x="962" y="618" width="22" height="24" rx="5" fill="#2563EB"/>
+  <rect x="994" y="590" width="22" height="52" rx="5" fill="#2563EB"/>
+  <rect x="1026" y="604" width="22" height="38" rx="5" fill="#16A34A"/>
+  <rect x="1058" y="582" width="22" height="60" rx="5" fill="#16A34A"/>
+  <rect x="1090" y="610" width="22" height="32" rx="5" fill="#16A34A"/>
+  <rect x="1122" y="596" width="22" height="46" rx="5" fill="#16A34A"/>
+  <rect x="1154" y="620" width="22" height="22" rx="5" fill="#16A34A"/>
+  <rect x="1186" y="586" width="22" height="56" rx="5" fill="#16A34A"/>
+  <rect x="1218" y="606" width="22" height="36" rx="5" fill="#16A34A"/>
+  <rect x="1250" y="594" width="22" height="48" rx="5" fill="#16A34A"/>
+  <rect x="1282" y="616" width="22" height="26" rx="5" fill="#16A34A"/>
+  <rect x="1314" y="600" width="22" height="42" rx="5" fill="#16A34A"/>
+  <circle cx="738" cy="686" r="22" fill="#111827"/>
+  <path d="M733 675L752 686L733 697V675Z" fill="#FFFFFF"/>
+  <text x="788" y="694" fill="#475569" font-family="Arial, Helvetica, sans-serif" font-size="24">00:42 / 03:28</text>
+</svg>
