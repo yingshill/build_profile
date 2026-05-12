@@ -89,11 +89,39 @@ Typography:
 
 Color:
 
-- Use a stable neutral base: `#F6F7FB`, `#FFFFFF`, `#111827`, `#D8DEE9`.
-- Use one project accent color per repo.
-- Use green only for verified output, completion, or success.
-- Use red only for real friction, failure, or problem states.
+Every artifact uses a four-role semantic color system. Roles are fixed; the specific hex values come from the chosen template (see Design Token Source section).
+
+| Role | Applied to | Must be consistent across all 3 artifacts |
+|---|---|---|
+| **Accent** | Section labels, pill left borders, flow box accents, links | Yes |
+| **Output / after** | ✓ tick marks, output flow box border, metric card tint, result values | Yes |
+| **Problem / before** | Pain-state stats ("30–60 min"), friction boxes | Yes |
+| **Header highlight** | The colored accent word(s) inside the dark header title | Yes |
+
+Rules:
+- Time references that represent the **before state** always use the problem color.
+- Time references that represent the **after/result state** always use the output color.
+- Never use the problem color for structural elements (borders, labels). It means friction only.
+- Never use the output color for problem states. It means success/completion only.
+- Accent color is for navigation and labeling — never for emotional states.
 - Avoid decorative gradients unless they explain hierarchy.
+
+### Active palette: Navy + Amber (signal-to-asset, established 2026-05)
+
+Derived from `signal` template in the beautiful-html-template repo. Use this as the default for new projects unless the project mood clearly calls for a different direction.
+
+| Role | Hex | Used for |
+|---|---|---|
+| Accent | `#C8A870` | Section labels, pill borders, flow box accents |
+| Output / after | `#7B9EA6` | ✓ marks, output boxes, metric values, result states |
+| Problem / before | `#9E6B55` | Pain stats, friction labels |
+| Header highlight | `#E8C98A` | Title accent word in dark header |
+| Page background | `#F0ECE3` | Outer canvas |
+| Card inner areas | `#F5F0E8` | Step boxes, pill backgrounds |
+| Primary text | `#1A2030` | All headings and body |
+| Header band | `#1A2030` | Dark header background |
+| Muted text | `#787774` | Captions, subtitles |
+| Borders | `#e9e9e7` | Card and element borders |
 
 Consistency:
 
