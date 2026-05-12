@@ -226,7 +226,7 @@ export const translations = {
           links: [
             { label: '架构图', type: 'image', url: '/personal-project-artifacts/podcast-pipeline-architecture.svg', alt: 'podcast-pipeline architecture diagram' },
             { label: '案例页', type: 'image', url: '/personal-project-artifacts/podcast-pipeline-case-study.svg', alt: 'podcast-pipeline case study preview' },
-            { label: '演示动图', type: 'demo', url: '/demos/podcast-pipeline-demo.gif' },
+            { label: '演示视频', type: 'demo', url: '/demos/podcast-pipeline-demo.mp4', alt: 'podcast-pipeline live demo video' },
           ],
         },
         {
@@ -692,7 +692,7 @@ export const translations = {
           links: [
             { label: 'Architecture', type: 'image', url: '/personal-project-artifacts/podcast-pipeline-architecture.svg', alt: 'podcast-pipeline architecture diagram' },
             { label: 'Case Study', type: 'image', url: '/personal-project-artifacts/podcast-pipeline-case-study.svg', alt: 'podcast-pipeline case study preview' },
-            { label: 'Live Demo', type: 'demo', url: '/demos/podcast-pipeline-demo.gif' },
+            { label: 'Live Demo', type: 'demo', url: '/demos/podcast-pipeline-demo.mp4', alt: 'podcast-pipeline live demo video' },
           ],
         },
         {

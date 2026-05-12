@@ -3,30 +3,33 @@
   <rect x="88" y="72" width="1424" height="756" rx="24" fill="#FFFFFF" stroke="#D8DEE9" stroke-width="2"/>
   <rect x="128" y="112" width="1344" height="202" rx="18" fill="#111827"/>
   <text x="168" y="164" fill="#9CA3AF" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" letter-spacing="2">CASE STUDY / DESIGN LORE</text>
-  <text x="168" y="232" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="60" font-weight="800">Design research without a blank page</text>
-  <text x="168" y="284" fill="#CBD5E1" font-family="Arial, Helvetica, sans-serif" font-size="27">The system turns web references into concrete patterns, tokens, and prompts.</text>
+  <text x="168" y="232" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="800">A CLI vault for design DNA</text>
+  <text x="168" y="284" fill="#CBD5E1" font-family="Arial, Helvetica, sans-serif" font-size="26">DesignLore bridges inspiration browsing and technical implementation.</text>
   <rect x="128" y="370" width="380" height="198" rx="18" fill="#FFFFFF" stroke="#D8DEE9" stroke-width="2"/>
-  <text x="168" y="428" fill="#B91C1C" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800">PROBLEM</text>
-  <text x="168" y="480" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="800">Taste is hard to reuse</text>
-  <text x="168" y="526" fill="#4B5563" font-family="Arial, Helvetica, sans-serif" font-size="24">Good references rarely become</text>
-  <text x="168" y="560" fill="#4B5563" font-family="Arial, Helvetica, sans-serif" font-size="24">usable implementation constraints.</text>
+  <text x="168" y="428" fill="#B91C1C" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="800">PROBLEM</text>
+  <text x="168" y="478" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="800">Inspiration stays vague</text>
+  <text x="168" y="522" fill="#4B5563" font-family="Arial, Helvetica, sans-serif" font-size="22">Screenshots rarely expose</text>
+  <text x="168" y="554" fill="#4B5563" font-family="Arial, Helvetica, sans-serif" font-size="22">colors, type, or CSS rules.</text>
   <rect x="610" y="370" width="380" height="198" rx="18" fill="#FFFFFF" stroke="#D8DEE9" stroke-width="2"/>
-  <text x="650" y="428" fill="#2563EB" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800">SYSTEM</text>
-  <text x="650" y="480" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="800">CLI design vault</text>
-  <text x="650" y="526" fill="#4B5563" font-family="Arial, Helvetica, sans-serif" font-size="24">Capture, analyze, summarize,</text>
-  <text x="650" y="560" fill="#4B5563" font-family="Arial, Helvetica, sans-serif" font-size="24">and export reusable design DNA.</text>
+  <text x="650" y="428" fill="#2563EB" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="800">SYSTEM</text>
+  <text x="650" y="478" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="800">Aura to Forge</text>
+  <text x="650" y="522" fill="#4B5563" font-family="Arial, Helvetica, sans-serif" font-size="22">Capture with Puppeteer,</text>
+  <text x="650" y="554" fill="#4B5563" font-family="Arial, Helvetica, sans-serif" font-size="22">then analyze and practice.</text>
   <rect x="1092" y="370" width="380" height="198" rx="18" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="2"/>
-  <text x="1132" y="428" fill="#15803D" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800">OUTCOME</text>
-  <text x="1132" y="480" fill="#14532D" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="800">Faster design starts</text>
-  <text x="1132" y="526" fill="#166534" font-family="Arial, Helvetica, sans-serif" font-size="24">The result is an evidence-backed</text>
-  <text x="1132" y="560" fill="#166534" font-family="Arial, Helvetica, sans-serif" font-size="24">starting point for UI work.</text>
-  <rect x="128" y="636" width="424" height="122" rx="18" fill="#F8FAFC" stroke="#D8DEE9" stroke-width="2"/>
-  <text x="168" y="696" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="800">Screenshot proof</text>
-  <text x="168" y="734" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="23">Visual sources stay traceable.</text>
-  <rect x="588" y="636" width="424" height="122" rx="18" fill="#F8FAFC" stroke="#D8DEE9" stroke-width="2"/>
-  <text x="628" y="696" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="800">Pattern library</text>
-  <text x="628" y="734" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="23">Common UI moves are extracted.</text>
-  <rect x="1048" y="636" width="424" height="122" rx="18" fill="#ECFDF5" stroke="#BBF7D0" stroke-width="2"/>
-  <text x="1088" y="696" fill="#14532D" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="800">CSS variables</text>
-  <text x="1088" y="734" fill="#166534" font-family="Arial, Helvetica, sans-serif" font-size="23">Research becomes implementation input.</text>
+  <text x="1132" y="428" fill="#15803D" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="800">OUTCOME</text>
+  <text x="1132" y="478" fill="#14532D" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="800">Reusable design DNA</text>
+  <text x="1132" y="522" fill="#166534" font-family="Arial, Helvetica, sans-serif" font-size="22">Palettes, typography,</text>
+  <text x="1132" y="554" fill="#166534" font-family="Arial, Helvetica, sans-serif" font-size="22">challenges, and CSS tokens.</text>
+  <rect x="128" y="636" width="312" height="122" rx="18" fill="#F8FAFC" stroke="#D8DEE9" stroke-width="2"/>
+  <text x="168" y="696" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">Aura</text>
+  <text x="168" y="734" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="21">High-res site capture.</text>
+  <rect x="478" y="636" width="312" height="122" rx="18" fill="#F8FAFC" stroke="#D8DEE9" stroke-width="2"/>
+  <text x="518" y="696" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">DNA</text>
+  <text x="518" y="734" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="21">Extract color and type.</text>
+  <rect x="828" y="636" width="312" height="122" rx="18" fill="#F8FAFC" stroke="#D8DEE9" stroke-width="2"/>
+  <text x="868" y="696" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">Pulse</text>
+  <text x="868" y="734" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="21">Scout trends and advice.</text>
+  <rect x="1178" y="636" width="294" height="122" rx="18" fill="#ECFDF5" stroke="#BBF7D0" stroke-width="2"/>
+  <text x="1218" y="696" fill="#14532D" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">Forge</text>
+  <text x="1218" y="734" fill="#166534" font-family="Arial, Helvetica, sans-serif" font-size="21">Export practice prompts.</text>
 </svg>

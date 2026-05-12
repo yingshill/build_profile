@@ -65,6 +65,7 @@ scripts/chunks/
 bun.lock
 *.mov
 *.mp4
+!public/demos/podcast-pipeline-demo.mp4
 
 # Design reference images (local only — used for palette research)
 design-refs/

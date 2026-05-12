@@ -1454,6 +1454,7 @@ function App() {
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
   }, [previewModal])
+  const previewIsVideo = previewModal ? /\.(mp4|webm|mov)(?:[?#].*)?$/i.test(previewModal.src) : false
 
   return (
     <>
@@ -2083,7 +2084,20 @@ function App() {
             </button>
           </div>
           <div className="bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.12),_transparent_45%),linear-gradient(180deg,_#111827,_#020617)] max-h-[80vh] overflow-auto">
-            <img src={previewModal.src} alt={previewModal.alt} className="w-full h-auto block object-contain" />
+            {previewIsVideo ? (
+              <video
+                src={previewModal.src}
+                className="w-full h-auto block object-contain"
+                controls
+                autoPlay
+                loop
+                muted
+                playsInline
+                aria-label={previewModal.alt}
+              />
+            ) : (
+              <img src={previewModal.src} alt={previewModal.alt} className="w-full h-auto block object-contain" />
+            )}
           </div>
         </div>
       </div>
