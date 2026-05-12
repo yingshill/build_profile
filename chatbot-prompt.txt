@@ -53,6 +53,8 @@ Managed 4 concurrent IT infrastructure projects — 98% on-time delivery. Built 
 
 ## Personal Projects
 
+- **signal-to-asset** (open source): Agentic content pipeline that turns a Notion source entry into a linked marketing project, 5 channel-ready drafts, and publish tasks. Existing artifacts: architecture diagram, code walkthrough carousel, case study. github.com/yingshill/signal-to-asset
+- **course-digest-workflow** (beta): Notion-native course learning workflow with a modular schema, notebook template, and CLI automation that generates module notes and learning scaffolding via Claude. Existing artifacts: architecture doc, automation setup guide, schema, notebook template. github.com/yingshill/course-digest-workflow
 - **podcast-pipeline** (open source): CLI pipeline that turns a podcast URL into a structured Notion knowledge base — phrase extraction, cross-episode synthesis, and human eval tracking. Outputs: Speaker Phrase Library and Podcast & Video Digest databases. github.com/yingshill/podcast-pipeline
 - **design-lore** (open source): CLI-first design intelligence vault. Automated screenshot capture via Puppeteer, CSS/color/typography extraction, built-in design trend consultation and personalized challenge generation. Exports design DNA directly as CSS variables. github.com/yingshill/design-lore
 - **ytm-music-platform** (in build): Personal YouTube Music platform — downloads and stores your library locally via yt-dlp, manages track metadata in SQLite, plays through a Wavesurfer.js waveform player. FastAPI backend + React frontend. github.com/yingshill/ytm-music-platform

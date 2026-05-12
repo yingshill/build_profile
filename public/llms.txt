@@ -129,6 +129,14 @@ Managed 4 concurrent IT infrastructure projects with 98% on-time delivery. Built
 - **ai-governance-red-team-control-pipeline** — Red-team control pipeline for AI governance and policy enforcement. Attack pattern classification, prompt injection defense, output consistency test suites. https://github.com/yingshill/ai-governance-red-team-control-pipeline
 - **incident-drill-kit** — Structured runbook and drill framework for Trust & Safety incident response. Escalation templates, severity classification, post-mortem checklists. https://github.com/yingshill/incident-drill-kit
 
+## Personal Projects
+
+- **signal-to-asset** — Agentic content pipeline turning a Notion source entry into a linked marketing project, 5 channel-ready drafts, and publish tasks. Existing artifacts: architecture diagram, code walkthrough carousel, case study. https://github.com/yingshill/signal-to-asset
+- **course-digest-workflow** — Notion-native course learning workflow with a modular schema, notebook template, and CLI automation that generates module notes and learning scaffolding via Claude. Existing artifacts: architecture doc, automation setup guide, schema, notebook template. https://github.com/yingshill/course-digest-workflow
+- **podcast-pipeline** — CLI pipeline that turns a podcast URL into a structured Notion knowledge base. Phrase extraction, cross-episode synthesis, and human eval tracking. https://github.com/yingshill/podcast-pipeline
+- **design-lore** — CLI-first design intelligence vault. Automated screenshot capture, CSS/color/typography extraction, and export of design DNA as CSS variables. https://github.com/yingshill/design-lore
+- **ytm-music-platform** — Personal YouTube Music platform with FastAPI backend, React frontend, SQLite metadata store, and local library ownership via yt-dlp. https://github.com/yingshill/ytm-music-platform
+
 ## Case Studies
 
 - [Moderation OS (Moody's Analytics)](https://elenaliu.io/moderation-os): Operationalizing an LLM moderation platform — 3 legacy tools → unified Safety OS, Safety Index evaluation system, 22% accuracy improvement, 15% AHT reduction, 40% faster onboarding.

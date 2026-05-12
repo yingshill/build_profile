@@ -191,6 +191,33 @@ export const translations = {
       artifactsLabel: '成果',
       items: [
         {
+          title: 'signal-to-asset',
+          badge: '开源',
+          desc: '面向内容运营的智能工作流，将Notion里的单条来源内容自动转成关联的营销项目、5份渠道定制草稿和发布待办。覆盖来源抓取、信号提炼、人工审批门槛与Notion回写。',
+          domains: ['内容运营', '工作流自动化', '知识运营'],
+          tech: ['Python', 'Claude Code', 'Notion API', 'CLI', 'Pytest'],
+          link: 'github.com/yingshill/signal-to-asset',
+          links: [
+            { label: '架构图', type: 'image', url: '/personal-project-artifacts/signal-to-asset-architecture.svg', alt: 'signal-to-asset architecture diagram' },
+            { label: '案例页', type: 'image', url: '/personal-project-artifacts/signal-to-asset-case-study.png', alt: 'signal-to-asset case study preview' },
+            { label: '代码讲解轮播', type: 'image', url: '/personal-project-artifacts/signal-to-asset-code-carousel.svg', alt: 'signal-to-asset code walkthrough carousel' },
+          ],
+        },
+        {
+          title: 'course-digest-workflow',
+          badge: '测试中',
+          desc: '以Notion为中心的课程学习系统，包含模块化数据库 schema、课程笔记模板，以及配套CLI自动化：把课程链接或转录内容转成模块笔记、理解问题与学习脚手架。',
+          domains: ['学习运营', '工作流自动化', '知识运营'],
+          tech: ['Node.js', 'Claude API', 'Notion API', 'CLI', 'Schema Design'],
+          link: 'github.com/yingshill/course-digest-workflow',
+          links: [
+            { label: '架构文档', type: 'image', url: '/personal-project-artifacts/course-digest-architecture.png', alt: 'course-digest-workflow architecture preview' },
+            { label: '自动化指南', type: 'image', url: '/personal-project-artifacts/course-digest-automation-guide.svg', alt: 'course-digest-workflow automation guide preview' },
+            { label: '数据库 Schema', type: 'image', url: '/personal-project-artifacts/course-digest-schema.png', alt: 'course-digest-workflow schema preview' },
+            { label: '课程模板', type: 'image', url: '/personal-project-artifacts/course-digest-notebook-template.png', alt: 'course-digest-workflow notebook template preview' },
+          ],
+        },
+        {
           title: 'podcast-pipeline',
           badge: '开源',
           desc: '命令行工具，将播客链接转化为结构化Notion知识库——自动提取关键词句、跨期内容合成、人工评分追踪，结果直接写入词句库与播客摘要数据库。',
@@ -628,6 +655,33 @@ export const translations = {
       title: 'Personal Projects',
       artifactsLabel: 'Artifacts',
       items: [
+        {
+          title: 'signal-to-asset',
+          badge: 'Open Source',
+          desc: 'Agentic content pipeline that turns a Notion source entry into a linked marketing project, 5 channel-ready drafts, and publish to-dos. Handles source fetch, signal extraction, approval gating, and Notion writeback end to end.',
+          domains: ['Content Ops', 'Workflow Automation', 'Knowledge Ops'],
+          tech: ['Python', 'Claude Code', 'Notion API', 'CLI', 'Pytest'],
+          link: 'github.com/yingshill/signal-to-asset',
+          links: [
+            { label: 'Architecture', type: 'image', url: '/personal-project-artifacts/signal-to-asset-architecture.svg', alt: 'signal-to-asset architecture diagram' },
+            { label: 'Case Study', type: 'image', url: '/personal-project-artifacts/signal-to-asset-case-study.png', alt: 'signal-to-asset case study preview' },
+            { label: 'Code Carousel', type: 'image', url: '/personal-project-artifacts/signal-to-asset-code-carousel.svg', alt: 'signal-to-asset code walkthrough carousel' },
+          ],
+        },
+        {
+          title: 'course-digest-workflow',
+          badge: 'Beta',
+          desc: 'Notion-native course learning system with a modular schema, notebook template, and companion CLI automation that turns course URLs or transcripts into module notes, comprehension prompts, and learning scaffolding via Claude.',
+          domains: ['Learning Ops', 'Workflow Automation', 'Knowledge Ops'],
+          tech: ['Node.js', 'Claude API', 'Notion API', 'CLI', 'Schema Design'],
+          link: 'github.com/yingshill/course-digest-workflow',
+          links: [
+            { label: 'Architecture', type: 'image', url: '/personal-project-artifacts/course-digest-architecture.png', alt: 'course-digest-workflow architecture preview' },
+            { label: 'Automation Guide', type: 'image', url: '/personal-project-artifacts/course-digest-automation-guide.svg', alt: 'course-digest-workflow automation guide preview' },
+            { label: 'Schema', type: 'image', url: '/personal-project-artifacts/course-digest-schema.png', alt: 'course-digest-workflow schema preview' },
+            { label: 'Notebook Template', type: 'image', url: '/personal-project-artifacts/course-digest-notebook-template.png', alt: 'course-digest-workflow notebook template preview' },
+          ],
+        },
         {
           title: 'podcast-pipeline',
           badge: 'Open Source',

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useMemo, useReducer, useRef } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
-import { Mail, ExternalLink, Briefcase, GraduationCap, Award, Code, Globe, Bot, Zap, BadgeCheck, FolderGit2, Github, SkipForward, ChevronRight, List, Play, X } from 'lucide-react'
+import { Mail, ExternalLink, Briefcase, GraduationCap, Award, Code, Globe, Bot, Zap, BadgeCheck, FolderGit2, Github, SkipForward, ChevronRight, List, Play, X, Image as ImageIcon } from 'lucide-react'
 import { translations, seo, type Lang } from './i18n'
 import { useHomeSeo } from './articles/use-article-seo'
 import { getTechIcon } from './tech-icons'
@@ -1447,13 +1447,13 @@ function App() {
   const seoData = seo[lang]
   useHomeSeo({ lang, title: seoData.title, description: seoData.description })
 
-  const [demoModal, setDemoModal] = useState<string | null>(null)
+  const [previewModal, setPreviewModal] = useState<{ src: string; alt: string; title: string } | null>(null)
   useEffect(() => {
-    if (!demoModal) return
-    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') setDemoModal(null) }
+    if (!previewModal) return
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') setPreviewModal(null) }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
-  }, [demoModal])
+  }, [previewModal])
 
   return (
     <>
@@ -1954,7 +1954,7 @@ function App() {
           </AnimatedSection>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {(t.personalProjects.items as readonly { title: string; badge: string; desc: string; domains: readonly string[]; tech: readonly string[]; link: string; links?: readonly { label: string; type: string; url: string }[] }[]).map((proj, i) => (
+            {(t.personalProjects.items as readonly { title: string; badge: string; desc: string; domains: readonly string[]; tech: readonly string[]; link: string; links?: readonly { label: string; type: string; url: string; alt?: string }[] }[]).map((proj, i) => (
               <AnimatedSection key={proj.title} delay={0.05 + i * 0.05}>
                 <div className="h-full p-6 rounded-2xl bg-card border border-border hover:border-primary/30 transition-colors group flex flex-col">
                   <div className="flex items-start justify-between mb-3 gap-2">
@@ -1975,6 +1975,16 @@ function App() {
                   {proj.links?.length ? (
                     <div className="flex flex-col gap-1.5 mb-3">
                       <span className="text-xs font-medium text-muted-foreground/60">{(t.personalProjects as { artifactsLabel?: string }).artifactsLabel ?? 'Artifacts'} 👇</span>
+                      {proj.links.filter(l => l.type === 'image').map(l => (
+                        <button
+                          key={l.label}
+                          onClick={() => setPreviewModal({ src: l.url, alt: l.alt ?? `${proj.title} ${l.label}`, title: l.label })}
+                          className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors text-left"
+                        >
+                          <ImageIcon className="w-3 h-3" />
+                          {l.label}
+                        </button>
+                      ))}
                       {proj.links.filter(l => l.type === 'external').map(l => (
                         <a key={l.label} href={l.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors hover:underline">
                           <ExternalLink className="w-3 h-3" />
@@ -1982,14 +1992,18 @@ function App() {
                         </a>
                       ))}
                       {proj.links.filter(l => l.type === 'demo').map(l => (
-                        <button key={l.label} onClick={() => setDemoModal(l.url)} className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors">
+                        <button
+                          key={l.label}
+                          onClick={() => setPreviewModal({ src: l.url, alt: l.alt ?? `${proj.title} ${l.label}`, title: l.label })}
+                          className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
+                        >
                           <Play className="w-3.5 h-3.5" />
                           {l.label}
                         </button>
                       ))}
                     </div>
                   ) : null}
-                  <a href={`https://${proj.link}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs text-neutral-900 dark:text-neutral-100 hover:text-neutral-600 dark:hover:text-neutral-300 hover:underline">
+                  <a href={`https://${proj.link}`} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex items-center gap-2 text-xs text-neutral-900 dark:text-neutral-100 hover:text-neutral-600 dark:hover:text-neutral-300 hover:underline">
                     <Github className="w-4 h-4" />
                     {t.projects.viewCode}
                   </a>
@@ -2048,23 +2062,29 @@ function App() {
 
     </main>
 
-    {demoModal && (
+    {previewModal && (
       <div
         className="fixed inset-0 z-[200] flex items-center justify-center bg-black/75 backdrop-blur-sm p-4"
-        onClick={() => setDemoModal(null)}
+        onClick={() => setPreviewModal(null)}
       >
         <div
-          className="relative max-w-4xl w-full rounded-2xl overflow-hidden shadow-2xl bg-black"
+          className="relative max-w-5xl w-full rounded-2xl overflow-hidden shadow-2xl bg-neutral-950 border border-white/10"
           onClick={(e) => e.stopPropagation()}
         >
-          <button
-            onClick={() => setDemoModal(null)}
-            className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/90 transition-colors"
-            aria-label="Close demo"
-          >
-            <X className="w-4 h-4" />
-          </button>
-          <img src={demoModal} alt="Live demo" className="w-full block" />
+          <div className="flex items-center justify-between gap-4 px-5 py-4 border-b border-white/10 bg-black/70">
+            <p className="text-sm font-medium text-white truncate">{previewModal.title}</p>
+            <button
+              onClick={() => setPreviewModal(null)}
+              className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-xs text-white hover:bg-white/20 transition-colors"
+              aria-label="Close preview"
+            >
+              <X className="w-3.5 h-3.5" />
+              Close
+            </button>
+          </div>
+          <div className="bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.12),_transparent_45%),linear-gradient(180deg,_#111827,_#020617)] max-h-[80vh] overflow-auto">
+            <img src={previewModal.src} alt={previewModal.alt} className="w-full h-auto block object-contain" />
+          </div>
         </div>
       </div>
     )}
