@@ -188,10 +188,60 @@ What this project actually does in one sentence:
 
 ## Accent System
 
-- Accent color:
-- Secondary color:
+- Template picked: <slug from beautiful-html-template>
+- Accent color: <from template CSS>
+- Secondary color: <from template CSS>
+- Font: <from template font-family>
+- Decorative vocabulary: <corner brackets / paper grain / geometric / none>
 - Visual metaphor:
 ```
+
+## Design Token Source
+
+Per-project visual tokens (accent colors, fonts, decorative vocabulary) come from the **beautiful-html-template** repo:
+
+```
+https://github.com/yingshill/beautiful-html-template
+```
+
+The structural baseline (canvas size, margins, card, header band) is fixed across all projects. Only the tokens vary.
+
+### How to pick a template for a new project
+
+1. Read `index.json` at the repo root.
+2. Match the project's mood and audience against each template's `mood`, `tone`, `formality`, and `best_for` fields.
+3. Pick one template. Prefer `light` scheme for portfolio artifacts (legible at thumbnail size). Use `dark` only when the project itself has a dark/technical identity.
+4. Read `templates/<slug>/template.html` — extract the `:root` CSS variables for colors and the `font-family` declarations.
+5. Fill the "Accent System" section of the brief with those values.
+
+### What to extract from the template
+
+| What | Where to find it |
+|---|---|
+| Accent color | `:root` CSS variable (often `--accent`, `--color-accent`, or the first non-neutral hex) |
+| Secondary color | Second non-neutral color in `:root` |
+| Background / neutral | `--bg`, `--surface`, `--paper`, or `background` on the outermost element |
+| Font | `font-family` on `body` or `h1` — use the same Google Fonts import |
+| Decorative vocabulary | Look for `.corner-bracket`, `.grain`, `.rule`, `clip-path`, or inline SVG ornaments in the HTML |
+
+### What stays fixed regardless of template
+
+- Canvas: `1600 × 900`, `viewBox="0 0 1600 900"`
+- Outer card: `x=88 y=72 w=1424 h=756 rx=24`
+- Safe margin: `88px`
+- Header band: dark, at top of card
+- Body grid: 12-column mental model
+- Typography scale: header label 11px / hero 40-48px / section heading 22-26px / body 13px / micro 10-11px
+
+### Template quick reference
+
+| Project type | Suggested template slugs |
+|---|---|
+| AI / automation / technical | `signal`, `cobalt-grid`, `neo-grid-bold`, `cartesian` |
+| Data / research / analytical | `cobalt-grid`, `monochrome`, `vellum` |
+| Product / design / creative | `creative-mode`, `studio`, `coral`, `bold-poster` |
+| Content / writing / personal brand | `soft-editorial`, `grove`, `pin-and-paper`, `mat` |
+| Warm / approachable / indie | `playful`, `long-table`, `capsule` |
 
 ## Export Rules
 
