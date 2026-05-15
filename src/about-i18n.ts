@@ -22,8 +22,8 @@ export const aboutContent = {
     roles: [],
     timelineHeading: '职业经历',
     timeline: [
-      { period: '2024–至今', role: '产品运营专家', company: 'Moody\'s Analytics', desc: '整合3套遗留审核工具，部署LLM辅助审核助手，主导自动化评估策略' },
-      { period: '2022–2024', role: '运营分析师', company: 'Flip', desc: '65%一线报告自动化，支持GenAI政策执行工具试点' },
+      { period: '2024–至今', role: '产品运营项目经理', company: 'Moody\'s Analytics', desc: '整合3套遗留审核工具，部署LLM辅助审核助手，主导自动化评估策略' },
+      { period: '2022–2024', role: '产品运营专家', company: 'Flip', desc: '65%一线报告自动化，支持GenAI政策执行工具试点' },
       { period: '2020–2021', role: '数据治理分析师', company: 'LeanData', desc: 'JSON分类体系标准化，Python自动化分类系统，35%自动化覆盖率提升' },
       { period: '2018–2020', role: '项目经理', company: 'Modis (Adecco/Akkodis)', desc: '4个并发IT基础架构项目，98%准时交付率，Power BI实时仪表板' },
     ],
@@ -57,7 +57,7 @@ export const aboutContent = {
     ],
     faqHeading: '常见问题',
     faq: [
-      { q: 'Elena Liu是谁？', a: 'Elena Liu（刘颖诗）是旧金山湾区的项目经理，专注于Trust & Safety基础架构与AI驱动的工作流自动化。她目前在Moody\'s Analytics担任产品运营专家，此前在Flip、LeanData和Modis（Adecco集团）积累了5年以上跨职能项目管理经验。她拥有中山大学通信工程学士学位、Pepperdine大学政策分析硕士学位，目前正在佐治亚理工学院攻读计算机科学硕士。无需工作签证。' },
+      { q: 'Elena Liu是谁？', a: 'Elena Liu（刘颖诗）是旧金山湾区的项目经理，专注于Trust & Safety基础架构与AI驱动的工作流自动化。她目前在Moody\'s Analytics担任产品运营项目经理，此前在Flip、LeanData和Modis（Adecco集团）积累了5年以上跨职能项目管理经验。她拥有中山大学通信工程学士学位、Pepperdine大学政策分析硕士学位，目前正在佐治亚理工学院攻读计算机科学硕士。无需工作签证。' },
       { q: 'Elena在Trust & Safety方面有哪些具体成果？', a: '在Moody\'s Analytics，Elena主导将3套遗留审核工具整合为统一的内部安全操作系统，将审核人员入职时间缩短40%；与AI研究团队合作部署LLM辅助审核助手，将审核准确率提升22%、平均处理时长（AHT）降低15%；并制定全面的自动化评估策略，通过Safety Index System追踪Precision、Recall和假阳性率等关键指标。在Flip，她用机器学习分类器自动化处理了65%的一线内容报告，将审核员决策速度提升12%。' },
       { q: 'Elena有哪些技术技能？', a: 'Elena的技术工具包括：AI/LLM（Claude、OpenAI、Meta AI LLaMA、Databricks MLflow、Guardrail AI）、数据分析（SQL、Python with Pandas/Scikit-learn、Scala、Tableau/PowerBI、dbt）、数据工程（Airflow、Snowflake、Databricks、AWS Glue、S3）、云平台（GCP）、数据库（PostgreSQL、MySQL、MongoDB、Cassandra）、LLMOps（Langfuse、Streamlit）。认证包括：Anthropic AI Fluency（2026）、Anthropic Introduction to Claude（2026）、Anthropic AI Capabilities and Limitations（2026）、Databricks Certified Data Engineer Associate（2025）、AWS Certified Data Analytics（2025）、dbt Analytics Engineer Certification（2026）。' },
     ],
@@ -85,8 +85,8 @@ export const aboutContent = {
     roles: [],
     timelineHeading: 'Experience',
     timeline: [
-      { period: '2024–Present', role: 'Product Operation Specialist', company: "Moody's Analytics", desc: 'Unified 3 legacy moderation tools, deployed LLM-assisted moderator agent, led automation evaluation strategy' },
-      { period: '2022–2024', role: 'Operations Analyst', company: 'Flip', desc: '65% Tier-1 report automation, supported GenAI policy enforcement tool pilot, 12% decision speed improvement' },
+      { period: '2024–Present', role: 'Product Operation Program Manager', company: "Moody's Analytics", desc: 'Unified 3 legacy moderation tools, deployed LLM-assisted moderator agent, led automation evaluation strategy' },
+      { period: '2022–2024', role: 'Product Operation Specialist', company: 'Flip', desc: '65% Tier-1 report automation, supported GenAI policy enforcement tool pilot, 12% decision speed improvement' },
       { period: '2020–2021', role: 'Data Governance Analyst', company: 'LeanData', desc: 'JSON taxonomy standardization, Python classification automation, 35% automation coverage expansion' },
       { period: '2018–2020', role: 'Project Manager', company: 'Modis (Adecco / Akkodis)', desc: '4 concurrent IT infrastructure projects, 98% on-time delivery, real-time Power BI executive dashboard' },
     ],
@@ -120,7 +120,7 @@ export const aboutContent = {
     ],
     faqHeading: 'Frequently Asked Questions',
     faq: [
-      { q: 'Who is Elena Liu?', a: "Elena Liu (also known as Yingshi Liu) is a San Francisco Bay Area Program Manager specializing in Trust & Safety infrastructure and AI-driven workflow automation. She currently works as a Product Operation Specialist at Moody's Analytics, with 5+ years of cross-functional project management experience across Flip, LeanData, and Modis (Adecco Group). She holds a B.E. in Communication Engineering from Sun Yat-sen University, an M.S. in Policy Analytics from Pepperdine University, and is currently pursuing an M.S. in Computer Science at Georgia Tech (OMSCS). No sponsorship needed." },
+      { q: 'Who is Elena Liu?', a: "Elena Liu (also known as Yingshi Liu) is a San Francisco Bay Area Program Manager specializing in Trust & Safety infrastructure and AI-driven workflow automation. She currently works as a Product Operation Program Manager at Moody's Analytics, with 5+ years of cross-functional project management experience across Flip, LeanData, and Modis (Adecco Group). She holds a B.E. in Communication Engineering from Sun Yat-sen University, an M.S. in Policy Analytics from Pepperdine University, and is currently pursuing an M.S. in Computer Science at Georgia Tech (OMSCS). No sponsorship needed." },
       { q: "What are Elena's specific Trust & Safety results?", a: "At Moody's Analytics, Elena led the integration of 3 legacy moderation tools into a unified Internal Safety OS — reducing moderator onboarding time by 40%. She partnered with the AI Research team to deploy an LLM-based moderation assistant, improving accuracy by 22% and reducing average handle time (AHT) by 15%. She also defined the overall evaluation strategy using a Safety Index System tracking Precision, Recall, and False Positive Rates. At Flip, she used ML classifiers to automate 65% of Tier-1 content reports, improving moderator decision speed by 12%." },
       { q: 'What technical skills does Elena have?', a: "Elena's technical toolkit includes: AI/LLM (Claude, OpenAI, Meta AI LLaMA, Databricks MLflow, Guardrail AI), data analysis (SQL, Python with Pandas/Scikit-learn, Scala, Tableau/PowerBI, dbt), data engineering (Airflow, Snowflake, Databricks, AWS Glue, S3), cloud (GCP), databases (PostgreSQL, MySQL, MongoDB, Cassandra), and LLMOps (Langfuse, Streamlit). Certifications: Anthropic AI Fluency (2026), Anthropic Introduction to Claude (2026), Anthropic AI Capabilities and Limitations (2026), Databricks Certified Data Engineer Associate (2025), AWS Certified Data Analytics (2025), dbt Analytics Engineer Certification (2026)." },
     ],

@@ -262,7 +262,7 @@ export const translations = {
       moodys: {
         company: "Moody's Analytics",
         location: '旧金山湾区，加利福尼亚',
-        role: '产品运营专家',
+        role: '产品运营项目经理',
         period: '2024 – 至今',
         desc: '主导Trust & Safety基础架构建设，将三套遗留审核工具整合为统一的内部安全操作系统。与AI研究团队合作，打造LLM辅助审核助手，制定覆盖精确率、召回率和误报率的自动化评估策略。',
         highlights: [
@@ -284,7 +284,7 @@ export const translations = {
       flip: {
         company: 'Flip',
         location: '洛杉矶，加利福尼亚',
-        role: '运营分析师',
+        role: '产品运营专家',
         period: '2022 – 2024',
         desc: '构建ML分类流水线，自动化一线内容报告处理，支持GenAI政策执行工具的试点项目。',
         highlights: [
@@ -728,7 +728,7 @@ export const translations = {
       moodys: {
         company: "Moody's Analytics",
         location: 'SF Bay Area, CA',
-        role: 'Product Operation Specialist',
+        role: 'Product Operation Program Manager',
         period: '2024 – Present',
         desc: "Leading Trust & Safety infrastructure modernization — unified 3 legacy moderation tools into a single Internal Safety OS. Partnered with AI Research to deploy an LLM-assisted moderator agent and defined the full automated evaluation strategy.",
         highlights: [
@@ -750,7 +750,7 @@ export const translations = {
       flip: {
         company: 'Flip',
         location: 'Los Angeles, CA',
-        role: 'Operations Analyst',
+        role: 'Product Operation Specialist',
         period: '2022 – 2024',
         desc: 'Built ML classification pipelines to automate Tier-1 content report processing and supported GenAI policy enforcement tooling.',
         highlights: [
