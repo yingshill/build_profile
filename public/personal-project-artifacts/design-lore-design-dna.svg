@@ -1,26 +1,64 @@
-<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1600" height="900" fill="#F6F7FB"/>
-  <rect x="88" y="72" width="1424" height="756" rx="24" fill="#FFFFFF" stroke="#D8DEE9" stroke-width="2"/>
-  <rect x="128" y="112" width="1344" height="168" rx="18" fill="#111827"/>
-  <text x="168" y="164" fill="#9CA3AF" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" letter-spacing="2">DESIGN DNA / DESIGN LORE</text>
-  <text x="168" y="232" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="800">A compact export of visual decisions</text>
-  <rect x="128" y="344" width="356" height="336" rx="18" fill="#F8FAFC" stroke="#D8DEE9" stroke-width="2"/>
-  <text x="168" y="404" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">Palette</text>
-  <rect x="168" y="442" width="70" height="70" rx="10" fill="#111827"/>
-  <rect x="256" y="442" width="70" height="70" rx="10" fill="#2563EB"/>
-  <rect x="344" y="442" width="70" height="70" rx="10" fill="#16A34A"/>
-  <text x="168" y="570" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="24">Extracted colors become</text>
-  <text x="168" y="604" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="24">CSS custom properties.</text>
-  <rect x="622" y="344" width="356" height="336" rx="18" fill="#F8FAFC" stroke="#D8DEE9" stroke-width="2"/>
-  <text x="662" y="404" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">Typography</text>
-  <text x="662" y="482" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="800">Display</text>
-  <text x="662" y="540" fill="#4B5563" font-family="Arial, Helvetica, sans-serif" font-size="30">Body text sample</text>
-  <text x="662" y="604" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="24">Type scale and rhythm are</text>
-  <text x="662" y="638" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="24">captured for reuse.</text>
-  <rect x="1116" y="344" width="356" height="336" rx="18" fill="#ECFDF5" stroke="#BBF7D0" stroke-width="2"/>
-  <text x="1156" y="404" fill="#14532D" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">Challenge</text>
-  <text x="1156" y="482" fill="#166534" font-family="Arial, Helvetica, sans-serif" font-size="28">Generated prompt:</text>
-  <text x="1156" y="532" fill="#166534" font-family="Arial, Helvetica, sans-serif" font-size="24">Build one component using</text>
-  <text x="1156" y="566" fill="#166534" font-family="Arial, Helvetica, sans-serif" font-size="24">the extracted palette, spacing,</text>
-  <text x="1156" y="600" fill="#166534" font-family="Arial, Helvetica, sans-serif" font-size="24">and interaction style.</text>
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1600" height="900" fill="#F0ECE3" />
+  
+  <!-- Outer Card -->
+  <rect x="88" y="72" width="1424" height="756" rx="24" fill="#F5F0E8" stroke="#e9e9e7" stroke-width="2" />
+  
+  <!-- Header Band -->
+  <path d="M88 96C88 82.7452 98.7452 72 112 72H1488C1501.25 72 1512 82.7452 1512 96V188H88V96Z" fill="#1A2030" />
+  
+  <!-- Header Text -->
+  <text x="128" y="114" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#787774" letter-spacing="1px">PROOF ARTIFACT</text>
+  <text x="128" y="164" font-family="Inter, sans-serif" font-size="48" font-weight="700" fill="#FFFFFF">
+    CLI Trace &amp; <tspan fill="#E8C98A">DNA Schema</tspan>
+  </text>
+  
+  <!-- Terminal Window -->
+  <rect x="128" y="230" width="700" height="500" rx="12" fill="#1A2030" />
+  <circle cx="158" cy="260" r="6" fill="#FF5F56" />
+  <circle cx="178" cy="260" r="6" fill="#FFBD2E" />
+  <circle cx="198" cy="260" r="6" fill="#27C93F" />
+  
+  <text x="158" y="310" font-family="JetBrains Mono, monospace" font-size="14" fill="#E8C98A">mac@design-lore % lore capture "https://stripe.com"</text>
+  <text x="158" y="340" font-family="JetBrains Mono, monospace" font-size="14" fill="#FFFFFF">📸 Capturing Stripe: Financial Infrastructure for the Internet...</text>
+  <text x="158" y="365" font-family="JetBrains Mono, monospace" font-size="14" fill="#FFFFFF">🧪 Extracting Technical DNA...</text>
+  <text x="158" y="390" font-family="JetBrains Mono, monospace" font-size="14" fill="#FFFFFF">✅ Success! Entry added to vault (ID: str1p3_a1)</text>
+  
+  <text x="158" y="430" font-family="JetBrains Mono, monospace" font-size="14" fill="#E8C98A">mac@design-lore % lore list --tag minimalist</text>
+  <text x="158" y="460" font-family="JetBrains Mono, monospace" font-size="14" fill="#FFFFFF">--- Your Design Lore (2 entries) ---</text>
+  <text x="158" y="485" font-family="JetBrains Mono, monospace" font-size="14" fill="#FFFFFF">[str1p3_a1] Stripe: Financial Infrastructure</text>
+  <text x="158" y="505" font-family="JetBrains Mono, monospace" font-size="14" fill="#787774">      Tags: fintech, minimalist, payment</text>
+  <text x="158" y="530" font-family="JetBrains Mono, monospace" font-size="14" fill="#FFFFFF">[l1n3ar_x2] Linear: The issue tracker you'll enjoy</text>
+  <text x="158" y="550" font-family="JetBrains Mono, monospace" font-size="14" fill="#787774">      Tags: saas, minimalist, productivity</text>
+  
+  <text x="158" y="590" font-family="JetBrains Mono, monospace" font-size="14" fill="#E8C98A">mac@design-lore % lore doctor</text>
+  <text x="158" y="620" font-family="JetBrains Mono, monospace" font-size="14" fill="#FFFFFF">✨ Vault Health: 100% (No missing assets)</text>
+  <text x="158" y="645" font-family="JetBrains Mono, monospace" font-size="14" fill="#FFFFFF">📦 42 Designs Captured | 12 Components Forged</text>
+  
+  <!-- DNA Schema Window -->
+  <rect x="858" y="230" width="584" height="500" rx="12" fill="#FFFFFF" stroke="#e9e9e7" stroke-width="2" />
+  <rect x="858" y="230" width="584" height="48" rx="12" fill="#F5F0E8" />
+  <text x="882" y="262" font-family="Inter, sans-serif" font-size="18" font-weight="700" fill="#1A2030">lore.json (Partial DNA)</text>
+  
+  <text x="882" y="320" font-family="JetBrains Mono, monospace" font-size="14" fill="#1A2030">{</text>
+  <text x="882" y="345" font-family="JetBrains Mono, monospace" font-size="14" fill="#1A2030">  "id": "str1p3_a1",</text>
+  <text x="882" y="370" font-family="JetBrains Mono, monospace" font-size="14" fill="#1A2030">  "title": "Stripe",</text>
+  <text x="882" y="395" font-family="JetBrains Mono, monospace" font-size="14" fill="#C8A870">  "colors": ["#635BFF", "#0A2540", "#7B9EA6"],</text>
+  <text x="882" y="420" font-family="JetBrains Mono, monospace" font-size="14" fill="#1A2030">  "typography": [</text>
+  <text x="882" y="445" font-family="JetBrains Mono, monospace" font-size="14" fill="#1A2030">    {</text>
+  <text x="882" y="470" font-family="JetBrains Mono, monospace" font-size="14" fill="#1A2030">      "fontFamily": "Sohne, Inter",</text>
+  <text x="882" y="495" font-family="JetBrains Mono, monospace" font-size="14" fill="#1A2030">      "fontSize": "18px"</text>
+  <text x="882" y="520" font-family="JetBrains Mono, monospace" font-size="14" fill="#1A2030">    }</text>
+  <text x="882" y="545" font-family="JetBrains Mono, monospace" font-size="14" fill="#1A2030">  ],</text>
+  <text x="882" y="570" font-family="JetBrains Mono, monospace" font-size="14" fill="#1A2030">  "layout": {</text>
+  <text x="882" y="595" font-family="JetBrains Mono, monospace" font-size="14" fill="#1A2030">    "containerMaxWidth": "1080px",</text>
+  <text x="882" y="620" font-family="JetBrains Mono, monospace" font-size="14" fill="#1A2030">    "spacingScale": ["4px", "8px", "16px", ...]</text>
+  <text x="882" y="645" font-family="JetBrains Mono, monospace" font-size="14" fill="#1A2030">  }</text>
+  <text x="882" y="670" font-family="JetBrains Mono, monospace" font-size="14" fill="#1A2030">}</text>
+  
+  <!-- Footer -->
+  <text x="1456" y="810" font-family="Inter, sans-serif" font-size="10" font-weight="400" fill="#787774" letter-spacing="0.5px" text-anchor="end">
+    Proof Artifact · CLI &amp; DNA Schema · Mac · 2026-05-16
+  </text>
 </svg>

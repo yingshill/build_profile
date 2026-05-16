@@ -1,35 +1,96 @@
-<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1600" height="900" fill="#F6F7FB"/>
-  <rect x="88" y="72" width="1424" height="756" rx="24" fill="#FFFFFF" stroke="#D8DEE9" stroke-width="2"/>
-  <rect x="128" y="112" width="1344" height="202" rx="18" fill="#111827"/>
-  <text x="168" y="164" fill="#9CA3AF" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" letter-spacing="2">CASE STUDY / DESIGN LORE</text>
-  <text x="168" y="232" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="800">A CLI vault for design DNA</text>
-  <text x="168" y="284" fill="#CBD5E1" font-family="Arial, Helvetica, sans-serif" font-size="26">DesignLore bridges inspiration browsing and technical implementation.</text>
-  <rect x="128" y="370" width="380" height="198" rx="18" fill="#FFFFFF" stroke="#D8DEE9" stroke-width="2"/>
-  <text x="168" y="428" fill="#B91C1C" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="800">PROBLEM</text>
-  <text x="168" y="478" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="800">Inspiration stays vague</text>
-  <text x="168" y="522" fill="#4B5563" font-family="Arial, Helvetica, sans-serif" font-size="22">Screenshots rarely expose</text>
-  <text x="168" y="554" fill="#4B5563" font-family="Arial, Helvetica, sans-serif" font-size="22">colors, type, or CSS rules.</text>
-  <rect x="610" y="370" width="380" height="198" rx="18" fill="#FFFFFF" stroke="#D8DEE9" stroke-width="2"/>
-  <text x="650" y="428" fill="#2563EB" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="800">SYSTEM</text>
-  <text x="650" y="478" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="800">Aura to Forge</text>
-  <text x="650" y="522" fill="#4B5563" font-family="Arial, Helvetica, sans-serif" font-size="22">Capture with Puppeteer,</text>
-  <text x="650" y="554" fill="#4B5563" font-family="Arial, Helvetica, sans-serif" font-size="22">then analyze and practice.</text>
-  <rect x="1092" y="370" width="380" height="198" rx="18" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="2"/>
-  <text x="1132" y="428" fill="#15803D" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="800">OUTCOME</text>
-  <text x="1132" y="478" fill="#14532D" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="800">Reusable design DNA</text>
-  <text x="1132" y="522" fill="#166534" font-family="Arial, Helvetica, sans-serif" font-size="22">Palettes, typography,</text>
-  <text x="1132" y="554" fill="#166534" font-family="Arial, Helvetica, sans-serif" font-size="22">challenges, and CSS tokens.</text>
-  <rect x="128" y="636" width="312" height="122" rx="18" fill="#F8FAFC" stroke="#D8DEE9" stroke-width="2"/>
-  <text x="168" y="696" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">Aura</text>
-  <text x="168" y="734" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="21">High-res site capture.</text>
-  <rect x="478" y="636" width="312" height="122" rx="18" fill="#F8FAFC" stroke="#D8DEE9" stroke-width="2"/>
-  <text x="518" y="696" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">DNA</text>
-  <text x="518" y="734" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="21">Extract color and type.</text>
-  <rect x="828" y="636" width="312" height="122" rx="18" fill="#F8FAFC" stroke="#D8DEE9" stroke-width="2"/>
-  <text x="868" y="696" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">Pulse</text>
-  <text x="868" y="734" fill="#64748B" font-family="Arial, Helvetica, sans-serif" font-size="21">Scout trends and advice.</text>
-  <rect x="1178" y="636" width="294" height="122" rx="18" fill="#ECFDF5" stroke="#BBF7D0" stroke-width="2"/>
-  <text x="1218" y="696" fill="#14532D" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="800">Forge</text>
-  <text x="1218" y="734" fill="#166534" font-family="Arial, Helvetica, sans-serif" font-size="21">Export practice prompts.</text>
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1600" height="900" fill="#F0ECE3" />
+  
+  <!-- Outer Card -->
+  <rect x="88" y="72" width="1424" height="756" rx="24" fill="#F5F0E8" stroke="#e9e9e7" stroke-width="2" />
+  
+  <!-- Header Band -->
+  <path d="M88 96C88 82.7452 98.7452 72 112 72H1488C1501.25 72 1512 82.7452 1512 96V188H88V96Z" fill="#1A2030" />
+  
+  <!-- Header Text -->
+  <text x="128" y="114" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#787774" letter-spacing="1px">CASE STUDY</text>
+  <text x="128" y="164" font-family="Inter, sans-serif" font-size="48" font-weight="700" fill="#FFFFFF">
+    Reverse-Engineering <tspan fill="#E8C98A">The Linear Aesthetic</tspan>
+  </text>
+  
+  <!-- Content Grid -->
+  
+  <!-- 1. The Friction (Before) -->
+  <rect x="128" y="230" width="310" height="480" rx="16" fill="#FFFFFF" stroke="#e9e9e7" stroke-width="1" />
+  <rect x="128" y="230" width="310" height="48" rx="16" fill="#9E6B55" opacity="0.1" />
+  <text x="152" y="262" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill="#9E6B55">Manual Friction</text>
+  
+  <text x="152" y="320" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1A2030">The Old Way:</text>
+  <text x="152" y="350" font-family="Inter, sans-serif" font-size="14" fill="#787774">• Inspect element for every font-size</text>
+  <text x="152" y="375" font-family="Inter, sans-serif" font-size="14" fill="#787774">• Guessing the spacing scale</text>
+  <text x="152" y="400" font-family="Inter, sans-serif" font-size="14" fill="#787774">• Manual contrast check per color</text>
+  <text x="152" y="425" font-family="Inter, sans-serif" font-size="14" fill="#787774">• Re-writing CSS from scratch</text>
+  
+  <rect x="152" y="460" width="262" height="60" rx="8" fill="#F5F0E8" />
+  <text x="168" y="485" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#9E6B55">~4-6 Hours</text>
+  <text x="168" y="505" font-family="Inter, sans-serif" font-size="12" fill="#787774">Manual extraction for one page</text>
+  
+  <!-- 2. The Trigger (System Action) -->
+  <rect x="468" y="230" width="664" height="480" rx="16" fill="#FFFFFF" stroke="#e9e9e7" stroke-width="1" />
+  <rect x="468" y="230" width="664" height="48" rx="16" fill="#C8A870" opacity="0.1" />
+  <text x="492" y="262" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill="#C8A870">Lore Execution</text>
+  
+  <rect x="492" y="300" width="616" height="50" rx="6" fill="#1A2030" />
+  <text x="510" y="332" font-family="JetBrains Mono, monospace" font-size="14" fill="#E8C98A">lore capture "https://linear.app" --tags "minimalist,saas"</text>
+  
+  <g transform="translate(492, 370)">
+    <text x="0" y="20" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#1A2030">Extracted DNA Fragment:</text>
+    <rect y="35" width="300" height="150" rx="8" fill="#F9F9F9" stroke="#e9e9e7" />
+    <text x="15" y="65" font-family="JetBrains Mono, monospace" font-size="12" fill="#1A2030">"typography": [</text>
+    <text x="15" y="85" font-family="JetBrains Mono, monospace" font-size="12" fill="#1A2030">  { "fontFamily": "Inter",</text>
+    <text x="15" y="105" font-family="JetBrains Mono, monospace" font-size="12" fill="#1A2030">    "fontSize": "48px",</text>
+    <text x="15" y="125" font-family="JetBrains Mono, monospace" font-size="12" fill="#1A2030">    "fontWeight": "700" }</text>
+    <text x="15" y="145" font-family="JetBrains Mono, monospace" font-size="12" fill="#1A2030">], "colors": ["#000000", ...]</text>
+    
+    <rect x="316" y="35" width="300" height="150" rx="8" fill="#F9F9F9" stroke="#e9e9e7" />
+    <text x="331" y="65" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#1A2030">Aura Audit Result:</text>
+    <text x="331" y="90" font-family="Inter, sans-serif" font-size="12" fill="#1A2030">✓ Contrast: 21:1 (AAA)</text>
+    <text x="331" y="110" font-family="Inter, sans-serif" font-size="12" fill="#1A2030">✓ Semantic Score: 94/100</text>
+    <text x="331" y="130" font-family="Inter, sans-serif" font-size="12" fill="#1A2030">✓ Archetype: Modern SaaS</text>
+  </g>
+  
+  <path d="M790 580 V635" stroke="#e9e9e7" stroke-width="2" fill="none" marker-end="url(#arrowhead_gray)" />
+  <rect x="640" y="645" width="320" height="40" rx="20" fill="#C8A870" />
+  <text x="800" y="671" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF" text-anchor="middle">lore forge component l1n3ar Hero</text>
+  
+  <!-- 3. The Result (Output) -->
+  <rect x="1162" y="230" width="310" height="480" rx="16" fill="#FFFFFF" stroke="#e9e9e7" stroke-width="1" />
+  <rect x="1162" y="230" width="310" height="48" rx="16" fill="#7B9EA6" opacity="0.1" />
+  <text x="1186" y="262" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill="#7B9EA6">Production Ready</text>
+  
+  <text x="1186" y="320" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#1A2030">The Lore Way:</text>
+  <text x="1186" y="350" font-family="Inter, sans-serif" font-size="14" fill="#1A2030">✓ Validated DNA Schema</text>
+  <text x="1186" y="375" font-family="Inter, sans-serif" font-size="14" fill="#1A2030">✓ React + Tailwind Code</text>
+  <text x="1186" y="400" font-family="Inter, sans-serif" font-size="14" fill="#1A2030">✓ Responsive layout logic</text>
+  <text x="1186" y="425" font-family="Inter, sans-serif" font-size="14" fill="#1A2030">✓ Immediate MVP start</text>
+  
+  <rect x="1186" y="460" width="262" height="60" rx="8" fill="#F0F9FF" />
+  <text x="1202" y="485" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#7B9EA6">&lt; 2 Minutes</text>
+  <text x="1202" y="505" font-family="Inter, sans-serif" font-size="12" fill="#787774">Automated extraction &amp; forge</text>
+  
+  <text x="1186" y="550" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#1A2030">Proof: HeroSection.tsx</text>
+  <rect x="1186" y="565" width="262" height="120" rx="4" fill="#F9F9F9" stroke="#e9e9e7" />
+  <text x="1201" y="585" font-family="JetBrains Mono, monospace" font-size="10" fill="#787774">const Hero = () => (</text>
+  <text x="1201" y="600" font-family="JetBrains Mono, monospace" font-size="10" fill="#787774">  &lt;div className="max-w-[1200px]</text>
+  <text x="1201" y="615" font-family="JetBrains Mono, monospace" font-size="10" fill="#787774">    mx-auto px-6 py-24"&gt;</text>
+  <text x="1201" y="630" font-family="JetBrains Mono, monospace" font-size="10" fill="#787774">    &lt;h1 className="text-5xl</text>
+  <text x="1201" y="645" font-family="JetBrains Mono, monospace" font-size="10" fill="#787774">      font-bold text-black"&gt;</text>
+  
+  <!-- Markers -->
+  <defs>
+    <marker id="arrowhead_gray" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 L4,6 Z" fill="#e9e9e7" />
+    </marker>
+  </defs>
+  
+  <!-- Footer -->
+  <text x="1456" y="810" font-family="Inter, sans-serif" font-size="10" font-weight="400" fill="#787774" letter-spacing="0.5px" text-anchor="end">
+    Case Study · Linear Reverse-Engineering · Mac · 2026-05-16
+  </text>
 </svg>
