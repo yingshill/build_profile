@@ -78,6 +78,15 @@ Canvas:
 - Header band: dark, usually `#111827`, with artifact type and project name.
 - Body grid: 12-column mental grid, enough whitespace for readable text.
 
+Footer (required on every artifact):
+
+- Position: inside the outer card, bottom-right. `x=1456 y=810 text-anchor="end"` (adjust y if content is taller).
+- Content format: `[Artifact Type] · [Project Name] · [Author] · [Date]`
+- Example: `Architecture Diagram · Course Learning Workflow · Yingshi Liu · 2026-05-15`
+- Font: 10px, weight 400, letter-spacing 0.5px.
+- Color: muted text color from the active palette (e.g. `#787774` in Navy + Amber).
+- The footer anchors every artifact to a person and a project — never omit it.
+
 Typography:
 
 - Header label: 18-20px, uppercase, letter spaced.
