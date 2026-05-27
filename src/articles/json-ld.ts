@@ -72,7 +72,7 @@ const PERSON = {
   url: 'https://elenaliu.io',
   jobTitle: 'Trust & Safety Program Manager',
   sameAs: [
-    'https://www.linkedin.com/in/yingshi-liu',
+    'https://www.linkedin.com/in/elenaliu-2a524b395',
     'https://github.com/yingshill',
   ],
 }

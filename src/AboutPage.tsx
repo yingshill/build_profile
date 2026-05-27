@@ -4,7 +4,7 @@ import { MapPin, Mail, ExternalLink, Award, GraduationCap, Briefcase, ChevronRig
 import { aboutContent, type AboutLang } from './about-i18n'
 
 const SOCIAL_LINKS = [
-  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/yingshi-liu' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/elenaliu-2a524b395' },
   { name: 'GitHub', url: 'https://github.com/yingshill' },
 ]
 

@@ -2040,7 +2040,7 @@ function App() {
                 {t.cta.contact}
               </a>
               <a
-                href="https://www.linkedin.com/in/yingshi-liu"
+                href="https://www.linkedin.com/in/elenaliu-2a524b395"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border hover:border-primary/50 transition-colors duration-200 hover:bg-primary/5"
