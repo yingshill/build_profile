@@ -660,7 +660,7 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
                       setIsOpen(false);
                     }}
                     className="w-10 h-10 rounded-full bg-muted/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-                    aria-label="Close chat"
+                    aria-label={lang === 'en' ? 'Close chat' : '关闭对话'}
                   >
                     <ChevronDown className="w-5 h-5" aria-hidden="true" />
                   </button>
