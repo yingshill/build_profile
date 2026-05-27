@@ -224,7 +224,7 @@ export function getPageTitles(): Record<string, string> {
   const map: Record<string, string> = {
     '/': 'Elena Liu · 信任与安全项目经理',
     '/en': 'Elena Liu · Trust & Safety PM',
-    '/zh': 'Sobre Mí',
+    '/zh': '关于我',
     '/about': 'About',
   }
   for (const article of articleRegistry) {

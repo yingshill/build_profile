@@ -140,18 +140,18 @@ function NotFound() {
     <div className="min-h-[80vh] flex flex-col items-center justify-center text-center px-6">
       <p className="text-8xl font-display font-bold text-primary mb-4">404</p>
       <h1 className="text-2xl font-display font-semibold text-foreground mb-2">
-        {isEn ? 'Page not found' : 'Página no encontrada'}
+        {isEn ? 'Page not found' : '页面未找到'}
       </h1>
       <p className="text-muted-foreground mb-8 max-w-md">
         {isEn
           ? "The page you're looking for doesn't exist or has been moved."
-          : 'La página que buscas no existe o ha sido movida.'}
+          : '你要找的页面不存在或已被移动。'}
       </p>
       <Link
         to={isEn ? '/en' : '/'}
         className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
       >
-        {isEn ? '← Back to home' : '← Volver al inicio'}
+        {isEn ? '← Back to home' : '← 返回首页'}
       </Link>
     </div>
   )

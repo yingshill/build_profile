@@ -240,7 +240,7 @@ export default function GlobalNav() {
   const activeSection = useActiveSection(pathname, !isHome)
 
   const altPath = ALT_PATH[pathname] || (lang === 'zh' ? '/en' : '/')
-  const altLabel = lang === 'zh' ? 'ES' : 'EN'
+  const altLabel = lang === 'zh' ? 'EN' : '中'
 
   const t = translations[lang]
   const hasBar = !isHome

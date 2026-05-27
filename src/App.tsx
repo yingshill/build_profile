@@ -1464,7 +1464,7 @@ function App() {
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-primary focus:text-primary-foreground focus:font-medium focus:shadow-lg"
       >
-        {lang === 'en' ? 'Skip to content' : 'Saltar al contenido'}
+        {lang === 'en' ? 'Skip to content' : '跳到主要内容'}
       </a>
 
       <HomeToc lang={lang} />
@@ -1522,7 +1522,7 @@ function App() {
                 <br />
                 {t.greeting}
                 <br />
-                {lang === 'zh' ? 'con ' : 'with '}<BeamPill>Evals <span className="opacity-60">+</span> LLMOps <span className="opacity-60">+</span> HITL</BeamPill>
+                {lang === 'zh' ? '搭配 ' : 'with '}<BeamPill>Evals <span className="opacity-60">+</span> LLMOps <span className="opacity-60">+</span> HITL</BeamPill>
               </h1>
 
               <div className="flex flex-wrap justify-center md:justify-start gap-3">

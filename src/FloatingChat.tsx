@@ -538,7 +538,7 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
           bottom: 'max(1.5rem, env(safe-area-inset-bottom, 0px) + 0.5rem)',
           right: 'max(1.5rem, env(safe-area-inset-right, 0px) + 0.5rem)',
         }}
-        aria-label={lang === 'en' ? (isOpen ? 'Close chat with Santi' : 'Open chat with Santi') : (isOpen ? 'Cerrar chat con Santi' : 'Abrir chat con Santi')}
+        aria-label={lang === 'en' ? (isOpen ? 'Close chat with Elena' : 'Open chat with Elena') : (isOpen ? '关闭与 Elena 的对话' : '打开与 Elena 的对话')}
       >
         <AnimatePresence mode="wait">
           {isOpen ? (
@@ -566,7 +566,7 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
                 <source srcSet="/foto-avatar-sm.webp" type="image/webp" />
                 <img
                   src="/foto-avatar-sm.webp"
-                  alt={lang === 'en' ? 'Chat with Santi' : 'Chat con Santi'}
+                  alt={lang === 'en' ? 'Chat with Elena' : '与 Elena 对话'}
                   className="w-full h-full rounded-full object-cover"
                   width={56}
                   height={56}
@@ -599,7 +599,7 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
             ref={chatContainerRef}
             role="dialog"
             aria-modal="true"
-            aria-label={lang === 'en' ? 'Chat with Santi' : 'Chat con Santi'}
+            aria-label={lang === 'en' ? 'Chat with Elena' : '与 Elena 对话'}
             initial={isMobile ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.95 }}
             animate={isMobile ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
             exit={isMobile ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.95 }}
@@ -984,7 +984,7 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
                     whileTap={{ scale: 0.95 }}
                     onClick={() => sendMessage()}
                     disabled={isLoading || !input.trim()}
-                    aria-label={lang === 'en' ? 'Send message' : 'Enviar mensaje'}
+                    aria-label={lang === 'en' ? 'Send message' : '发送消息'}
                     className={`rounded-xl bg-gradient-theme flex items-center justify-center text-white disabled:opacity-50 disabled:cursor-not-allowed transition-opacity ${
                       isMobile ? 'w-12 h-12' : 'w-10 h-10'
                     }`}
