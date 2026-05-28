@@ -174,13 +174,13 @@ interface ArticleFooterProps {
 
 const FOOTER_I18N = {
   zh: {
-    role: '产品运营专家 · Trust & Safety PM',
+    role: 'Trust & Safety 项目经理',
     bio: '旧金山湾区项目经理，专注于Trust & Safety基础架构与AI驱动的工作流自动化。构建了让内容审核规模化的系统。',
     fellowAt: 'Teaching Fellow at',
     copyright: '版权所有。',
   },
   en: {
-    role: 'Product Operation Specialist · Trust & Safety PM',
+    role: 'Trust & Safety PM',
     bio: 'SF Bay Area PM specializing in Trust & Safety infrastructure and AI-driven workflow automation. Building the systems that make moderation scale.',
     fellowAt: 'Teaching Fellow at',
     copyright: 'All rights reserved.',
