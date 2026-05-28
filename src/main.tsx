@@ -1,6 +1,7 @@
-import { StrictMode, lazy, Suspense, useState, useEffect, useRef, Component, type ReactNode, type ComponentType } from 'react'
+import { StrictMode, lazy, Suspense, useState, useEffect, Component, type ReactNode, type ComponentType } from 'react'
 import { hydrateRoot, createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route, useLocation, Link } from 'react-router-dom'
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
 import { Analytics } from '@vercel/analytics/react'
 import './index.css'
 import App from './App.tsx'
@@ -25,21 +26,48 @@ class ChatErrorBoundary extends Component<{ children: ReactNode }, { hasError: b
   render() { return this.state.hasError ? null : this.props.children }
 }
 
-/** Reset scroll + fade-in on route change (no animation on initial load to match prerender) */
-function PageTransition({ children }: { children: ReactNode }) {
-  const location = useLocation()
-  const { pathname } = location
-  const initialPathname = useRef(pathname)
-  const [hasNavigated, setHasNavigated] = useState(false)
+// Article chunk preload map: every article slug (zh + en) -> its lazy import thunk.
+// Calling the thunk warms Vite's module cache so the lazy route resolves without a
+// blank Suspense flash when the crossfade lands on a case-study page.
+const articlePreloads: Record<string, () => Promise<unknown>> = {}
+for (const article of articleRegistry) {
+  articlePreloads[`/${article.slugs.zh}`] = article.component
+  articlePreloads[`/${article.slugs.en}`] = article.component
+}
 
+/** Delegated hover/focus preload for the lazy case-study routes — one document-level
+ *  listener instead of wiring onMouseEnter onto every scattered <Link>. */
+function useArticlePreload() {
   useEffect(() => {
-    if (pathname !== initialPathname.current) {
-      setHasNavigated(true)
+    const warmed = new Set<string>()
+    const handler = (e: Event) => {
+      const anchor = (e.target as HTMLElement | null)?.closest?.('a[href]') as HTMLAnchorElement | null
+      if (!anchor) return
+      let path: string
+      try { path = new URL(anchor.href, window.location.origin).pathname } catch { return }
+      const thunk = articlePreloads[path]
+      if (thunk && !warmed.has(path)) {
+        warmed.add(path)
+        thunk()
+      }
     }
+    document.addEventListener('pointerover', handler)
+    document.addEventListener('focusin', handler)
+    return () => {
+      document.removeEventListener('pointerover', handler)
+      document.removeEventListener('focusin', handler)
+    }
+  }, [])
+}
 
-    if (location.hash) {
+/** Scroll handling on route change: reset to top, or scroll to hash + highlight.
+ *  Rendered inside the keyed transition wrapper so it fires when the NEW page mounts
+ *  (after the exit fade in mode="wait"), avoiding a visible scroll jump mid-transition.
+ *  Re-runs on hash-only navigation since deps include hash + location.key. */
+function ScrollManager({ hash, locationKey }: { hash: string; locationKey: string }) {
+  useEffect(() => {
+    if (hash) {
       // Hash scroll: multi-pass to handle async rendering + highlight on final pass
-      const hash = location.hash
       const scroll = () => {
         const el = document.querySelector(hash)
         el?.scrollIntoView({ behavior: 'instant' })
@@ -55,15 +83,53 @@ function PageTransition({ children }: { children: ReactNode }) {
         }
       }, 800)
       return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3) }
-    } else {
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
     }
-  }, [pathname, location.hash, location.key])
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+  }, [hash, locationKey])
+  return null
+}
+
+/** Route-level crossfade. mode="wait" stops the tall scrolling pages from overlapping;
+ *  initial={false} suppresses the enter animation on first load to match prerendered HTML
+ *  (no hydration flash). Reduced-motion collapses durations to an instant cut. */
+function AnimatedRoutes() {
+  const location = useLocation()
+  const reduce = useReducedMotion()
+  useArticlePreload()
+
+  const enter = reduce ? 0 : 0.2
+  const leave = reduce ? 0 : 0.15
 
   return (
-    <div key={pathname} style={hasNavigated ? { animation: 'page-fade-in 0.25s ease-out' } : undefined}>
-      {children}
-    </div>
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div
+        key={location.pathname}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { duration: enter, ease: 'easeOut' } }}
+        exit={{ opacity: 0, transition: { duration: leave, ease: 'easeOut' } }}
+      >
+        <ScrollManager hash={location.hash} locationKey={location.key} />
+        <Suspense fallback={null}>
+          <Routes location={location}>
+            <Route path="/" element={<App />} />
+            <Route path="/en" element={<App />} />
+            <Route path="/ops" element={<OpsDashboard />} />
+            <Route path="/zh" element={<AboutPage lang="zh" />} />
+            <Route path="/about" element={<AboutPage lang="en" />} />
+            <Route path="/privacidad" element={<PrivacyPolicy lang="zh" />} />
+            <Route path="/privacy" element={<PrivacyPolicy lang="en" />} />
+            {articleRegistry.map((article) => {
+              const ArticleComponent = articleComponents[article.id]
+              return [
+                <Route key={`${article.id}-zh`} path={`/${article.slugs.zh}`} element={<ArticleComponent lang="zh" />} />,
+                <Route key={`${article.id}-en`} path={`/${article.slugs.en}`} element={<ArticleComponent lang="en" />} />,
+              ]
+            })}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      </motion.div>
+    </AnimatePresence>
   )
 }
 
@@ -162,27 +228,7 @@ const app = (
   <StrictMode>
     <BrowserRouter>
       <ConditionalNav />
-      <PageTransition>
-        <Suspense fallback={null}>
-          <Routes>
-            <Route path="/" element={<App />} />
-            <Route path="/en" element={<App />} />
-            <Route path="/ops" element={<OpsDashboard />} />
-            <Route path="/zh" element={<AboutPage lang="zh" />} />
-            <Route path="/about" element={<AboutPage lang="en" />} />
-            <Route path="/privacidad" element={<PrivacyPolicy lang="zh" />} />
-            <Route path="/privacy" element={<PrivacyPolicy lang="en" />} />
-            {articleRegistry.map((article) => {
-              const ArticleComponent = articleComponents[article.id]
-              return [
-                <Route key={`${article.id}-zh`} path={`/${article.slugs.zh}`} element={<ArticleComponent lang="zh" />} />,
-                <Route key={`${article.id}-en`} path={`/${article.slugs.en}`} element={<ArticleComponent lang="en" />} />,
-              ]
-            })}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-      </PageTransition>
+      <AnimatedRoutes />
       <GlobalChat />
       <GlobalMusic />
       <Analytics />
