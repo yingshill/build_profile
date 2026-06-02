@@ -86,7 +86,7 @@ button, a, [role="button"], summary { cursor: pointer; }
    COLOR PROFILES - Change theme class on :root
    ============================================
 
-   Profile 1: "theme-stationery" (default) - Sage/Salmon
+   Profile 1: "theme-editorial" (default) - Editorial Mono + Salmon accent
    Profile 2: "theme-warm" - Orange/Teal
    Profile 3: "theme-blueprint" - Structural dark
 
@@ -95,144 +95,146 @@ button, a, [role="button"], summary { cursor: pointer; }
    ============================================ */
 
 @layer base {
-  /* ========== PROFILE: STATIONERY (Default) - Sage/Salmon ========== */
+  /* ========== PROFILE: EDITORIAL MONO + Salmon (Default) ==========
+     Monochrome warm-neutral base; salmon is the single signal accent
+     (stats, key CTAs, hover). Ink = chrome/links (WCAG-AA safe). */
   :root {
-    --background: 38 35% 94%;          /* warm cream */
-    --foreground: 25 25% 14%;          /* warm near-black */
-    --muted: 38 22% 87%;               /* warm beige */
-    --muted-foreground: 30 14% 42%;    /* warm gray-brown */
-    --primary: 145 55% 38%;            /* deep sage */
-    --primary-foreground: 0 0% 100%;   /* white on sage */
-    --accent: 12 68% 58%;              /* dusty salmon */
+    --background: 40 9% 95%;           /* warm off-white #F4F3F1 */
+    --foreground: 30 6% 10%;           /* near-black ink #161616 */
+    --muted: 40 8% 90%;                /* light warm gray surface */
+    --muted-foreground: 36 4% 42%;     /* gray label (AA on bg) */
+    --primary: 30 6% 14%;              /* ink — chrome, links, buttons */
+    --primary-foreground: 0 0% 100%;   /* white on ink */
+    --accent: 12 66% 55%;              /* dusty salmon — the one accent */
     --accent-foreground: 0 0% 100%;    /* white on salmon */
-    --border: 38 20% 80%;              /* warm beige border */
-    --card: 38 38% 97%;                /* warm near-white */
-    --card-foreground: 25 25% 14%;
-    /* Gradient colors for chat/buttons */
-    --gradient-from: 145 55% 38%;      /* sage */
-    --gradient-to: 12 68% 58%;         /* salmon */
+    --border: 40 7% 85%;               /* hairline #E2E1DE */
+    --card: 40 20% 98%;                /* warm near-white surface */
+    --card-foreground: 30 6% 10%;
+    /* Gradient colors for chat/buttons — editorial salmon → ink */
+    --gradient-from: 12 66% 55%;       /* salmon */
+    --gradient-to: 30 6% 14%;          /* ink */
     /* Semantic accent colors */
     --terracotta: 21 65% 47%;          /* burnt orange */
     --terracotta-foreground: 0 0% 100%;
-    --powder: 204 50% 58%;                /* powder blue */
-    --powder-foreground: 204 40% 15%;
+    --support: 212 28% 46%;               /* slate blue — data/diagram support (3rd color) */
+    --support-foreground: 0 0% 100%;
     --gold: 38 62% 44%;                /* warm amber */
-    --success: 145 30% 36%;            /* darker sage */
-    --tool: 145 55% 38%;               /* sage */
+    --success: 145 30% 36%;            /* sage — conventional success */
+    --tool: 12 66% 55%;                /* salmon — tool refs pop */
     --linkedin: 210 91% 40%;           /* #0A66C2 */
-    --codeblock: 38 28% 96%;           /* warm cream code bg */
-    --codeblock-text: 25 22% 18%;      /* warm dark code text */
-    --code-keyword: 145 35% 35%;       /* dark sage */
+    --codeblock: 40 18% 96%;           /* warm off-white code bg */
+    --codeblock-text: 30 8% 16%;       /* near-black code text */
+    --code-keyword: 12 55% 48%;        /* salmon */
     --code-string: 18 55% 45%;         /* terracotta */
     --code-comment: 30 10% 55%;        /* warm gray */
     --code-number: 38 55% 42%;         /* amber */
-    --code-heading: 145 35% 35%;       /* dark sage */
-    --code-var: 12 45% 55%;            /* salmon */
-    --hero-orb-primary: 145 55% 38% / 0.12;
-    --hero-orb-accent: 12 68% 58% / 0.10;
-    --dot-grid: 30 15% 30% / 0.18;
+    --code-heading: 12 55% 48%;        /* salmon */
+    --code-var: 30 8% 30%;             /* ink */
+    --hero-orb-primary: 30 6% 14% / 0.05;
+    --hero-orb-accent: 12 66% 55% / 0.10;
+    --dot-grid: 30 6% 30% / 0.14;
   }
 
   /* Dark mode via system preference — CSS-first, no JS needed = 0ms flash */
   @media (prefers-color-scheme: dark) {
     :root:not(.light) {
-      --background: 30 12% 10%;          /* warm charcoal */
-      --foreground: 38 25% 90%;          /* warm off-white */
-      --muted: 30 10% 16%;               /* warm dark muted */
-      --muted-foreground: 35 12% 62%;    /* warm medium gray */
-      --primary: 145 58% 62%;            /* lighter sage */
-      --primary-foreground: 0 0% 100%;
-      --accent: 12 72% 65%;              /* lighter salmon */
+      --background: 30 8% 9%;            /* warm charcoal */
+      --foreground: 40 12% 90%;          /* warm off-white */
+      --muted: 30 7% 15%;                /* warm dark muted */
+      --muted-foreground: 36 8% 60%;     /* warm medium gray */
+      --primary: 40 12% 90%;             /* off-white ink — chrome/links */
+      --primary-foreground: 30 8% 9%;    /* charcoal on off-white */
+      --accent: 12 70% 66%;              /* lighter salmon — the one accent */
       --accent-foreground: 0 0% 100%;
-      --border: 30 10% 22%;              /* warm dark border */
-      --card: 30 12% 14%;                /* warm card surface */
-      --card-foreground: 38 25% 90%;
-      --gradient-from: 145 58% 62%;
-      --gradient-to: 12 72% 65%;
+      --border: 30 7% 20%;               /* warm dark border */
+      --card: 30 8% 13%;                 /* warm card surface */
+      --card-foreground: 40 12% 90%;
+      --gradient-from: 12 70% 66%;
+      --gradient-to: 40 12% 90%;
       --terracotta: 21 70% 62%;
       --terracotta-foreground: 0 0% 100%;
-      --powder: 204 35% 75%;
-      --powder-foreground: 0 0% 100%;
+      --support: 212 45% 70%;             /* slate blue (dark) — data/diagram support */
+      --support-foreground: 212 40% 14%;
       --gold: 40 80% 58%;
       --success: 145 42% 54%;
-      --tool: 145 58% 62%;
+      --tool: 12 70% 66%;
       --linkedin: 210 88% 71%;
-      --codeblock: 30 10% 8%;
-      --codeblock-text: 38 20% 88%;
-      --code-keyword: 145 50% 65%;
+      --codeblock: 30 8% 7%;
+      --codeblock-text: 40 12% 88%;
+      --code-keyword: 12 70% 68%;
       --code-string: 18 65% 62%;
       --code-comment: 30 10% 52%;
       --code-number: 38 70% 60%;
-      --code-heading: 145 50% 65%;
-      --code-var: 12 72% 65%;
-      --hero-orb-primary: 145 58% 62% / 0.08;
-      --hero-orb-accent: 12 72% 65% / 0.08;
-      --dot-grid: 38 15% 70% / 0.12;
+      --code-heading: 12 70% 68%;
+      --code-var: 40 12% 80%;
+      --hero-orb-primary: 40 12% 90% / 0.05;
+      --hero-orb-accent: 12 70% 66% / 0.08;
+      --dot-grid: 40 12% 70% / 0.12;
     }
   }
 
   /* Manual dark override (user toggled) */
   .dark {
-    --background: 30 12% 10%;
-    --foreground: 38 25% 90%;
-    --muted: 30 10% 16%;
-    --muted-foreground: 35 12% 62%;
-    --primary: 145 58% 62%;
-    --primary-foreground: 0 0% 100%;
-    --accent: 12 72% 65%;
+    --background: 30 8% 9%;
+    --foreground: 40 12% 90%;
+    --muted: 30 7% 15%;
+    --muted-foreground: 36 8% 60%;
+    --primary: 40 12% 90%;
+    --primary-foreground: 30 8% 9%;
+    --accent: 12 70% 66%;
     --accent-foreground: 0 0% 100%;
-    --border: 30 10% 22%;
-    --card: 30 12% 14%;
-    --card-foreground: 38 25% 90%;
-    --gradient-from: 145 58% 62%;
-    --gradient-to: 12 72% 65%;
+    --border: 30 7% 20%;
+    --card: 30 8% 13%;
+    --card-foreground: 40 12% 90%;
+    --gradient-from: 12 70% 66%;
+    --gradient-to: 40 12% 90%;
     --terracotta: 21 70% 62%;
     --terracotta-foreground: 0 0% 100%;
-    --powder: 204 35% 75%;
-    --powder-foreground: 0 0% 100%;
+    --support: 212 45% 70%;
+    --support-foreground: 212 40% 14%;
     --gold: 40 80% 58%;
     --success: 145 42% 54%;
-    --tool: 145 58% 62%;
+    --tool: 12 70% 66%;
     --linkedin: 210 88% 71%;
-    --hero-orb-primary: 145 58% 62% / 0.08;
-    --hero-orb-accent: 12 72% 65% / 0.08;
-    --dot-grid: 38 15% 70% / 0.12;
-    --codeblock: 30 10% 8%;
-    --codeblock-text: 38 20% 88%;
-    --code-keyword: 145 50% 65%;
+    --hero-orb-primary: 40 12% 90% / 0.05;
+    --hero-orb-accent: 12 70% 66% / 0.08;
+    --dot-grid: 40 12% 70% / 0.12;
+    --codeblock: 30 8% 7%;
+    --codeblock-text: 40 12% 88%;
+    --code-keyword: 12 70% 68%;
     --code-string: 18 65% 62%;
     --code-comment: 30 10% 52%;
     --code-number: 38 70% 60%;
-    --code-heading: 145 50% 65%;
-    --code-var: 12 72% 65%;
+    --code-heading: 12 70% 68%;
+    --code-var: 40 12% 80%;
   }
 
   /* Manual light override (user toggled when system is dark) */
   .light {
-    --background: 38 35% 94%;
-    --foreground: 25 25% 14%;
-    --muted: 38 22% 87%;
-    --muted-foreground: 30 14% 42%;
-    --primary: 145 55% 38%;
+    --background: 40 9% 95%;
+    --foreground: 30 6% 10%;
+    --muted: 40 8% 90%;
+    --muted-foreground: 36 4% 42%;
+    --primary: 30 6% 14%;
     --primary-foreground: 0 0% 100%;
-    --accent: 12 68% 58%;
+    --accent: 12 66% 55%;
     --accent-foreground: 0 0% 100%;
-    --border: 38 20% 80%;
-    --card: 38 38% 97%;
-    --card-foreground: 25 25% 14%;
-    --gradient-from: 145 55% 38%;
-    --gradient-to: 12 68% 58%;
+    --border: 40 7% 85%;
+    --card: 40 20% 98%;
+    --card-foreground: 30 6% 10%;
+    --gradient-from: 12 66% 55%;
+    --gradient-to: 30 6% 14%;
     --terracotta: 21 65% 47%;
     --terracotta-foreground: 0 0% 100%;
-    --powder: 204 50% 58%;
-    --powder-foreground: 204 40% 15%;
+    --support: 212 28% 46%;
+    --support-foreground: 0 0% 100%;
     --gold: 38 62% 44%;
     --success: 145 30% 36%;
-    --tool: 145 55% 38%;
+    --tool: 12 66% 55%;
     --linkedin: 210 91% 40%;
-    --hero-orb-primary: 145 55% 38% / 0.12;
-    --hero-orb-accent: 12 68% 58% / 0.10;
-    --dot-grid: 30 15% 30% / 0.18;
+    --hero-orb-primary: 30 6% 14% / 0.05;
+    --hero-orb-accent: 12 66% 55% / 0.10;
+    --dot-grid: 30 6% 30% / 0.14;
   }
 
   /* ========== PROFILE: WARM - Orange/Teal ========== */
@@ -481,16 +483,16 @@ button, a, [role="button"], summary { cursor: pointer; }
   .border-terracotta\/50 { border-color: hsl(var(--terracotta) / 0.5); }
   .shadow-terracotta\/20 { --tw-shadow-color: hsl(var(--terracotta) / 0.2); }
 
-  /* Sky semantic color utilities */
-  .bg-powder { background-color: hsl(var(--powder)); }
-  .bg-powder\/10 { background-color: hsl(var(--powder) / 0.1); }
-  .bg-powder\/15 { background-color: hsl(var(--powder) / 0.15); }
-  .bg-powder\/20 { background-color: hsl(var(--powder) / 0.2); }
-  .text-powder { color: hsl(var(--powder)); }
-  .text-powder-foreground { color: hsl(var(--powder-foreground)); }
-  .border-powder\/20 { border-color: hsl(var(--powder) / 0.2); }
-  .border-powder\/30 { border-color: hsl(var(--powder) / 0.3); }
-  .border-powder\/50 { border-color: hsl(var(--powder) / 0.5); }
+  /* Support (slate blue) — data/diagram layer only */
+  .bg-support { background-color: hsl(var(--support)); }
+  .bg-support\/10 { background-color: hsl(var(--support) / 0.1); }
+  .bg-support\/15 { background-color: hsl(var(--support) / 0.15); }
+  .bg-support\/20 { background-color: hsl(var(--support) / 0.2); }
+  .text-support { color: hsl(var(--support)); }
+  .text-support-foreground { color: hsl(var(--support-foreground)); }
+  .border-support\/20 { border-color: hsl(var(--support) / 0.2); }
+  .border-support\/30 { border-color: hsl(var(--support) / 0.3); }
+  .border-support\/50 { border-color: hsl(var(--support) / 0.5); }
 
   /* Success semantic color utilities */
   .text-success { color: hsl(var(--success)); }

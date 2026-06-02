@@ -85,19 +85,19 @@ export default function ModerationOsDiagram({ className }: { className?: string 
         style={{ fill: 'hsl(var(--accent-foreground))' }}>22%↑ accuracy · 15%↓ AHT</text>
 
       <rect x="390" y="232" width="280" height="68" rx="8"
-        style={{ fill: 'hsl(var(--accent))' }} />
+        style={{ fill: 'hsl(var(--support))' }} />
       <text x="530" y="257" textAnchor="middle" fontSize="13" fontWeight="700"
-        style={{ fill: 'hsl(var(--accent-foreground))' }}>Safety Index System</text>
+        style={{ fill: 'hsl(var(--support-foreground))' }}>Safety Index System</text>
       <text x="530" y="274" textAnchor="middle" fontSize="10"
-        style={{ fill: 'hsl(var(--accent-foreground))', opacity: 0.85 }}>Precision · Recall · FPR</text>
+        style={{ fill: 'hsl(var(--support-foreground))', opacity: 0.85 }}>Precision · Recall · FPR</text>
       <text x="530" y="291" textAnchor="middle" fontSize="10"
-        style={{ fill: 'hsl(var(--accent-foreground))', opacity: 0.85 }}>Per-category thresholds</text>
+        style={{ fill: 'hsl(var(--support-foreground))', opacity: 0.85 }}>Per-category thresholds</text>
 
       {/* ── CONVERGENCE TO FEEDBACK ── */}
       <line x1="205" y1="300" x2="205" y2="326" strokeWidth="1.5"
         style={{ stroke: 'hsl(var(--accent))' }} />
       <line x1="530" y1="300" x2="530" y2="326" strokeWidth="1.5"
-        style={{ stroke: 'hsl(var(--accent))' }} />
+        style={{ stroke: 'hsl(var(--support))' }} />
       <line x1="205" y1="326" x2="530" y2="326" strokeWidth="1.5"
         style={{ stroke: 'hsl(var(--accent))' }} />
       <line x1="368" y1="326" x2="368" y2="340" strokeWidth="2"

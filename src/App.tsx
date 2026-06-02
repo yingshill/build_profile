@@ -161,7 +161,7 @@ function SkillBar({ label, level, pct, levelClass = 'text-muted-foreground' }: {
       </div>
       <div className="h-1.5 rounded-full bg-muted overflow-hidden">
         <motion.div
-          className="h-full rounded-full bg-gradient-theme origin-left"
+          className="h-full rounded-full bg-accent origin-left"
           style={{ width: `${pct}%` }}
           initial={false}
           animate={{ scaleX: animated ? (isInView ? 1 : 0) : 1 }}
@@ -230,39 +230,76 @@ function CtaPulse() {
   )
 }
 
-const HEAL_PARTICLES = [
-  { char: '+', left: '10%', delay: '0s', dur: '2.8s', size: '24px' },
-  { char: '·', left: '30%', delay: '0.6s', dur: '2.2s', size: '20px' },
-  { char: '✦', left: '55%', delay: '1.2s', dur: '3s', size: '18px' },
-  { char: '0', left: '75%', delay: '0.3s', dur: '2.5s', size: '22px' },
-  { char: '+', left: '90%', delay: '1.8s', dur: '2.6s', size: '20px' },
-  { char: '1', left: '20%', delay: '2.1s', dur: '2.4s', size: '22px' },
-  { char: '·', left: '65%', delay: '0.9s', dur: '3.2s', size: '18px' },
-  { char: '✦', left: '45%', delay: '1.5s', dur: '2.7s', size: '20px' },
-]
+// useReplayInView — like useInView but RE-ARMS: true while the element is in view,
+// false once it leaves. Lets an animation replay every time you slide back into a
+// section (the slideshow visits sections repeatedly), unlike the once-only useInView.
+function useReplayInView(threshold = 0.6) {
+  const [el, setEl] = useState<HTMLElement | null>(null)
+  const [shown, setShown] = useState(false)
+  useEffect(() => {
+    if (!el) return
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting && e.intersectionRatio >= threshold) setShown(true)
+        else if (!e.isIntersecting) setShown(false)
+      },
+      { threshold: [0, threshold] }
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [el, threshold])
+  return { ref: setEl, shown }
+}
 
-function BeamPill({ children }: { children: React.ReactNode }) {
+// SectionTitle — section heading whose icon badge pops in and whose title words rise +
+// fade in, staggered left→right, EACH time the section slides into view — a "you're now
+// in X" cue for the slideshow. Static for SSR/no-JS and reduced-motion.
+const TITLE_CONTAINER: Variants = {
+  hidden: {},
+  shown: { transition: { delayChildren: 0.04, staggerChildren: 0.08 } },
+}
+const TITLE_ICON: Variants = {
+  hidden: { opacity: 0, scale: 0.5 },
+  shown: { opacity: 1, scale: 1, transition: { type: 'spring', stiffness: 380, damping: 20 } },
+}
+const TITLE_WORD: Variants = {
+  hidden: { opacity: 0, y: 14 },
+  shown: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 320, damping: 24 } },
+}
+
+function SectionTitle({ icon, title, className = '' }: { icon: React.ReactNode; title: string; className?: string }) {
   const hydrated = useHydrated()
+  const reduce = useReducedMotion()
+  const { ref, shown } = useReplayInView(0.6)
+  const cls = `font-display text-2xl font-semibold flex items-center gap-3 ${className}`
+  const badge = (
+    <span className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">{icon}</span>
+  )
+
+  if (!hydrated || reduce) {
+    return <h2 className={cls}>{badge}{title}</h2>
+  }
+
   return (
-    <span className={`relative inline-block pl-0 pr-0 ${hydrated ? 'beam-pill' : ''}`}>
-      <span className="relative z-10">{children}</span>
-      {hydrated && HEAL_PARTICLES.map((p, i) => (
-        <span
-          key={i}
-          className="absolute pointer-events-none select-none"
-          style={{
-            left: p.left,
-            bottom: '50%',
-            fontSize: p.size,
-            color: '#4ade80',
-            opacity: 0,
-            animation: `heal-float ${p.dur} ease-out ${p.delay} infinite`,
-          }}
-          aria-hidden="true"
-        >
-          {p.char}
-        </span>
-      ))}
+    <motion.h2 ref={ref} className={cls} variants={TITLE_CONTAINER} initial="hidden" animate={shown ? 'shown' : 'hidden'}>
+      <motion.span variants={TITLE_ICON} className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+        {icon}
+      </motion.span>
+      <span className="flex flex-wrap items-baseline gap-x-[0.28em]">
+        {title.split(' ').map((word, i) => (
+          <motion.span key={i} variants={TITLE_WORD} className="inline-block">{word}</motion.span>
+        ))}
+      </span>
+    </motion.h2>
+  )
+}
+
+// HeroPhrase — the "Evals + LLMOps + HITL" line: plain ink text with a single salmon
+// dot at the end (editorial accent). No beam/particle effects.
+function HeroPhrase({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="text-foreground">
+      {children}<span className="text-accent" aria-hidden="true">.</span>
     </span>
   )
 }
@@ -276,44 +313,6 @@ function useHeroStyles() {
     style.id = HERO_STYLES_ID
     style.textContent = `
       @keyframes blink { 0%, 100% { opacity: 1 } 50% { opacity: 0 } }
-      @keyframes heal-float {
-        0% { opacity: 0; transform: translateY(0) scale(0.6); }
-        12% { opacity: 0.25; }
-        40% { opacity: 0.15; }
-        100% { opacity: 0; transform: translateY(-65px) scale(0.2); }
-      }
-      @property --beam-angle {
-        syntax: '<angle>';
-        inherits: false;
-        initial-value: 0deg;
-      }
-      @keyframes beam-spin {
-        0% { --beam-angle: 0deg; }
-        100% { --beam-angle: 360deg; }
-      }
-      .beam-pill::before {
-        content: '';
-        position: absolute;
-        inset: -1px -10px -1px -10px;
-        border-radius: 9999px;
-        padding: 2px;
-        background: conic-gradient(
-          from var(--beam-angle),
-          transparent 0%,
-          transparent 82%,
-          rgba(74, 222, 128, 0.05) 86%,
-          rgba(74, 222, 128, 0.15) 89%,
-          rgba(74, 222, 128, 0.35) 92%,
-          rgba(74, 222, 128, 0.6) 95%,
-          rgba(74, 222, 128, 0.9) 98%,
-          #4ade80 100%,
-          transparent 100%
-        );
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        animation: beam-spin 2s linear infinite;
-      }
     `
     document.head.appendChild(style)
   }, [])
@@ -813,41 +812,22 @@ function renderHighlightedText(
   let currentStart = 0
 
   // Per-word inline-grid so highlighted text can wrap naturally on narrow screens.
-  // Each word shows its slice of the full-phrase gradient via background-size/position.
   const pushHighlightWords = (
     seg: string, baseKey: number, showGradient: boolean, normalOpacity: string
   ) => {
     const gOp = showGradient ? 'opacity-100' : 'opacity-0'
-    const totalLen = seg.length
-    let charPos = 0
     seg.split(/( +)/).forEach((word, wIdx) => {
       if (!word) return
       if (/^ +$/.test(word)) {
         parts.push(<span key={`${baseKey}s${wIdx}`}>{word}</span>)
-        charPos += word.length
       } else {
-        const wordFrac = word.length / totalLen
-        const startFrac = charPos / totalLen
-        // Continuous gradient: size spans full phrase, position shows this word's slice
-        const bgSize = wordFrac >= 1 ? 100 : 100 / wordFrac
-        const bgPos = wordFrac >= 1 ? 0 : startFrac * 100 / (1 - wordFrac)
+        // Highlight words: solid salmon (accent) layer crossfades over the muted layer.
         parts.push(
           <span key={`${baseKey}w${wIdx}`} className="inline-grid">
-            <span
-              className={`col-start-1 row-start-1 font-medium transition-opacity ${timing} ${gOp}`}
-              style={{
-                backgroundImage: 'linear-gradient(to right, hsl(var(--gradient-from)), hsl(var(--gradient-to)))',
-                backgroundSize: `${bgSize}% 100%`,
-                backgroundPosition: `${bgPos}% 0`,
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                color: 'transparent',
-              }}
-            >{word}</span>
+            <span className={`col-start-1 row-start-1 font-medium text-accent transition-opacity ${timing} ${gOp}`}>{word}</span>
             <span className={`col-start-1 row-start-1 text-muted-foreground transition-opacity ${timing} ${normalOpacity}`}>{word}</span>
           </span>
         )
-        charPos += word.length
       }
     })
   }
@@ -1302,7 +1282,7 @@ function ReflectiveTypewriter({
       {/* Reflection line (becomes the hook line) */}
       {(phase === 'reflection' || phase === 'pause-before-delete' || phase === 'deleting') && (
         <p className="mb-1">
-          <span className="text-gradient-theme">{displayText}</span>
+          <span className="text-accent">{displayText}</span>
           {showCursor && <span className="ml-0.5 inline-block text-primary" style={{ animation: 'blink 0.6s step-end infinite' }}>|</span>}
         </p>
       )}
@@ -1450,13 +1430,7 @@ function StorySection({ t }: { t: (typeof translations)[Lang] }) {
   }, [typewriterComplete])
 
   return (
-    <section ref={sectionRef} id="about" className="snap-section relative py-16 md:py-24">
-      {/* Vignette horizontal: tapa puntos en el centro, se ven en los bordes */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        background: 'linear-gradient(90deg, transparent 0%, hsl(var(--background)) 25%, hsl(var(--background)) 75%, transparent 100%)',
-      }} />
-      {/* Fade vertical: transparente arriba → fondo sólido abajo */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background pointer-events-none" />
+    <section ref={sectionRef} id="about" className="snap-section relative py-10 md:py-14">
       <div className="relative z-10 max-w-5xl mx-auto px-6">
         {/* Hook emocional con typewriter reflexivo + botón skip */}
         <div className="relative pb-12">
@@ -1533,7 +1507,7 @@ function StorySection({ t }: { t: (typeof translations)[Lang] }) {
                   transition={{ duration: 0.6, delay: typewriterComplete ? 0.3 + i * 0.2 : 0, ease: [0.25, 0.46, 0.45, 0.94] }}
                   className={`transition-opacity duration-[2500ms] ease-in-out ${dimOpacity} ${
                     i === 2
-                      ? 'font-display text-lg md:text-2xl font-bold text-gradient-theme leading-snug'
+                      ? 'font-display text-lg md:text-2xl font-bold text-accent leading-snug'
                       : i === 1
                         ? 'font-display text-lg md:text-2xl text-muted-foreground leading-snug'
                         : 'font-display text-lg md:text-2xl font-bold text-foreground leading-snug'
@@ -1574,7 +1548,7 @@ function StorySection({ t }: { t: (typeof translations)[Lang] }) {
                 href={item.href}
                 onClick={handleClick}
                 className={isHighlight
-                  ? "flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-theme text-white border border-transparent hover:brightness-110 hover:shadow-xl hover:shadow-primary/30 active:brightness-95 transition-all duration-200 text-sm font-medium shadow-lg shadow-primary/25"
+                  ? "flex items-center gap-2 px-4 py-2 rounded-full bg-accent text-white border border-transparent hover:brightness-110 hover:shadow-xl hover:shadow-primary/30 active:brightness-95 transition-all duration-200 text-sm font-medium shadow-lg shadow-primary/25"
                   : isCta
                     ? "flex items-center gap-2 px-4 py-2 rounded-full bg-terracotta/10 border border-terracotta/30 text-terracotta hover:bg-terracotta/20 hover:border-terracotta/50 transition-all duration-200 text-sm font-medium"
                     : "flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-200 text-sm font-medium"
@@ -1755,9 +1729,8 @@ function App() {
   const lang: Lang = location.pathname === '/en' ? 'en' : 'zh'
   const t = translations[lang]
   const hydrated = useHydrated()
-  const reduce = useReducedMotion()
   useHeroStyles()
-  const { displayText: roleText, roleIndex } = useTypewriterRotation(t.greetingRoles)
+  const { displayText: roleText } = useTypewriterRotation(t.greetingRoles)
 
   // Slideshow scrolling for the home page (wheel/keyboard → one section per gesture).
   useSlideScroll()
@@ -1791,7 +1764,6 @@ function App() {
       {/* Hero Section */}
       <header id="main-content" className="snap-section relative overflow-hidden">
         <GridSnakes />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent" />
         <div className="absolute top-0 right-[max(0px,calc(50%-40rem))] w-[600px] h-[600px] rounded-full blur-3xl -translate-y-1/3 translate-x-1/3 hidden sm:block animate-[hero-glow_8s_ease-in-out_infinite]" style={{ backgroundColor: 'hsl(var(--hero-orb-primary))' }} />
         <div className="absolute bottom-0 left-[max(0px,calc(50%-40rem))] w-[550px] h-[550px] rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 hidden sm:block animate-[hero-glow_11s_ease-in-out_infinite_reverse]" style={{ backgroundColor: 'hsl(var(--hero-orb-accent))' }} />
 
@@ -1806,11 +1778,11 @@ function App() {
             >
               <div className="relative w-40 h-40 md:w-48 md:h-48">
                 {/* Glow effect */}
-                <div className="absolute inset-0 rounded-full bg-gradient-theme-30 blur-xl" />
+                <div className="absolute inset-0 rounded-full bg-accent/30 blur-xl" />
                 {/* Glassmorphism frame */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-white/5 md:backdrop-blur-sm border border-white/20 shadow-2xl" />
+                <div className="absolute inset-0 rounded-full bg-white/10 md:backdrop-blur-sm border border-white/20 shadow-2xl" />
                 {/* Inner border */}
-                <div className="absolute inset-2 rounded-full bg-gradient-theme-50 p-[2px]">
+                <div className="absolute inset-2 rounded-full bg-accent/50 p-[2px]">
                   <div className="w-full h-full rounded-full overflow-hidden">
                     <img src="/foto-avatar-sm.webp" srcSet="/foto-avatar-sm.webp 192w, /foto-avatar.webp 384w" sizes="(max-width: 768px) 160px, 192px" alt="Elena Liu" className="w-full h-full object-cover" width={192} height={192} fetchPriority="high" />
                   </div>
@@ -1820,7 +1792,7 @@ function App() {
                 initial={hydrated ? { scale: 0 } : false}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.4, type: "spring", stiffness: 200 }}
-                className="absolute -bottom-1 -right-1 w-10 h-10 rounded-full bg-gradient-theme flex items-center justify-center shadow-lg border-2 border-background"
+                className="absolute -bottom-1 -right-1 w-10 h-10 rounded-full bg-accent flex items-center justify-center shadow-lg border-2 border-background"
               >
                 <BadgeCheck className="w-6 h-6 text-white" />
               </motion.div>
@@ -1833,36 +1805,16 @@ function App() {
               className="text-center md:text-left"
             >
               <p className="text-lg text-muted-foreground mb-2">
-                {lang === 'zh' ? '你好，我是' : "Hi, I'm"} <Link to={lang === 'zh' ? '/zh' : '/about'} className="text-gradient-theme font-semibold hover:opacity-80 transition-opacity">Elena</Link>,
+                {lang === 'zh' ? '你好，我是' : "Hi, I'm"} <Link to={lang === 'zh' ? '/zh' : '/about'} className="text-foreground font-semibold hover:opacity-80 transition-opacity">Elena</Link>,
               </p>
               <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 leading-tight">
-                <span className="text-gradient-theme">{hydrated ? roleText : t.greetingRoles[0]}</span>
+                <span className="text-foreground">{hydrated ? roleText : t.greetingRoles[0]}</span>
                 {hydrated && <span className="inline-block w-[3px] h-[0.85em] bg-primary ml-1 rounded-sm translate-y-[2px]" style={{ animation: 'blink 1s step-end infinite' }} />}
                 <br />
                 {t.greeting}
                 <br />
-                {lang === 'zh' ? '搭配 ' : 'with '}<BeamPill>Evals <span className="opacity-60">+</span> LLMOps <span className="opacity-60">+</span> HITL</BeamPill>
+                {lang === 'zh' ? '搭配 ' : 'with '}<HeroPhrase>Evals <span className="opacity-60">+</span> LLMOps <span className="opacity-60">+</span> HITL</HeroPhrase>
               </h1>
-
-              <div className="flex flex-wrap justify-center md:justify-start gap-3">
-                {t.pillLabels.map((label, i) => {
-                  const active = hydrated && i === roleIndex
-                  return (
-                    <motion.span
-                      key={label}
-                      animate={hydrated && !reduce ? { scale: active ? 1.06 : 1 } : false}
-                      transition={{ type: 'spring', stiffness: 300, damping: 18 }}
-                      className={`px-4 py-2 rounded-full text-sm font-medium transition-[background-color,border-color,color,box-shadow] duration-500 ease-out backdrop-blur-sm ${
-                        active
-                          ? 'border border-powder/60 bg-powder/20 text-foreground shadow-[0_8px_22px_-8px_hsl(var(--primary)/0.5)]'
-                          : 'border border-powder/30 bg-background/80 text-muted-foreground shadow-none'
-                      }`}
-                    >
-                      {label}
-                    </motion.span>
-                  )
-                })}
-              </div>
 
             </motion.div>
           </div>
@@ -1874,15 +1826,10 @@ function App() {
       <StorySection t={t} />
 
       {/* Experience - Con preámbulo de competencias */}
-      <section id="experience" className="snap-section py-16 md:py-24 bg-muted/30" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 2000px' }}>
+      <section id="experience" className="snap-section py-10 md:py-14 bg-muted/30" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 2000px' }}>
         <div className="max-w-5xl mx-auto px-6">
           <AnimatedSection>
-            <h2 className="font-display text-2xl font-semibold mb-8 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                <Briefcase className="w-5 h-5 text-primary" />
-              </div>
-              {t.experience.title}
-            </h2>
+            <SectionTitle className="mb-8" icon={<Briefcase className="w-5 h-5 text-primary" />} title={t.experience.title} />
           </AnimatedSection>
 
           {/* Core competencies preamble */}
@@ -1910,7 +1857,7 @@ function App() {
 
           {/* Moody's Analytics — Featured */}
           <AnimatedSection delay={0.1} className="mb-12" pop>
-            <div className="p-8 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-primary/30 hover:border-primary/50 transition-colors duration-200">
+            <div className="p-8 rounded-2xl bg-primary/5 border border-primary/30 hover:border-primary/50 transition-colors duration-200">
               <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
                 <div className="flex-1">
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-3">
@@ -2027,16 +1974,11 @@ function App() {
       </section>
 
       {/* Projects */}
-      <section id="projects" className="snap-section py-16 md:py-24" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 900px' }}>
+      <section id="projects" className="snap-section py-10 md:py-14" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 900px' }}>
         <div className="max-w-5xl mx-auto px-6">
           <AnimatedSection>
             <div className="flex items-center justify-between mb-12">
-              <h2 className="font-display text-2xl font-semibold flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <FolderGit2 className="w-5 h-5 text-primary" />
-                </div>
-                {t.projects.title}
-              </h2>
+              <SectionTitle icon={<FolderGit2 className="w-5 h-5 text-primary" />} title={t.projects.title} />
               <a
                 href={`https://${t.projects.githubLink}`}
                 target="_blank"
@@ -2051,11 +1993,8 @@ function App() {
 
           {/* Featured: Moderation OS */}
           <AnimatedSection delay={0.05} className="mb-6" tilt>
-            <div className="p-8 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-primary/30 hover:border-primary/50 transition-colors duration-200 group relative overflow-hidden">
+            <div className="p-8 rounded-2xl bg-primary/5 border border-primary/30 hover:border-primary/50 transition-colors duration-200 group relative overflow-hidden">
               <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              {/* Sheen: a skewed light streak sweeps across the card on hover. z-20 lifts it
-                  above the content so the shine passes over the text; clipped by overflow-hidden. */}
-              <div className="pointer-events-none absolute top-0 bottom-0 left-0 z-20 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-[200%] group-hover:translate-x-[350%] transition-transform duration-1000 ease-out motion-reduce:hidden" />
               <div className="relative">
                 <div className="flex flex-col lg:flex-row lg:items-start gap-6">
                   <div className="flex-1">
@@ -2116,18 +2055,13 @@ function App() {
 
 
       {/* Sharing — Teaching + LinkedIn */}
-      <section id="education" className="snap-section py-16 md:py-24" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 1000px' }}>
+      <section id="education" className="snap-section py-10 md:py-14" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 1000px' }}>
         <div className="max-w-5xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12">
             {/* Education */}
             <div>
               <AnimatedSection>
-                <h2 className="font-display text-2xl font-semibold mb-8 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <GraduationCap className="w-5 h-5 text-primary" />
-                  </div>
-                  {t.education.title}
-                </h2>
+                <SectionTitle className="mb-8" icon={<GraduationCap className="w-5 h-5 text-primary" />} title={t.education.title} />
               </AnimatedSection>
 
               <div className="space-y-4">
@@ -2191,15 +2125,10 @@ function App() {
       </section>
 
       {/* Skills */}
-      <section id="tech" className="snap-section py-16 md:py-24 bg-muted/30" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 600px' }}>
+      <section id="tech" className="snap-section py-10 md:py-14 bg-muted/30" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 600px' }}>
         <div className="max-w-5xl mx-auto px-6">
           <AnimatedSection>
-            <h2 className="font-display text-2xl font-semibold mb-12 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                <Code className="w-5 h-5 text-primary" />
-              </div>
-              {t.skills.title}
-            </h2>
+            <SectionTitle className="mb-12" icon={<Code className="w-5 h-5 text-primary" />} title={t.skills.title} />
           </AnimatedSection>
 
           <div className="grid md:grid-cols-4 gap-8">
@@ -2233,16 +2162,11 @@ function App() {
       </section>
 
       {/* Personal Projects */}
-      <section id="personal-projects" className="snap-section py-16 md:py-24 bg-muted/30" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 700px' }}>
+      <section id="personal-projects" className="snap-section py-10 md:py-14 bg-muted/30" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 700px' }}>
         <div className="max-w-5xl mx-auto px-6">
           <AnimatedSection>
             <div className="flex items-center justify-between mb-12">
-              <h2 className="font-display text-2xl font-semibold flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Code className="w-5 h-5 text-primary" />
-                </div>
-                {t.personalProjects.title}
-              </h2>
+              <SectionTitle icon={<Code className="w-5 h-5 text-primary" />} title={t.personalProjects.title} />
               <a
                 href="https://github.com/yingshill"
                 target="_blank"
@@ -2319,11 +2243,7 @@ function App() {
       </section>
 
       {/* Footer CTA */}
-      <footer id="contact" className="snap-section relative py-16 md:py-24">
-        {/* Vignette horizontal — zona limpia central, puntos en bordes */}
-        <div className="absolute inset-0 pointer-events-none" style={{
-          background: 'linear-gradient(90deg, transparent 0%, hsl(var(--background)) 25%, hsl(var(--background)) 75%, transparent 100%)',
-        }} />
+      <footer id="contact" className="snap-section relative py-10 md:py-14">
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <AnimatedSection>
             <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
@@ -2389,7 +2309,7 @@ function App() {
               Close
             </button>
           </div>
-          <div className="bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.12),_transparent_45%),linear-gradient(180deg,_#111827,_#020617)] max-h-[80vh] overflow-auto">
+          <div className="bg-neutral-900 max-h-[80vh] overflow-auto">
             {previewIsVideo ? (
               <video
                 src={previewModal.src}

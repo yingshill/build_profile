@@ -22,12 +22,10 @@ let cachedColors: { from: string; to: string } | null = null;
 function getThemeColors(): { from: string; to: string } {
   if (cachedColors) return cachedColors;
   const style = getComputedStyle(document.documentElement);
-  const from = style.getPropertyValue('--gradient-from').trim();
-  const to = style.getPropertyValue('--gradient-to').trim();
-  cachedColors = {
-    from: from ? `hsl(${from})` : '#22d3ee',
-    to: to ? `hsl(${to})` : '#a855f7',
-  };
+  const accent = style.getPropertyValue('--accent').trim();
+  // Flat (no gradient): orb uses a single solid accent color for both stops.
+  const c = accent ? `hsl(${accent})` : '#cf6a4a';
+  cachedColors = { from: c, to: c };
   return cachedColors;
 }
 

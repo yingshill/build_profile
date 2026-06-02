@@ -117,7 +117,7 @@ function DemoCard({ entry }: { entry: Entry }) {
             variants={entry.variants}
             initial="hidden"
             animate="show"
-            className="px-6 py-4 rounded-xl bg-gradient-theme text-white font-medium shadow-lg"
+            className="px-6 py-4 rounded-xl bg-accent text-white font-medium shadow-lg"
           >
             {entry.name}
           </motion.div>

@@ -362,7 +362,7 @@ interface CaseStudyCtaProps {
 export function CaseStudyCta({ heading, body, ctaLabel, ctaHref, external, secondaryLabel, secondaryHref }: CaseStudyCtaProps) {
   return (
     <EditorLabel name="CaseStudyCta">
-      <div className="my-10 relative rounded-2xl p-[1.5px] bg-gradient-theme">
+      <div className="my-10 relative rounded-2xl p-[1.5px] bg-accent">
         <div className="p-6 sm:p-8 rounded-[calc(1rem-1.5px)] bg-card">
           <p className="font-display font-semibold text-foreground text-lg mb-2">{heading}</p>
           {body && <p className="text-muted-foreground leading-relaxed mb-4">{body}</p>}

@@ -548,7 +548,7 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
               animate={{ rotate: 0, opacity: 1 }}
               exit={{ rotate: 90, opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="w-full h-full rounded-full bg-gradient-theme flex items-center justify-center"
+              className="w-full h-full rounded-full bg-accent flex items-center justify-center"
             >
               <X className="w-6 h-6 text-white" aria-hidden="true" />
             </motion.div>
@@ -612,7 +612,7 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
           >
             {/* Header - con avatar y botón de cerrar en móvil */}
             <div
-              className="p-4 border-b border-border bg-gradient-theme-10 flex items-center justify-between"
+              className="p-4 border-b border-border bg-accent/10 flex items-center justify-between"
               style={
                 isMobile
                   ? { paddingTop: 'max(1rem, env(safe-area-inset-top, 0px))' }
@@ -705,7 +705,7 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
                           <div
                             className={`px-4 py-2.5 rounded-2xl leading-relaxed ${
                               message.role === 'user'
-                                ? 'bg-gradient-theme text-white rounded-br-md'
+                                ? 'bg-accent text-white rounded-br-md'
                                 : 'bg-muted text-foreground rounded-bl-md'
                             } ${isMobile ? 'text-base' : 'text-sm'} ${
                               isStreaming && i === messages.length - 1 && message.role === 'assistant'
@@ -838,13 +838,13 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
                       transition={{ delay: 0.3 }}
                       className="pt-3"
                     >
-                      <div className="p-3 rounded-xl bg-gradient-theme-10 border border-primary/20 text-center">
+                      <div className="p-3 rounded-xl bg-accent/10 border border-primary/20 text-center">
                         <p className="text-sm font-medium text-foreground mb-2">
                           {t.contactCtaTitle}
                         </p>
                         <a
                           href={`mailto:${translations[lang].email}`}
-                          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-theme-r text-white text-sm font-medium hover:brightness-110 hover:shadow-lg hover:shadow-primary/25 active:brightness-95 transition-all duration-200"
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent text-white text-sm font-medium hover:brightness-110 hover:shadow-lg hover:shadow-primary/25 active:brightness-95 transition-all duration-200"
                         >
                           <Mail className="w-4 h-4" aria-hidden="true" />
                           {translations[lang].email}
@@ -985,7 +985,7 @@ export default function FloatingChat({ lang }: FloatingChatProps) {
                     onClick={() => sendMessage()}
                     disabled={isLoading || !input.trim()}
                     aria-label={lang === 'en' ? 'Send message' : '发送消息'}
-                    className={`rounded-xl bg-gradient-theme flex items-center justify-center text-white disabled:opacity-50 disabled:cursor-not-allowed transition-opacity ${
+                    className={`rounded-xl bg-accent flex items-center justify-center text-white disabled:opacity-50 disabled:cursor-not-allowed transition-opacity ${
                       isMobile ? 'w-12 h-12' : 'w-10 h-10'
                     }`}
                   >

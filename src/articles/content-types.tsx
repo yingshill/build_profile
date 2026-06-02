@@ -1480,7 +1480,7 @@ export function ArchitectureDiagram({ src, thumbnail, alt, label, subtitle, edit
     <EditorLabel name="ArchitectureDiagram" id={editorId}>
       {/* CTA with gradient border — same style as home "coming soon" cards */}
       <div
-        className="relative rounded-2xl p-[1.5px] bg-gradient-theme mb-8 cursor-pointer group"
+        className="relative rounded-2xl p-[1.5px] bg-accent mb-8 cursor-pointer group"
         onClick={() => setOpen(true)}
       >
         <div className="rounded-[calc(1rem-1.5px)] overflow-hidden bg-card">
