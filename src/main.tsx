@@ -13,6 +13,9 @@ const MusicToggle = lazy(() => import('./MusicToggle'))
 const OpsDashboard = lazy(() => import('./ops/OpsDashboard'))
 const PrivacyPolicy = lazy(() => import('./PrivacyPolicy'))
 const AboutPage = lazy(() => import('./AboutPage'))
+// Dev-only motion library catalog. import.meta.env.DEV is statically false in prod,
+// so this is null there and the dynamic import is tree-shaken out of the build.
+const MotionLab = import.meta.env.DEV ? lazy(() => import('./MotionLab')) : null
 
 // Lazy-load article components from registry
 const articleComponents: Record<string, React.LazyExoticComponent<ComponentType<{ lang: 'zh' | 'en' }>>> = {}
@@ -118,6 +121,7 @@ function AnimatedRoutes() {
             <Route path="/about" element={<AboutPage lang="en" />} />
             <Route path="/privacidad" element={<PrivacyPolicy lang="zh" />} />
             <Route path="/privacy" element={<PrivacyPolicy lang="en" />} />
+            {MotionLab && <Route path="/motion-lab" element={<MotionLab />} />}
             {articleRegistry.map((article) => {
               const ArticleComponent = articleComponents[article.id]
               return [
