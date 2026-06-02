@@ -1,10 +1,11 @@
 import { useState, useEffect, useCallback, useMemo, useReducer, useRef } from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import { motion, AnimatePresence } from 'motion/react'
+import { motion, AnimatePresence, useReducedMotion, type Variants } from 'motion/react'
 import { Mail, ExternalLink, Briefcase, GraduationCap, Award, Code, Globe, Bot, Zap, BadgeCheck, FolderGit2, Github, SkipForward, ChevronRight, List, Play, X, Image as ImageIcon } from 'lucide-react'
 import { translations, seo, type Lang } from './i18n'
 import { useHomeSeo } from './articles/use-article-seo'
 import { getTechIcon } from './tech-icons'
+import { DecodeText } from './DecodeText'
 
 
 function LinkedInLogo({ className = "w-4 h-4" }: { className?: string }) {
@@ -41,6 +42,193 @@ function useInView(threshold = 0.1) {
   }, [ref, threshold])
 
   return { ref: setRef, isInView }
+}
+
+// CountUpMetric — animates a metric's leading integer from 0 → target the first
+// time it scrolls into view. Values look like "22%↑", "40%↓", "65%", "3→1": the
+// leading number counts up, the remainder (%/arrow) rides along as a static suffix.
+// Initial state is the final number, so SSR/no-JS paint and hydration both show the
+// real value; reduced-motion users never see the count animate.
+function CountUpMetric({ value, duration = 1100 }: { value: string; duration?: number }) {
+  const match = value.match(/^(\d+)(.*)$/)
+  const target = match ? parseInt(match[1], 10) : 0
+  const suffix = match ? match[2] : ''
+  const reduce = useReducedMotion()
+  const { ref, isInView } = useInView(0.4)
+  const [display, setDisplay] = useState(target)
+
+  useEffect(() => {
+    if (!match || !isInView || reduce) return
+    let raf = 0
+    let start: number | null = null
+    const step = (ts: number) => {
+      if (start === null) start = ts
+      const p = Math.min((ts - start) / duration, 1)
+      const eased = 1 - Math.pow(1 - p, 3) // easeOutCubic — quick rise, soft settle
+      setDisplay(Math.round(eased * target))
+      if (p < 1) raf = requestAnimationFrame(step)
+    }
+    raf = requestAnimationFrame(step)
+    return () => cancelAnimationFrame(raf)
+  }, [isInView, reduce, target, duration]) // match/suffix derive from value, stable per mount
+
+  if (!match) return <span ref={ref}>{value}</span>
+  return <span ref={ref}>{display}{suffix}</span>
+}
+
+// TechChips — renders one tech-stack category's chips with a stagger-in the first
+// time they scroll into view, plus a subtle hover lift. SSR/no-JS and reduced-motion
+// render the chips statically (no hidden initial state) so content is always visible.
+const CHIP_CONTAINER_VARIANTS: Variants = {
+  hidden: {},
+  // delayChildren lets the parent section's fade-up settle first, so the cascade is
+  // not washed out by it; staggerChildren spaces each chip's entrance.
+  visible: { transition: { delayChildren: 0.25, staggerChildren: 0.06 } },
+}
+const CHIP_VARIANTS: Variants = {
+  hidden: { opacity: 0, y: 12, scale: 0.8 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 360, damping: 22 } },
+}
+const CHIP_CLASS = 'inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs bg-muted text-muted-foreground'
+
+function TechChip({ item }: { item: string }) {
+  const icon = getTechIcon(item)
+  return (
+    <>
+      {icon && (
+        <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 shrink-0" fill={icon.color} aria-hidden="true">
+          <path d={icon.path} />
+        </svg>
+      )}
+      {item}
+    </>
+  )
+}
+
+function TechChips({ items }: { items: readonly string[] }) {
+  const hydrated = useHydrated()
+  const reduce = useReducedMotion()
+  const { ref, isInView } = useInView(0.2)
+
+  if (!hydrated || reduce) {
+    return (
+      <div className="flex flex-wrap gap-2 mt-3">
+        {items.map((item) => (
+          <span key={item} className={CHIP_CLASS}><TechChip item={item} /></span>
+        ))}
+      </div>
+    )
+  }
+
+  return (
+    <motion.div
+      ref={ref}
+      className="flex flex-wrap gap-2 mt-3"
+      variants={CHIP_CONTAINER_VARIANTS}
+      initial="hidden"
+      animate={isInView ? 'visible' : 'hidden'}
+    >
+      {items.map((item) => (
+        <motion.span
+          key={item}
+          className={CHIP_CLASS}
+          variants={CHIP_VARIANTS}
+          whileHover={{ y: -2, scale: 1.04 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 24 }}
+        >
+          <TechChip item={item} />
+        </motion.span>
+      ))}
+    </motion.div>
+  )
+}
+
+// SkillBar — a language-proficiency row: label + level text above a thin track whose
+// fill grows from 0 → pct (scaleX from the left) the first time it scrolls into view.
+// SSR/no-JS and reduced-motion render the bar already full (scaleX 1), so the level is
+// never hidden without JS.
+function SkillBar({ label, level, pct, levelClass = 'text-muted-foreground' }: {
+  label: string; level: string; pct: number; levelClass?: string
+}) {
+  const hydrated = useHydrated()
+  const reduce = useReducedMotion()
+  const { ref, isInView } = useInView(0.3)
+  const animated = hydrated && !reduce
+  return (
+    <div ref={ref}>
+      <div className="flex justify-between items-center mb-1.5">
+        <span>{label}</span>
+        <span className={`text-sm font-medium ${levelClass}`}>{level}</span>
+      </div>
+      <div className="h-1.5 rounded-full bg-muted overflow-hidden">
+        <motion.div
+          className="h-full rounded-full bg-gradient-theme origin-left"
+          style={{ width: `${pct}%` }}
+          initial={false}
+          animate={{ scaleX: animated ? (isInView ? 1 : 0) : 1 }}
+          transition={reduce ? { duration: 0 } : { duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+        />
+      </div>
+    </div>
+  )
+}
+
+// SoftSkillTags — soft-skill pills that stagger in on scroll (no proficiency level, so
+// no bar — a cascade instead). Reuses the chip stagger variants. Static for SSR/reduce.
+const SOFT_SKILL_CLASS = 'px-3 py-1 rounded-full text-sm bg-accent/10 text-accent border border-accent/20 hover:bg-accent/20 transition-colors cursor-default'
+
+function SoftSkillTags({ items }: { items: readonly string[] }) {
+  const hydrated = useHydrated()
+  const reduce = useReducedMotion()
+  const { ref, isInView } = useInView(0.2)
+
+  if (!hydrated || reduce) {
+    return (
+      <div className="flex flex-wrap gap-2">
+        {items.map((s) => <span key={s} className={SOFT_SKILL_CLASS}>{s}</span>)}
+      </div>
+    )
+  }
+
+  return (
+    <motion.div
+      ref={ref}
+      className="flex flex-wrap gap-2"
+      variants={CHIP_CONTAINER_VARIANTS}
+      initial="hidden"
+      animate={isInView ? 'visible' : 'hidden'}
+    >
+      {items.map((s) => (
+        <motion.span
+          key={s}
+          className={SOFT_SKILL_CLASS}
+          variants={CHIP_VARIANTS}
+          whileHover={{ y: -2, scale: 1.04 }}
+          transition={{ type: 'spring', stiffness: 360, damping: 22 }}
+        >
+          {s}
+        </motion.span>
+      ))}
+    </motion.div>
+  )
+}
+
+// CtaPulse — a single expanding ring that fires once when the CTA scrolls into view,
+// drawing the eye to the primary action. Sits behind the button; silent for reduced-motion.
+function CtaPulse() {
+  const reduce = useReducedMotion()
+  const { ref, isInView } = useInView(0.6)
+  if (reduce) return null
+  return (
+    <motion.span
+      ref={ref}
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 rounded-full border-2 border-primary"
+      initial={{ opacity: 0, scale: 1 }}
+      animate={isInView ? { opacity: [0, 0.5, 0], scale: [1, 1.35, 1.55] } : { opacity: 0 }}
+      transition={{ duration: 1.1, ease: 'easeOut', times: [0, 0.3, 1] }}
+    />
+  )
 }
 
 const HEAL_PARTICLES = [
@@ -426,11 +614,12 @@ function HomeToc({ lang }: { lang: Lang }) {
   )
 }
 
-function AnimatedSection({ children, className = '', delay = 0 }: { children: React.ReactNode, className?: string, delay?: number }) {
+function AnimatedSection({ children, className = '', delay = 0, pop = false, tilt = false }: { children: React.ReactNode, className?: string, delay?: number, pop?: boolean, tilt?: boolean }) {
   const [ref, setRef] = useState<HTMLElement | null>(null)
   const [isInView, setIsInView] = useState(false)
   const [detected, setDetected] = useState(false)
   const hydrated = useHydrated()
+  const reduce = useReducedMotion()
   const wasAboveFold = useRef(false)
 
   useEffect(() => {
@@ -457,19 +646,26 @@ function AnimatedSection({ children, className = '', delay = 0 }: { children: Re
     return () => observer.disconnect()
   }, [ref])
 
+  // pop + tilt cards enter with a spring overshoot + scale; plain sections keep the linear fade-up.
+  const popIn = pop || tilt
+  const animate = (!hydrated || !detected)
+    ? false  // Pre-hydration / pre-detection: preserve SSR DOM state
+    : isInView
+      ? (reduce ? { opacity: 1 } : popIn ? { opacity: 1, y: 0, scale: 1 } : { opacity: 1, y: 0 })
+      : (reduce ? { opacity: 0 } : popIn ? { opacity: 0, y: 30, scale: 0.96 } : { opacity: 0, y: 40 })
+
   return (
     <motion.div
       ref={setRef}
       initial={false}
-      animate={
-        !hydrated || !detected
-          ? false  // Pre-hydration / pre-detection: preserve SSR DOM state
-          : isInView
-            ? { opacity: 1, y: 0 }
-            : { opacity: 0, y: 40 }
-      }
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={className}
+      animate={animate}
+      transition={popIn
+        ? { default: { type: 'spring', stiffness: 260, damping: 20, delay }, opacity: { duration: 0.4, delay } }
+        : { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={tilt && !reduce ? { boxShadow: '0 18px 40px -16px rgba(0,0,0,0.22)' } : undefined}
+      // tilt cards carry the hover shadow on this wrapper; round it to match the inner
+      // rounded-2xl card so the shadow doesn't poke square corners past the card edge.
+      className={tilt ? `${className} rounded-2xl` : className}
     >
       {children}
     </motion.div>
@@ -1439,6 +1635,7 @@ function App() {
   const lang: Lang = location.pathname === '/en' ? 'en' : 'zh'
   const t = translations[lang]
   const hydrated = useHydrated()
+  const reduce = useReducedMotion()
   useHeroStyles()
   const { displayText: roleText, roleIndex } = useTypewriterRotation(t.greetingRoles)
 
@@ -1520,24 +1717,29 @@ function App() {
                 <span className="text-gradient-theme">{hydrated ? roleText : t.greetingRoles[0]}</span>
                 {hydrated && <span className="inline-block w-[3px] h-[0.85em] bg-primary ml-1 rounded-sm translate-y-[2px]" style={{ animation: 'blink 1s step-end infinite' }} />}
                 <br />
-                {t.greeting}
+                <DecodeText text={t.greeting} lang={lang} />
                 <br />
                 {lang === 'zh' ? '搭配 ' : 'with '}<BeamPill>Evals <span className="opacity-60">+</span> LLMOps <span className="opacity-60">+</span> HITL</BeamPill>
               </h1>
 
               <div className="flex flex-wrap justify-center md:justify-start gap-3">
-                {t.pillLabels.map((label, i) => (
-                  <span
-                    key={label}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 backdrop-blur-sm ${
-                      hydrated && i === roleIndex
-                        ? 'border border-powder/50 bg-powder/20 text-foreground scale-105'
-                        : 'border border-powder/30 bg-background/80 text-muted-foreground'
-                    }`}
-                  >
-                    {label}
-                  </span>
-                ))}
+                {t.pillLabels.map((label, i) => {
+                  const active = hydrated && i === roleIndex
+                  return (
+                    <motion.span
+                      key={label}
+                      animate={hydrated && !reduce ? { scale: active ? 1.06 : 1 } : false}
+                      transition={{ type: 'spring', stiffness: 300, damping: 18 }}
+                      className={`px-4 py-2 rounded-full text-sm font-medium transition-[background-color,border-color,color,box-shadow] duration-500 ease-out backdrop-blur-sm ${
+                        active
+                          ? 'border border-powder/60 bg-powder/20 text-foreground shadow-[0_8px_22px_-8px_hsl(var(--primary)/0.5)]'
+                          : 'border border-powder/30 bg-background/80 text-muted-foreground shadow-none'
+                      }`}
+                    >
+                      {label}
+                    </motion.span>
+                  )
+                })}
               </div>
 
             </motion.div>
@@ -1585,7 +1787,7 @@ function App() {
           </AnimatedSection>
 
           {/* Moody's Analytics — Featured */}
-          <AnimatedSection delay={0.1} className="mb-12">
+          <AnimatedSection delay={0.1} className="mb-12" pop>
             <div className="p-8 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-primary/30 hover:border-primary/50 transition-colors duration-200">
               <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
                 <div className="flex-1">
@@ -1612,7 +1814,7 @@ function App() {
                 <div className="grid grid-cols-2 lg:flex lg:flex-col gap-2 lg:gap-3 mt-2 lg:mt-0 lg:shrink-0">
                   {t.experience.moodys.metrics.map((metric, i) => (
                     <div key={i} className="text-center p-3 lg:p-4 rounded-xl bg-background/50 border border-primary/20 lg:w-32">
-                      <div className="font-display text-lg lg:text-2xl font-bold text-primary">{metric.value}</div>
+                      <div className="font-display text-lg lg:text-2xl font-bold text-primary"><CountUpMetric value={metric.value} /></div>
                       <div className="text-[10px] lg:text-xs text-muted-foreground leading-tight">{metric.label}</div>
                     </div>
                   ))}
@@ -1622,7 +1824,7 @@ function App() {
           </AnimatedSection>
 
           {/* Flip */}
-          <AnimatedSection delay={0.2} className="mb-10">
+          <AnimatedSection delay={0.2} className="mb-10" pop>
             <div className="pl-4 border-l-2 border-accent/30">
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-2">
                 <h3 className="font-display text-xl font-bold">{t.experience.flip.company}</h3>
@@ -1642,7 +1844,7 @@ function App() {
               <div className="flex flex-wrap gap-2">
                 {t.experience.flip.metrics.map((metric, i) => (
                   <div key={i} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-accent/10 border border-accent/20">
-                    <span className="font-display font-bold text-accent text-sm">{metric.value}</span>
+                    <span className="font-display font-bold text-accent text-sm"><CountUpMetric value={metric.value} /></span>
                     <span className="text-xs text-muted-foreground">{metric.label}</span>
                   </div>
                 ))}
@@ -1651,7 +1853,7 @@ function App() {
           </AnimatedSection>
 
           {/* LeanData */}
-          <AnimatedSection delay={0.3} className="mb-10">
+          <AnimatedSection delay={0.3} className="mb-10" pop>
             <div className="pl-4 border-l-2 border-primary/20">
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-2">
                 <h3 className="font-display text-xl font-bold">{t.experience.leandata.company}</h3>
@@ -1671,7 +1873,7 @@ function App() {
               <div className="flex flex-wrap gap-2">
                 {t.experience.leandata.metrics.map((metric, i) => (
                   <div key={i} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20">
-                    <span className="font-display font-bold text-primary text-sm">{metric.value}</span>
+                    <span className="font-display font-bold text-primary text-sm"><CountUpMetric value={metric.value} /></span>
                     <span className="text-xs text-muted-foreground">{metric.label}</span>
                   </div>
                 ))}
@@ -1680,7 +1882,7 @@ function App() {
           </AnimatedSection>
 
           {/* Modis */}
-          <AnimatedSection delay={0.4}>
+          <AnimatedSection delay={0.4} pop>
             <div className="pl-4 border-l-2 border-border">
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-2">
                 <h3 className="font-display text-xl font-bold">{t.experience.modis.company}</h3>
@@ -1726,9 +1928,12 @@ function App() {
           </AnimatedSection>
 
           {/* Featured: Moderation OS */}
-          <AnimatedSection delay={0.05} className="mb-6">
+          <AnimatedSection delay={0.05} className="mb-6" tilt>
             <div className="p-8 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-primary/30 hover:border-primary/50 transition-colors duration-200 group relative overflow-hidden">
               <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Sheen: a skewed light streak sweeps across the card on hover. z-20 lifts it
+                  above the content so the shine passes over the text; clipped by overflow-hidden. */}
+              <div className="pointer-events-none absolute top-0 bottom-0 left-0 z-20 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-[200%] group-hover:translate-x-[350%] transition-transform duration-1000 ease-out motion-reduce:hidden" />
               <div className="relative">
                 <div className="flex flex-col lg:flex-row lg:items-start gap-6">
                   <div className="flex-1">
@@ -1750,7 +1955,7 @@ function App() {
                   <div className="grid grid-cols-2 gap-2 lg:shrink-0 lg:w-56">
                     {(t.projects.featured.metrics as readonly { value: string; label: string }[]).map((m) => (
                       <div key={m.label} className="text-center p-3 rounded-xl bg-background/50 border border-primary/20">
-                        <div className="font-display text-lg lg:text-2xl font-bold text-primary">{m.value}</div>
+                        <div className="font-display text-lg lg:text-2xl font-bold text-primary"><CountUpMetric value={m.value} /></div>
                         <div className="text-[10px] lg:text-xs text-muted-foreground leading-tight">{m.label}</div>
                       </div>
                     ))}
@@ -1763,7 +1968,7 @@ function App() {
           {/* GitHub repos — 2-col */}
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             {(t.projects.repos as readonly { title: string; badge: string; desc: string; tech: readonly string[]; link: string }[]).map((repo, i) => (
-              <AnimatedSection key={repo.title} delay={0.1 + i * 0.05}>
+              <AnimatedSection key={repo.title} delay={0.1 + i * 0.05} tilt>
                 <div className="h-full p-6 rounded-2xl bg-card border border-border hover:border-primary/30 transition-colors group flex flex-col">
                   <div className="flex items-start justify-between mb-3 gap-2">
                     <h3 className="font-display text-sm font-bold text-foreground group-hover:text-primary transition-colors leading-tight break-all">{repo.title}</h3>
@@ -1805,7 +2010,7 @@ function App() {
 
               <div className="space-y-4">
                 {t.education.items.map((item, i) => (
-                  <AnimatedSection key={i} delay={0.1 + i * 0.1}>
+                  <AnimatedSection key={i} delay={0.1 + i * 0.1} tilt>
                     <div className="p-5 rounded-2xl bg-card border border-border hover:border-primary/30 transition-colors duration-200 group">
                       <div className="flex items-start justify-between">
                         <div>
@@ -1881,25 +2086,13 @@ function App() {
                 <Globe className="w-4 h-4 text-primary" />
                 {t.skills.languages}
               </h3>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span>{t.skills.spanish}</span>
-                  <span className="text-sm text-primary font-medium">{t.skills.native}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span>{t.skills.english}</span>
-                  <span className="text-sm text-muted-foreground">{t.skills.professional}</span>
-                </div>
+              <div className="space-y-4">
+                <SkillBar label={t.skills.spanish} level={t.skills.native} pct={100} levelClass="text-primary" />
+                <SkillBar label={t.skills.english} level={t.skills.professional} pct={85} />
               </div>
 
               <h3 className="font-display font-semibold mb-4 mt-8">{t.skills.soft}</h3>
-              <div className="flex flex-wrap gap-2">
-                {t.skills.softSkills.map((skill) => (
-                  <span key={skill} className="px-3 py-1 rounded-full text-sm bg-accent/10 text-accent border border-accent/20 hover:bg-accent/20 transition-colors cursor-default">
-                    {skill}
-                  </span>
-                ))}
-              </div>
+              <SoftSkillTags items={t.skills.softSkills} />
             </AnimatedSection>
 
             <AnimatedSection delay={0.2} className="md:col-span-3">
@@ -1908,21 +2101,7 @@ function App() {
                 {t.techStack.categories.map((cat) => (
                   <div key={cat.name} className="p-4 rounded-xl bg-card border border-border">
                     <span className="text-xs font-medium text-primary uppercase tracking-wide">{cat.name}</span>
-                    <div className="flex flex-wrap gap-2 mt-3">
-                      {cat.items.map((item) => {
-                        const icon = getTechIcon(item)
-                        return (
-                          <span key={item} className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-xs bg-muted text-muted-foreground">
-                            {icon && (
-                              <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 shrink-0" fill={icon.color} aria-hidden="true">
-                                <path d={icon.path} />
-                              </svg>
-                            )}
-                            {item}
-                          </span>
-                        )
-                      })}
-                    </div>
+                    <TechChips items={cat.items} />
                   </div>
                 ))}
               </div>
@@ -1956,7 +2135,7 @@ function App() {
 
           <div className="grid md:grid-cols-3 gap-6">
             {(t.personalProjects.items as readonly { title: string; badge: string; desc: string; domains: readonly string[]; tech: readonly string[]; link: string; links?: readonly { label: string; type: string; url: string; alt?: string }[] }[]).map((proj, i) => (
-              <AnimatedSection key={proj.title} delay={0.05 + i * 0.05}>
+              <AnimatedSection key={proj.title} delay={0.05 + i * 0.05} tilt>
                 <div className="h-full p-6 rounded-2xl bg-card border border-border hover:border-primary/30 transition-colors group flex flex-col">
                   <div className="flex items-start justify-between mb-3 gap-2">
                     <h3 className="font-display text-sm font-bold text-foreground group-hover:text-primary transition-colors leading-tight">{proj.title}</h3>
@@ -2032,13 +2211,16 @@ function App() {
           </AnimatedSection>
           <AnimatedSection delay={0.1}>
             <div className="flex flex-wrap justify-center gap-4">
-              <a
-                href={`mailto:${t.email}`}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:brightness-110 hover:shadow-lg hover:shadow-primary/25 active:brightness-95 transition-all duration-200"
-              >
-                <Mail className="w-4 h-4" />
-                {t.cta.contact}
-              </a>
+              <span className="relative inline-flex">
+                <CtaPulse />
+                <a
+                  href={`mailto:${t.email}`}
+                  className="relative z-10 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:brightness-110 hover:shadow-lg hover:shadow-primary/25 active:brightness-95 transition-all duration-200"
+                >
+                  <Mail className="w-4 h-4" />
+                  {t.cta.contact}
+                </a>
+              </span>
               <a
                 href="https://www.linkedin.com/in/elenaliu-2a524b395"
                 target="_blank"

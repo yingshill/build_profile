@@ -124,6 +124,18 @@ Every page element either supports this sentence or it's cut.
 
 ---
 
+## UX Animation Polish `[~]`
+Section-by-section motion pass to add design taste (proposal 2026-06-01). Site is already animation-rich, so scope is restraint + the 2–3 gaps where motion communicates meaning. All gated on `prefers-reduced-motion`.
+- [x] **Metric count-up** — impact numbers (`22%↑`, `40%↓`, `65%`, `3→1`…) count 0→target on scroll-in via reusable `CountUpMetric` in `App.tsx`; applied to Moody's / Flip / LeanData / featured-project cards. SSR-safe (initial = final value).
+- [x] **Tech-chip stagger** — `TechChips` in `App.tsx`: chips stagger in (35ms) on scroll-in + subtle spring hover lift. Same SSR/no-JS + reduced-motion static fallback as count-up.
+- [x] **Skill proficiency bars** — `SkillBar` fills 0→pct (scaleX) on scroll-in for languages (Chinese 100% Native, English 85% Professional). Soft skills have no real level, so `SoftSkillTags` gives them a stagger-in cascade instead (no fabricated %). SSR/reduce-safe.
+- [x] **Hero role-pill glow cross-fade** — active pill scales via spring (gentle overshoot) + a primary glow cross-fades in over 500ms as the typewriter role rotates; replaced the linear `scale-105` transform.
+- [x] **Removed** cursor 3D tilt-on-hover from cards (Projects/Education/Personal) per request — kept the pop entrance + soft hover shadow-lift; dropped `useMotionValue`/`useSpring`.
+- [x] **Featured-project sheen sweep** — skewed white light-streak sweeps across the featured card on hover (clipped by `overflow-hidden`, 1s); `motion-reduce:hidden`.
+- [x] **Contact CTA pulse-ring** — `CtaPulse`: one expanding primary ring fires once behind the email button when the contact section scrolls into view; null for reduced-motion.
+
+---
+
 ## Deliberately Cut (noise, off-narrative)
 - `[-]` Speaking section — no engagements yet, defer until real talks
 - `[-]` Notion AI Command Center as a case study — internal tool, dilutes T&S PM signal
