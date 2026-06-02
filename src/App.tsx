@@ -5,7 +5,6 @@ import { Mail, ExternalLink, Briefcase, GraduationCap, Award, Code, Globe, Bot, 
 import { translations, seo, type Lang } from './i18n'
 import { useHomeSeo } from './articles/use-article-seo'
 import { getTechIcon } from './tech-icons'
-import { DecodeText } from './DecodeText'
 
 
 function LinkedInLogo({ className = "w-4 h-4" }: { className?: string }) {
@@ -1717,7 +1716,7 @@ function App() {
                 <span className="text-gradient-theme">{hydrated ? roleText : t.greetingRoles[0]}</span>
                 {hydrated && <span className="inline-block w-[3px] h-[0.85em] bg-primary ml-1 rounded-sm translate-y-[2px]" style={{ animation: 'blink 1s step-end infinite' }} />}
                 <br />
-                <DecodeText text={t.greeting} lang={lang} />
+                {t.greeting}
                 <br />
                 {lang === 'zh' ? '搭配 ' : 'with '}<BeamPill>Evals <span className="opacity-60">+</span> LLMOps <span className="opacity-60">+</span> HITL</BeamPill>
               </h1>

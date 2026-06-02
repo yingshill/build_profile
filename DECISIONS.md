@@ -54,3 +54,20 @@ Append-only log of significant architecture, stack, and design decisions. Never 
     - The hook's JSDoc header already credits the source inline: Technique (adapted from tol-is/use-scramble).
     - The original is MIT-licensed, so adapting the algorithm is fine; the DECISIONS entry above records the provenance at the project level (the "why"), which is the right home for it per your global rules.
     - If you want belt-and-suspenders, you could also add a one-line // Adapted from tol-is/use-scramble (MIT) comment at the very top of the file above the import — but the JSDoc already covers it.
+
+## Reverted: removed decode-text animation
+
+**Date:** 2026-06-01
+**Context:** Reverses the "Custom decode-text animation hook" decision above. After
+seeing it wired into the hero greeting line (scroll-triggered, ZH CJK / EN Latin
+glyph pools), the effect read as too fancy for the portfolio's tone.
+**Options considered:** Keep but tune timing/placement · keep the hook unused for
+later · remove entirely.
+**Decision:** Removed entirely — deleted `src/useDecodeText.ts` and
+`src/DecodeText.tsx`, reverted the hero greeting line in `src/App.tsx` back to plain
+`{t.greeting}`. The original decision entry above is retained per append-only policy.
+The section-by-section UX animation pass committed alongside it (`5ed3a64`) is kept.
+**Tradeoffs:** Gained — a cleaner, less gimmicky hero that matches the site's
+measured tone; one fewer piece of bespoke animation code to maintain. Gave up — the
+on-mount/scroll decode reveal. The technique survives in git history (`5ed3a64`) and
+in this log if we ever want it back.
