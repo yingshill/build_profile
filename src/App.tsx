@@ -1450,7 +1450,7 @@ function StorySection({ t }: { t: (typeof translations)[Lang] }) {
   }, [typewriterComplete])
 
   return (
-    <section ref={sectionRef} id="about" className="relative py-16 md:py-24">
+    <section ref={sectionRef} id="about" className="snap-section relative py-16 md:py-24">
       {/* Vignette horizontal: tapa puntos en el centro, se ven en los bordes */}
       <div className="absolute inset-0 pointer-events-none" style={{
         background: 'linear-gradient(90deg, transparent 0%, hsl(var(--background)) 25%, hsl(var(--background)) 75%, transparent 100%)',
@@ -1629,6 +1629,127 @@ function CertLogo({ logo }: { logo: string }) {
   return logos[logo] || null
 }
 
+// useSlideScroll — slideshow-style navigation for the home page. One wheel gesture (or
+// PageUp/Down / Home / End) moves to the next/previous .snap-section *entirely*, with a
+// smooth eased transition. Sections taller than the viewport (e.g. Experience) scroll
+// naturally first — we only advance once the user reaches that section's bottom/top edge.
+// A short settle window after each jump swallows trackpad momentum so one swipe = one
+// section. Mouse/trackpad only (pointer: fine); touch keeps native scroll + CSS snap,
+// and reduced-motion disables it entirely. Also toggles .snap-home on <html>.
+function useSlideScroll() {
+  const reduce = useReducedMotion()
+  useEffect(() => {
+    document.documentElement.classList.add('snap-home')
+    const cleanupClass = () => document.documentElement.classList.remove('snap-home')
+    if (reduce || !window.matchMedia('(pointer: fine)').matches) return cleanupClass
+
+    const EASE_MS = 620
+    const SETTLE_MS = 140 // swallow trackpad momentum after a jump
+    const EDGE = 6        // px slack for "at edge" + min delta to act on
+    // A section scrolls fully natively (no slide hand-off) only if its content extends
+    // well beyond one screen. Measured: Experience overflows by ~1500px; Projects/
+    // Education by ≤400px. 700px isolates Experience so the rest still slide.
+    const NATIVE_OVERFLOW = 700
+
+    let locked = false
+    let settleTimer: ReturnType<typeof setTimeout> | null = null
+    let rafId = 0
+
+    const sections = () => Array.from(document.querySelectorAll<HTMLElement>('.snap-section'))
+    const docTop = (el: HTMLElement) => el.getBoundingClientRect().top + window.scrollY
+    const currentIndex = (els: HTMLElement[]) => {
+      const y = window.scrollY
+      let idx = 0
+      for (let i = 0; i < els.length; i++) if (docTop(els[i]) <= y + 2) idx = i
+      return idx
+    }
+    const scheduleUnlock = () => {
+      if (settleTimer) clearTimeout(settleTimer)
+      settleTimer = setTimeout(() => { locked = false }, SETTLE_MS)
+    }
+    const animateTo = (top: number) => {
+      locked = true
+      cancelAnimationFrame(rafId)
+      const from = window.scrollY
+      const dist = top - from
+      if (Math.abs(dist) < 1) { scheduleUnlock(); return }
+      const ease = (p: number) => (p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2)
+      let start: number | null = null
+      const step = (ts: number) => {
+        if (start === null) start = ts
+        const p = Math.min((ts - start) / EASE_MS, 1)
+        window.scrollTo(0, Math.round(from + dist * ease(p)))
+        if (p < 1) rafId = requestAnimationFrame(step)
+        else scheduleUnlock()
+      }
+      rafId = requestAnimationFrame(step)
+    }
+    const isTall = (el: HTMLElement) => el.offsetHeight > window.innerHeight + EDGE
+    // dir < 0 means we're arriving from below (scrolling up): land on a tall target's
+    // BOTTOM so its last content is visible, not its top (which would skip everything).
+    const goTo = (i: number, dir: number) => {
+      const els = sections()
+      if (!els.length) return
+      const clamped = Math.max(0, Math.min(els.length - 1, i))
+      const el = els[clamped]
+      const top = docTop(el)
+      animateTo(dir < 0 && isTall(el) ? top + el.offsetHeight - window.innerHeight : top)
+    }
+    const inOverlay = (target: EventTarget | null) =>
+      !!(target as HTMLElement | null)?.closest?.('[role="dialog"], input, textarea, [contenteditable="true"]')
+
+    const onWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return // horizontal intent
+      if (inOverlay(e.target)) return
+      if (locked) { e.preventDefault(); scheduleUnlock(); return }
+      if (Math.abs(e.deltaY) < EDGE) return
+
+      const els = sections()
+      if (!els.length) return
+      const y = window.scrollY
+      const vh = window.innerHeight
+      const idx = currentIndex(els)
+      const sec = els[idx]
+      const top = docTop(sec)
+      const bottom = top + sec.offsetHeight
+
+      // Genuinely huge section (Experience): scroll fully native, INCLUDING the hand-off
+      // into the adjacent section — so the boundary is a smooth continuation, not a
+      // one-notch full-viewport leap. Slightly-over-one-screen sections (Projects,
+      // Education) still slide: scroll the small overflow, then jack to the next section.
+      if (sec.offsetHeight - vh > NATIVE_OVERFLOW) return
+
+      if (e.deltaY > 0) {
+        if (bottom - (y + vh) > EDGE) return // still content below within this section
+        if (idx < els.length - 1) { e.preventDefault(); goTo(idx + 1, 1) }
+      } else {
+        if (y - top > EDGE) return
+        if (idx > 0) { e.preventDefault(); goTo(idx - 1, -1) }
+      }
+    }
+    const onKey = (e: KeyboardEvent) => {
+      if (inOverlay(e.target)) return
+      const els = sections()
+      if (!els.length) return
+      const idx = currentIndex(els)
+      if (e.key === 'PageDown') { e.preventDefault(); goTo(idx + 1, 1) }
+      else if (e.key === 'PageUp') { e.preventDefault(); goTo(idx - 1, -1) }
+      else if (e.key === 'Home') { e.preventDefault(); goTo(0, 1) }
+      else if (e.key === 'End') { e.preventDefault(); goTo(els.length - 1, 1) }
+    }
+
+    window.addEventListener('wheel', onWheel, { passive: false })
+    window.addEventListener('keydown', onKey)
+    return () => {
+      window.removeEventListener('wheel', onWheel)
+      window.removeEventListener('keydown', onKey)
+      if (settleTimer) clearTimeout(settleTimer)
+      cancelAnimationFrame(rafId)
+      cleanupClass()
+    }
+  }, [reduce])
+}
+
 function App() {
   const location = useLocation()
   const lang: Lang = location.pathname === '/en' ? 'en' : 'zh'
@@ -1638,6 +1759,8 @@ function App() {
   useHeroStyles()
   const { displayText: roleText, roleIndex } = useTypewriterRotation(t.greetingRoles)
 
+  // Slideshow scrolling for the home page (wheel/keyboard → one section per gesture).
+  useSlideScroll()
 
   // SEO: Dynamic meta tags based on language
   const seoData = seo[lang]
@@ -1666,7 +1789,7 @@ function App() {
       <HomeToc lang={lang} />
 
       {/* Hero Section */}
-      <header id="main-content" className="relative overflow-hidden">
+      <header id="main-content" className="snap-section relative overflow-hidden">
         <GridSnakes />
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent" />
         <div className="absolute top-0 right-[max(0px,calc(50%-40rem))] w-[600px] h-[600px] rounded-full blur-3xl -translate-y-1/3 translate-x-1/3 hidden sm:block animate-[hero-glow_8s_ease-in-out_infinite]" style={{ backgroundColor: 'hsl(var(--hero-orb-primary))' }} />
@@ -1751,7 +1874,7 @@ function App() {
       <StorySection t={t} />
 
       {/* Experience - Con preámbulo de competencias */}
-      <section id="experience" className="py-16 md:py-24 bg-muted/30" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 2000px' }}>
+      <section id="experience" className="snap-section py-16 md:py-24 bg-muted/30" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 2000px' }}>
         <div className="max-w-5xl mx-auto px-6">
           <AnimatedSection>
             <h2 className="font-display text-2xl font-semibold mb-8 flex items-center gap-3">
@@ -1904,7 +2027,7 @@ function App() {
       </section>
 
       {/* Projects */}
-      <section id="projects" className="py-16 md:py-24" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 900px' }}>
+      <section id="projects" className="snap-section py-16 md:py-24" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 900px' }}>
         <div className="max-w-5xl mx-auto px-6">
           <AnimatedSection>
             <div className="flex items-center justify-between mb-12">
@@ -1993,7 +2116,7 @@ function App() {
 
 
       {/* Sharing — Teaching + LinkedIn */}
-      <section id="education" className="py-16 md:py-24" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 1000px' }}>
+      <section id="education" className="snap-section py-16 md:py-24" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 1000px' }}>
         <div className="max-w-5xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12">
             {/* Education */}
@@ -2068,7 +2191,7 @@ function App() {
       </section>
 
       {/* Skills */}
-      <section id="tech" className="py-16 md:py-24 bg-muted/30" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 600px' }}>
+      <section id="tech" className="snap-section py-16 md:py-24 bg-muted/30" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 600px' }}>
         <div className="max-w-5xl mx-auto px-6">
           <AnimatedSection>
             <h2 className="font-display text-2xl font-semibold mb-12 flex items-center gap-3">
@@ -2110,7 +2233,7 @@ function App() {
       </section>
 
       {/* Personal Projects */}
-      <section id="personal-projects" className="py-16 md:py-24 bg-muted/30" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 700px' }}>
+      <section id="personal-projects" className="snap-section py-16 md:py-24 bg-muted/30" style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 700px' }}>
         <div className="max-w-5xl mx-auto px-6">
           <AnimatedSection>
             <div className="flex items-center justify-between mb-12">
@@ -2152,8 +2275,9 @@ function App() {
                     ))}
                   </div>
                   {proj.links?.length ? (
-                    <div className="flex flex-col gap-1.5 mb-3">
-                      <span className="text-xs font-medium text-muted-foreground/60">{(t.personalProjects as { artifactsLabel?: string }).artifactsLabel ?? 'Artifacts'} 👇</span>
+                    <div className="mb-3">
+                      <span className="block text-xs font-medium text-muted-foreground/60 mb-1.5">{(t.personalProjects as { artifactsLabel?: string }).artifactsLabel ?? 'Artifacts'} 👇</span>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-3 gap-y-1.5">
                       {proj.links.filter(l => l.type === 'image').map(l => (
                         <button
                           key={l.label}
@@ -2180,6 +2304,7 @@ function App() {
                           {l.label}
                         </button>
                       ))}
+                      </div>
                     </div>
                   ) : null}
                   <a href={`https://${proj.link}`} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex items-center gap-2 text-xs text-neutral-900 dark:text-neutral-100 hover:text-neutral-600 dark:hover:text-neutral-300 hover:underline">
@@ -2194,7 +2319,7 @@ function App() {
       </section>
 
       {/* Footer CTA */}
-      <footer id="contact" className="relative py-16 md:py-24">
+      <footer id="contact" className="snap-section relative py-16 md:py-24">
         {/* Vignette horizontal — zona limpia central, puntos en bordes */}
         <div className="absolute inset-0 pointer-events-none" style={{
           background: 'linear-gradient(90deg, transparent 0%, hsl(var(--background)) 25%, hsl(var(--background)) 75%, transparent 100%)',

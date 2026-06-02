@@ -351,6 +351,24 @@ button, a, [role="button"], summary { cursor: pointer; }
     font-size: 16px; /* Base accesible WCAG */
   }
 
+  /* Slideshow scrolling — active only while the home page is mounted (App adds
+     .snap-home to <html>). On mouse/trackpad, JS (useSlideScroll) drives one-gesture =
+     one-section jumps with an eased transition, so disable CSS smooth-scroll here to
+     avoid double-animating its programmatic scrollTo. Touch devices keep native scroll
+     with a gentle proximity snap instead (no JS jacking). */
+  html.snap-home {
+    scroll-behavior: auto;
+  }
+  @media (pointer: coarse) {
+    html.snap-home {
+      scroll-snap-type: y proximity;
+    }
+    html.snap-home .snap-section {
+      scroll-snap-align: start;
+      scroll-margin-top: 6rem;
+    }
+  }
+
   body {
     font-family: var(--font-sans);
     background-color: hsl(var(--background));
