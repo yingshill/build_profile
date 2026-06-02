@@ -28,46 +28,21 @@ Append-only log of significant architecture, stack, and design decisions. Never 
 **Decision:** Self-contained rAF `easeOutCubic` count-up in a reusable `CountUpMetric` component (no new deps, consistent with the existing local `useInView`/IntersectionObserver pattern). Parses the leading integer via `/^(\d+)(.*)$/`; the number counts 0→target, the remainder (`%`, `↑`, `↓`, `→1`) rides along as a static suffix. State initializes to the **final** value so prerendered HTML, no-JS, and hydration all show the real number — the count only runs client-side once the chip scrolls into view. `useReducedMotion` shows the final value with no animation. Applied to all four metric render sites (Moody's, Flip, LeanData, featured project).
 **Tradeoffs:** Gained an on-brand "measured confidence" reveal that draws the eye to the numbers, with zero SSR/SEO regression and full reduced-motion support. Gave up: a single frame where an in-view-at-mount metric snaps to 0 before climbing (not perceptible for the below-fold experience cards); counting the leading `3` of `3→1` is slightly arbitrary but reads as the value settling. Chose rAF over Motion's `animate()` to avoid threading more of the Motion API through a tiny leaf component.
 
-## Custom decode-text animation hook (no npm dep)
-
-    **Date:** 2026-06-01
-    **Context:** Wanted a "decode/scramble" text reveal effect for the portfolio
-    (e.g. hero name/role line). Surveyed existing GitHub libraries.
-    **Options considered:**
-    - `use-scramble` (tol-is) — 1KB react-hook, typed, well-designed core algorithm
-    - `react-decode-animation`, `react-text-scramble`, `react-scramble` — heavier / less flexible
-    - Vanilla libs (`scrambling-letters`, twistezo `text-scramble`)
-    - DIY hook owning the code, zero dependencies
-    **Decision:** Wrote our own `src/useDecodeText.ts` (~40 lines), adapting the core
-    technique from **tol-is/use-scramble** (MIT) — a per-character countdown "control
-    array" ticked down inside a throttled requestAnimationFrame loop, with a reveal
-    frontier sweeping left→right. Source/credit: https://github.com/tol-is/use-scramble
-    (file: src/index.ts). Our version uses `textContent` (not `innerHTML`), respects
-    `prefers-reduced-motion`, and re-runs on ZH⇄EN text change.
-    **Tradeoffs:** Gained — zero added dependency, full control, no supply-chain/XSS
-    surface, matches existing flat-hook convention (`useAudioAnalyser.ts`). Gave up —
-    we now maintain the animation code ourselves rather than getting upstream fixes;
-    fewer config knobs than the original (`overdrive`, `seed`, custom unicode range,
-    `chance` were dropped as unneeded).
-
-    A few notes on the attribution since that was your concern:
-    - The hook's JSDoc header already credits the source inline: Technique (adapted from tol-is/use-scramble).
-    - The original is MIT-licensed, so adapting the algorithm is fine; the DECISIONS entry above records the provenance at the project level (the "why"), which is the right home for it per your global rules.
-    - If you want belt-and-suspenders, you could also add a one-line // Adapted from tol-is/use-scramble (MIT) comment at the very top of the file above the import — but the JSDoc already covers it.
-
-## Reverted: removed decode-text animation
-
+## Slideshow scroll: CSS scroll-snap over JS scroll-jacking
 **Date:** 2026-06-01
-**Context:** Reverses the "Custom decode-text animation hook" decision above. After
-seeing it wired into the hero greeting line (scroll-triggered, ZH CJK / EN Latin
-glyph pools), the effect read as too fancy for the portfolio's tone.
-**Options considered:** Keep but tune timing/placement · keep the hook unused for
-later · remove entirely.
-**Decision:** Removed entirely — deleted `src/useDecodeText.ts` and
-`src/DecodeText.tsx`, reverted the hero greeting line in `src/App.tsx` back to plain
-`{t.greeting}`. The original decision entry above is retained per append-only policy.
-The section-by-section UX animation pass committed alongside it (`5ed3a64`) is kept.
-**Tradeoffs:** Gained — a cleaner, less gimmicky hero that matches the site's
-measured tone; one fewer piece of bespoke animation code to maintain. Gave up — the
-on-mount/scroll decode reveal. The technique survives in git history (`5ed3a64`) and
-in this log if we ever want it back.
+**Context:** Request to make the home page scroll "like a slideshow — one scroll moves to the next section entirely." Complication: sections are not uniform height — Experience is ~2000px, Education ~1000px, Projects ~900px — all taller than a viewport, so a literal one-screen-per-section model would clip content.
+**Options considered:** (a) Native CSS scroll-snap (`scroll-snap-type: y mandatory` on the document scroller + `scroll-snap-align: start` per section); (b) JS scroll-jacking — intercept the wheel and animate to the next/prev section, fullPage.js style. For (a)'s container: make `<main>` its own `overflow-y` scroller vs. keep document scroll and toggle a class on `<html>`.
+**Decision:** CSS scroll-snap, `mandatory`, scoped to the home page. App toggles `.snap-home` on `<html>` (the document scroller) on mount/unmount, so About + case-study routes scroll normally. Each top-level section/header/footer carries `.snap-section` (`scroll-snap-align: start`, `scroll-margin-top: 6rem` to match the TOC's existing 96px anchor offset and clear the floating nav). Oversized sections (Experience) rely on the CSS spec's oversized-snap-area behavior — the browser lets you scroll through them before the next section snaps. Disabled under `prefers-reduced-motion`. Kept document scroll (rejected making `<main>` the scroller) because the TOC scroll-spy, `ScrollManager` route reset, and anchor `scrollTo` all use `window.scroll*`/`window.scrollY` and would break against an inner scroller.
+**Tradeoffs:** Gained the slideshow feel with native momentum, keyboard, trackpad, mobile, anchor links, and the existing scroll-spy all intact, plus reduced-motion safety and zero scroll-event JS. Gave up the strict "exactly one section per wheel gesture" guarantee that only scroll-jacking provides (a fast fling can cross multiple sections; `mandatory` still lands on a section). `mandatory` can feel aggressive on very short sections; if so the fix is a one-word swap to `proximity`. Did not add `scroll-snap-stop: always` (would force a stop at every section and can trap reading on tall sections).
+
+## Scroll-snap: mandatory → proximity (reversal of the above)
+**Date:** 2026-06-02
+**Context:** With `mandatory`, sections taller than the viewport (Experience, Education, Projects) magneted the scroll back to the current section's top — it took repeated fast scrolls to break through to the next section, and Experience couldn't scroll naturally.
+**Decision:** Switched `scroll-snap-type` from `y mandatory` to `y proximity`. Proximity never fights mid-section: tall sections scroll naturally, short sections still snap cleanly once the scroll comes to rest near a boundary. Everything else (`.snap-home` scoping, `.snap-section` align, 6rem margin, reduced-motion off) unchanged.
+**Tradeoffs:** Gained natural scrolling and an easy, non-fighting feel. Gave up the auto-advance-on-a-single-small-scroll behavior `mandatory` was meant to give (which it wasn't delivering anyway due to the mixed section heights).
+
+## Slideshow scroll: added JS controller (proximity wasn't a real slide deck)
+**Date:** 2026-06-02
+**Context:** CSS `proximity` removed the fight but didn't deliver the requested feel — "each section is a slide card; one scroll brings you to the next section entirely." CSS scroll-snap can't do deterministic one-gesture-per-section with the page's mixed section heights.
+**Decision:** Added `useSlideScroll` — a wheel + keyboard controller scoped to the home page (reverses the earlier "CSS only, no scroll-jacking" call). One wheel gesture (or PageUp/Down, Home/End) animates a full eased jump to the adjacent `.snap-section`. Tall sections (Experience etc.) are exempt: while there is still content below/above within the current section the wheel falls through to native scroll, and we only advance at the section's bottom/top edge. A 140ms settle window after each jump (reset on every wheel event) swallows trackpad momentum so one swipe = one section. Guarded to `pointer: fine` (mouse/trackpad); touch keeps native scroll + the `pointer: coarse` CSS proximity snap; reduced-motion disables the controller (just toggles `.snap-home`). `scroll-behavior` forced to `auto` on `.snap-home` so the rAF tween isn't double-animated. Kept document scroll, so the TOC scroll-spy, ScrollManager, and anchor links keep working.
+**Tradeoffs:** Gained the true slide-deck feel with one section per gesture and natural scrolling inside tall sections. Gave up some of scroll-jacking's usual downsides only partially — it intercepts wheel/keys (a deliberate hijack), which can surprise power users; mitigated by exempting tall sections, honoring overlays/inputs, keeping touch native, and reduced-motion off. Multi-section jumps need multiple swipes (one per section) by design.
